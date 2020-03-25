@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import WebFont from 'webfontloader';
 import { graphql } from 'gatsby';
 import Button from '../components/Button';
 import Section from '../components/Section';
@@ -16,20 +15,6 @@ import AnimatedComponent from '../components/AnimatedComponent';
 import SocialIcons from '../components/SocialIcons';
 import { ReactComponent as FlatMeSVG } from '../assets/svg/character.svg';
 import LayoutVertical from '../components/LayoutVertical';
-
-/***
- * Loading fonts
- * Poppins, FontAwesome & Material Icons
- */
-WebFont.load({
-  google: {
-    families: ['Poppins:400,600,700', 'sans-serif', 'Material Icons'],
-  },
-  custom: {
-    families: ['Font Awesome 5 Icons:400,900', 'Font Awesome 5 Brands:400'],
-    urls: ['//use.fontawesome.com/releases/v5.12.0/css/all.css'],
-  },
-});
 
 const Title = styled.h1`
   text-align: center;

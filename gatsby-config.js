@@ -39,6 +39,17 @@ module.exports = {
         },
       },
     },
-
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Poppins:400,600,700', 'sans-serif', 'Material Icons'],
+        },
+        custom: {
+          families: ['Font Awesome 5 Icons:400,900', 'Font Awesome 5 Brands:400'],
+          urls: ['//use.fontawesome.com/releases/v5.12.0/css/all.css'],
+        },
+      }
+    }
   ]
 };

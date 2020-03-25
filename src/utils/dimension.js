@@ -5,13 +5,14 @@ function getWindowWidth() {
 }
 
 export default function useWindowWidth() {
-  const [windowWidth, setWindowWidth] = useState(getWindowWidth());
+  const [windowWidth, setWindowWidth] = useState(1280);
 
   useEffect(() => {
     function handleResize() {
       setWindowWidth(getWindowWidth());
     }
 
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
