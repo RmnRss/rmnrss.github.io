@@ -37,7 +37,6 @@ const Title = styled.h1`
 `;
 
 const scrollToRef = ref => {
-  console.log('fdqsssss');
   window.scrollTo(0, ref.current.offsetTop);
 };
 
@@ -92,20 +91,18 @@ class IndexPage extends Component {
               <SubSectionIntro
                 title={'Developer & Design ?'}
                 description={
-                  'Let’s start with the basics. My name is Romain (very French\n' +
-                  'I know...). I am a 24 years old student in computer science,\n' +
-                  'following an engineering degree specialized in Human-Machine\n' +
-                  'Interactions (HMI).\n' +
-                  'Professionally, I like to see my self as a computer-science\n' +
-                  'engineer with a big love for design. Design can mean a\n' +
-                  'loooot of things, so what do I mean by that ? Well I find a\n' +
-                  'lot of interest into multiple “aestetic” design related\n' +
-                  'fields such as Architechture, Graphic Design, Interior\n' +
+                  'Let’s start with the basics. My name is Romain, I am a 24 years old student ' +
+                  'following a Computer-Science engineering degree specialized in Human-Machine Interactions (HMI). ' +
+                  'So I am studying computer-science, but not only, ' +
+                  'I am also a very big design enthusiast. Design can mean a ' +
+                  'lot of things, so what do I mean by that ? Well I find a\n' +
+                  'lot of interest into multiple “aesthetic” design related\n' +
+                  'fields such as Architecture, Graphic Design, Interior\n' +
                   'Design etc. About two years ago I wondered what field were\n' +
                   'mixing both computer science and design. That’s when I\n' +
-                  'learned about HMI and front-end which goes from User\n' +
-                  'Experience to implementing sexy, but often useless,\n' +
-                  'animations. I tried since then to become a front-end\n' +
+                  'heard about HMI and front-end which goes from User\n' +
+                  'Experience to implementing sexy animations.\n' +
+                  'I\'ve tried since then to become a front-end\n' +
                   'developer by learning javascript, and it’s frameworks but\n' +
                   'also by learning about UI/UX design.'
                 }
@@ -152,19 +149,7 @@ class IndexPage extends Component {
             <Section backgroundColor={theme.lightDark}>
               <BackgroundTitle label={'Portfolio'} color={theme.light}/>
 
-              <SubSectionIntro
-                description={
-                  'Learning about design I have read a lot about whether or not designers should learn programming. ' +
-                  'But what about the other way around ? I think an argument could be made about programmers having to learn about design. ' +
-                  'In IT we often found great software, or ideas, that are hardly usable because they' +
-                  'have not been thought for their users or simply have not been designed before there were implemented.' +
-                  'This is the main reason why I’ve tried to mix programming and designing through all the project presented below' +
-                  'I think it made me a better developer and gave me great insights for IT projects.'
-                }
-                title={'Educational & personal work'}
-              />
-
-              <SubSection nbColumns={3} title={'Projects'}>
+              <SubSection nbColumns={2} title={'Educational & personal projects'}>
                 <CardProject
                   title={'Squirrel Defender'}
                   description={

@@ -1,9 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 import FlexboxRow from './FlexboxRow';
 import ClickableIcon from './ClickableIcon';
-import theme from '../styles/theme';
-import SectionHead from './SectionHead';
 
 const SocialIcons = ({ iconSize, color, hoverColor }) => {
   return (

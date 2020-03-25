@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LayoutContent from './LayoutContent';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SocialIcons from './SocialIcons';

@@ -24,7 +24,7 @@ const IconContainer = styled.div`
   
   width: 6em;
   height: 6em;
-  background-color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.secondary};
   border-radius: 50%;
 `;
 
