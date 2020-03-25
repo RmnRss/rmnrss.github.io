@@ -1,4 +1,6 @@
 module.exports = {
+  pathPrefix: "/rmnrss",
+
   siteMetadata: {
     title: `Romain Rousseau | Portfolio`,
     description: `Come and learn a little bit more about me and my work.`,
