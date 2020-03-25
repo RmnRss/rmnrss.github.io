@@ -2,22 +2,17 @@ import React, { Component } from 'react';
 import WebFont from 'webfontloader';
 import { graphql } from 'gatsby';
 import Button from '../components/Button';
-import Section from '../components/section';
+import Section from '../components/Section';
 import SEO from '../components/seo';
-import ProjectCard from '../components/ProjectCard';
+import CardProject from '../components/CardProject';
 import TopicDescription from '../components/TopicDescription';
 import SubSection from '../components/SubSection';
-import ClickableIcon from '../components/ClickableIcon';
-import Footer from '../components/footer';
 import theme from '../styles/theme';
-import HeadSection from '../components/HeadSection';
+import SectionHead from '../components/SectionHead';
 import styled from 'styled-components';
-import IntroSubSection from '../components/IntroSubSection';
-import Body from '../components/Body';
+import SubSectionIntro from '../components/SubSectionIntro';
 import BackgroundTitle from '../components/BackgroundTitle';
-import Navigator from '../components/navigator';
 import AnimatedComponent from '../components/AnimatedComponent';
-import FlexboxRow from '../components/FlexboxRow';
 import SocialIcons from '../components/SocialIcons';
 import { ReactComponent as FlatMeSVG } from '../assets/svg/character.svg';
 import LayoutVertical from '../components/LayoutVertical';
@@ -56,16 +51,16 @@ class IndexPage extends Component {
   render() {
     return (
       <>
-        <SEO title="Portfolio - Romain Rousseau" />
+        <SEO title="Portfolio - Romain Rousseau"/>
 
         <LayoutVertical>
           <div className={'Intro'} id="head-section">
-            <HeadSection>
-              <FlatMeSVG />
+            <SectionHead>
+              <FlatMeSVG/>
 
               <AnimatedComponent animationClass={'animated slideInUp'}>
                 <Title>
-                  “ A front-end developer with the <br /> heart of a designer ”
+                  “ A front-end developer with the <br/> heart of a designer ”
                 </Title>
               </AnimatedComponent>
 
@@ -84,7 +79,7 @@ class IndexPage extends Component {
                 color={theme.lightDark}
                 hoverColor={theme.primary}
               />
-            </HeadSection>
+            </SectionHead>
           </div>
 
           <div
@@ -93,8 +88,8 @@ class IndexPage extends Component {
             ref={this.aboutMeRef}
           >
             <Section>
-              <BackgroundTitle label={'About Me'} />
-              <IntroSubSection
+              <BackgroundTitle label={'About Me'}/>
+              <SubSectionIntro
                 title={'Developer & Design ?'}
                 description={
                   'Let’s start with the basics. My name is Romain (very French\n' +
@@ -155,9 +150,9 @@ class IndexPage extends Component {
 
           <div className={'Portfolio'} id="portfolio-section">
             <Section backgroundColor={theme.lightDark}>
-              <BackgroundTitle label={'Portfolio'} color={theme.light} />
+              <BackgroundTitle label={'Portfolio'} color={theme.light}/>
 
-              <IntroSubSection
+              <SubSectionIntro
                 description={
                   'Learning about design I have read a lot about whether or not designers should learn programming. ' +
                   'But what about the other way around ? I think an argument could be made about programmers having to learn about design. ' +
@@ -170,7 +165,7 @@ class IndexPage extends Component {
               />
 
               <SubSection nbColumns={4} title={'Projects'}>
-                <ProjectCard
+                <CardProject
                   title={'Squirrel Defender'}
                   description={
                     'Squirrel Defender is a reflex-based mobile game in which you\n' +
@@ -178,10 +173,9 @@ class IndexPage extends Component {
                   }
                   fluid={this.props.data.sdImg.childImageSharp.fluid}
                   sepColor={theme.secondary}
-                  color={theme.secondary}
                   link={'/projects/squirrel-defender'}
                 />
-                <ProjectCard
+                <CardProject
                   title={'TTFL'}
                   description={
                     'The TrashTalk Fantasy League is a NBA Fantasy League from\n' +
@@ -190,9 +184,9 @@ class IndexPage extends Component {
                   }
                   fluid={this.props.data.TTFLImg.childImageSharp.fluid}
                   sepColor={theme.secondary}
-                  color={theme.secondary}
+                  link={'/projects/ttfl'}
                 />
-                <ProjectCard
+                <CardProject
                   title={'SIOS'}
                   description={
                     'SIOS is a web application dedicated to managing room\n' +
@@ -201,9 +195,9 @@ class IndexPage extends Component {
                   }
                   fluid={this.props.data.siosImg.childImageSharp.fluid}
                   sepColor={theme.secondary}
-                  color={theme.secondary}
+                  link={'/projects/sios'}
                 />
-                <ProjectCard
+                <CardProject
                   title={'Munchkin Assistant'}
                   description={
                     'As big Munchkin enthusiast my friend and I always found it\n' +
@@ -212,14 +206,16 @@ class IndexPage extends Component {
                   }
                   fluid={this.props.data.munchkinImg.childImageSharp.fluid}
                   sepColor={theme.secondary}
+                  link={'/projects/munchkin-assistant'}
                 />
-                <ProjectCard
+                <CardProject
                   title={'Rick & Morty Network Analysis'}
                   description={
                     'A data science network analysis of the Rick & Morty Show'
                   }
                   fluid={this.props.data.rmImg.childImageSharp.fluid}
                   sepColor={theme.secondary}
+                  link={''}
                 />
               </SubSection>
             </Section>

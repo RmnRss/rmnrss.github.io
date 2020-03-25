@@ -4,9 +4,9 @@ import Body from '../components/Body';
 import Button from '../components/Button';
 import theme from '../styles/theme';
 import styled from 'styled-components';
-import Footer from '../components/footer';
+import Footer from '../components/Footer';
 import BackgroundTitle from '../components/BackgroundTitle';
-import HeadSection from '../components/HeadSection';
+import SectionHead from '../components/SectionHead';
 
 const Subtitle = styled.h1`
   text-align: center;
@@ -29,7 +29,7 @@ const NotFoundPage = () => (
   <>
     <SEO title="Page not found." />
     <Body>
-      <HeadSection>
+      <SectionHead>
         <BackgroundTitle label={'404'} color={theme.light} />
         <Subtitle>PAGE NOT FOUND</Subtitle>
         <Text>
@@ -48,7 +48,7 @@ const NotFoundPage = () => (
           color={'#FAFAFA'}
           hoverColor={'#22CAAC'}
         />
-      </HeadSection>
+      </SectionHead>
       <FixedFooter backgroundColor={theme.light}/>
     </Body>
   </>
