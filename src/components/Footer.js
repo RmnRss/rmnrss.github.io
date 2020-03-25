@@ -6,6 +6,7 @@ import FlexboxRow from './FlexboxRow';
 import FlexboxColumn from './FlexboxColumn';
 
 const FooterContainer = styled.footer`
+  position: relative;
   background: ${props => props.theme.light};
   border-top: 1px solid #bcbcbc;
 `;
@@ -15,7 +16,7 @@ const FooterContent = styled(FlexboxRow)`
   flex-wrap: wrap;
 `;
 
-const Column = styled(FlexboxColumn)`
+const SiteInfos = styled(FlexboxColumn)`
   flex-wrap: wrap;
   align-content: center;
 
@@ -45,12 +46,12 @@ class Footer extends Component {
         backgroundColor={this.props.backgroundColor}
       >
           <FooterContent alignItems={'center'} justifyContent={'space-evenly'}>
-            <Column alignItems={'flex-start'}>
+            <SiteInfos alignItems={'flex-start'}>
               <Author>Romain Rousseau</Author>
               <Infos>
                 Site hosted on <b>Github</b>
               </Infos>
-            </Column>
+            </SiteInfos>
 
             <SocialIcons
               iconSize={24}
