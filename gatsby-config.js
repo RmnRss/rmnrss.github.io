@@ -50,6 +50,7 @@ module.exports = {
           urls: ['//use.fontawesome.com/releases/v5.12.0/css/all.css'],
         },
       }
-    }
+    },
+    `gatsby-plugin-styled-components`,
   ]
 };
