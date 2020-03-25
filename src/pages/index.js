@@ -102,7 +102,7 @@ class IndexPage extends Component {
                   'lot of interest into multiple “aestetic” design related\n' +
                   'fields such as Architechture, Graphic Design, Interior\n' +
                   'Design etc. About two years ago I wondered what field were\n' +
-                  'mxing both computer science and design. That’s when I\n' +
+                  'mixing both computer science and design. That’s when I\n' +
                   'learned about HMI and front-end which goes from User\n' +
                   'Experience to implementing sexy, but often useless,\n' +
                   'animations. I tried since then to become a front-end\n' +
@@ -164,7 +164,7 @@ class IndexPage extends Component {
                 title={'Educational & personal work'}
               />
 
-              <SubSection nbColumns={4} title={'Projects'}>
+              <SubSection nbColumns={3} title={'Projects'}>
                 <CardProject
                   title={'Squirrel Defender'}
                   description={
