@@ -19,14 +19,14 @@ const LayoutVertical = ({ children }) => {
     <Body>
       <Vertical>
         {
-          winWidth <= 1024 && (
+          winWidth <= 1536 && (
             <Header>
               {children}
             </Header>
           )
         }
         {
-          winWidth > 1024 && (
+          winWidth > 1536 && (
             <Navigator>
               {children}
             </Navigator>

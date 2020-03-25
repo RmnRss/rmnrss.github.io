@@ -10,7 +10,7 @@ const ItemContainer = styled(FlexboxRow)`
     cursor: pointer;
   }
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1536px) {
     margin: 0 1rem;
   }
 `;
@@ -33,7 +33,7 @@ const Circle = styled.span`
     background-color: ${props => props.theme.primary};
   }
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1536px) {
     display: none;
   }
 `;
@@ -50,7 +50,7 @@ const Label = styled.p`
     opacity: 1;
   }
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1536px) {
     opacity: 1;
     color: ${props => (props.active ? props.theme.primary : props.theme.dark)};
 
