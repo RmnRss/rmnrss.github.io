@@ -1,0 +1,53 @@
+{
+  "name": "rmnrss-website",
+  "private": true,
+  "description": "Romain Rousseau portfolio website",
+  "version": "0.1.0",
+  "author": "Romain Rousseau <romain.rousseau5@gmail.com>",
+  "dependencies": {
+    "animate.css": "^3.7.2",
+    "gatsby": "^2.19.7",
+    "gatsby-background-image": "^0.10.2",
+    "gatsby-image": "^2.2.39",
+    "gatsby-plugin-manifest": "^2.2.39",
+    "gatsby-plugin-offline": "^3.0.32",
+    "gatsby-plugin-react-helmet": "^3.1.21",
+    "gatsby-plugin-react-svg": "^3.0.0",
+    "gatsby-plugin-sharp": "^2.4.3",
+    "gatsby-plugin-svgr": "^2.0.2",
+    "gatsby-source-filesystem": "^2.1.46",
+    "gatsby-transformer-sharp": "^2.3.13",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
+    "react-in-viewport": "^1.0.0-alpha.11",
+    "react-particles-js": "^2.7.1",
+    "styled-components": "^5.0.1",
+    "webfontloader": "^1.6.28"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^5.2.0",
+    "prettier": "^1.19.1"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  }
+}
