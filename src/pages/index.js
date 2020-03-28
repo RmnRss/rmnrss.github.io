@@ -13,12 +13,24 @@ import SubSectionIntro from '../components/SubSectionIntro';
 import BackgroundTitle from '../components/BackgroundTitle';
 import AnimatedComponent from '../components/AnimatedComponent';
 import SocialIcons from '../components/SocialIcons';
-import { ReactComponent as FlatMeSVG } from '../assets/svg/character.svg';
+import { ReactComponent as FlatMeSVG } from '../assets/svg/me-space.svg';
 import LayoutVertical from '../components/LayoutVertical';
 
 const Title = styled.h1`
   text-align: center;
   color: ${props => props.theme.lightDark};
+`;
+
+const SVGContainer = styled(FlatMeSVG)`
+  @media screen and (max-width: 1024px) {
+    width: 75%;
+    height: 240px;
+  }
+  
+  @media screen and (max-width: 640px) {
+    width: 75%;
+    height: 180px;
+  }
 `;
 
 const scrollToRef = ref => {
@@ -35,23 +47,23 @@ class IndexPage extends Component {
   render() {
     return (
       <>
-        <SEO title={``}/>
+        <SEO title={`Welcome`} />
         <LayoutVertical>
           <div className={'Intro'} id="head-section">
             <SectionHead>
-              <FlatMeSVG/>
+              <SVGContainer />
 
               <AnimatedComponent animationClass={'animated slideInUp'}>
                 <Title>
-                  “ A front-end developer with the <br/> heart of a designer ”
+                  “ A front-end developer with the <br /> heart of a designer ”
                 </Title>
               </AnimatedComponent>
 
               <Button
                 filled
-                backgroundColor={theme.lightDark}
+                backgroundColor={theme.dark}
                 hoverBackgroundColor={theme.primary}
-                color={theme.dark}
+                color={theme.lightDark}
                 hoverColor={theme.lightDark}
                 label={'Learn More'}
                 onClick={() => scrollToRef(this.aboutMeRef)}
@@ -71,28 +83,10 @@ class IndexPage extends Component {
             ref={this.aboutMeRef}
           >
             <Section>
-              <BackgroundTitle label={'About Me'}/>
-              <SubSectionIntro
-                title={'Developer & Design ?'}
-                description={
-                  'Let’s start with the basics. My name is Romain, I am a 24 years old student ' +
-                  'following a Computer-Science engineering degree specialized in Human-Machine Interactions (HMI). ' +
-                  'So I am studying computer-science, but not only, ' +
-                  'I am also a very big design enthusiast. Design can mean a ' +
-                  'lot of things, so what do I mean by that ? Well I find a\n' +
-                  'lot of interest into multiple “aesthetic” design related\n' +
-                  'fields such as Architecture, Graphic Design, Interior\n' +
-                  'Design etc. About two years ago I wondered what field were\n' +
-                  'mixing both computer science and design. That’s when I\n' +
-                  'heard about HMI and front-end which goes from User\n' +
-                  'Experience to implementing sexy animations.\n' +
-                  'I\'ve tried since then to become a front-end\n' +
-                  'developer by learning javascript, and it’s frameworks but\n' +
-                  'also by learning about UI/UX design.'
-                }
-              />
+              <BackgroundTitle label={'About Me'} />
+              <SubSectionIntro/>
 
-              <SubSection nbColumns={4} title={'My interests & hobbies'}>
+              <SubSection nbColumns={2} title={'My interests & hobbies'}>
                 <TopicDescription
                   title={'Basketball'}
                   iconLibrary={'material'}
@@ -131,9 +125,12 @@ class IndexPage extends Component {
 
           <div className={'Portfolio'} id="portfolio-section">
             <Section backgroundColor={theme.lightDark}>
-              <BackgroundTitle label={'Portfolio'} color={theme.light}/>
+              <BackgroundTitle label={'Portfolio'} color={theme.light} />
 
-              <SubSection nbColumns={2} title={'Educational & personal projects'}>
+              <SubSection
+                nbColumns={3}
+                title={'Educational & personal projects'}
+              >
                 <CardProject
                   title={'Squirrel Defender'}
                   description={
