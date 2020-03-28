@@ -8,7 +8,7 @@ const Content = styled(FlexboxColumn)`
   flex-grow: 1;
 
   margin: 0 auto;
-  max-width: 1280px;
+  max-width: 1024px;
   padding: 2rem 2rem;
 
   z-index: 2;
