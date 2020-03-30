@@ -39,7 +39,6 @@ const NotFoundPage = () => (
         </Text>
 
         <Button
-          filled
           link
           to={'/'}
           label={'' + 'Main page'}

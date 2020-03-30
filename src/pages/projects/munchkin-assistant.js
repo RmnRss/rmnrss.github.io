@@ -28,7 +28,6 @@ const MunchkinAssistant = () => {
               </h3>
 
               <Button
-                filled
                 link
                 to={'/'}
                 label={'' + 'Main page'}

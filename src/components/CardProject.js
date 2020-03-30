@@ -98,7 +98,6 @@ class CardProject extends React.Component {
           <CardTitle>{this.props.title}</CardTitle>
           <CardDescription>{this.props.description}</CardDescription>
           <CardButton
-            filled
             link
             to={this.props.link}
             backgroundColor={'#22CAAC'}

@@ -60,7 +60,6 @@ class IndexPage extends Component {
               </AnimatedComponent>
 
               <Button
-                filled
                 backgroundColor={theme.dark}
                 hoverBackgroundColor={theme.primary}
                 color={theme.lightDark}

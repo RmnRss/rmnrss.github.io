@@ -14,11 +14,8 @@ const ButtonContainer = styled.div`
 
   overflow: hidden;
 
-  background-color: ${props =>
-    props.filled ? props.backgroundColor : 'transparent'};
+  background-color: ${props => props.backgroundColor };
 
-  border: ${props => (props.filled ? '' : '3px solid')};
-  border-color: ${props => props.color};
   border-radius: 4px;
 
   transition: 0.4s ease;
@@ -58,11 +55,8 @@ const ButtonLinkContainer = styled(Link)`
 
   overflow: hidden;
 
-  background-color: ${props =>
-    props.filled ? props.backgroundColor : 'transparent'};
+  background-color: ${props => props.backgroundColor};
 
-  border: ${props => (props.filled ? '' : '3px solid')};
-  border-color: ${props => props.color};
   border-radius: 4px;
 
   transition: 0.4s ease;
@@ -81,7 +75,6 @@ const ButtonLinkContainer = styled(Link)`
   }
 
   &:hover {
-    border-color: ${props => props.hoverBackgroundColor};
     background-color: transparent;
     cursor: pointer;
   }
@@ -119,7 +112,6 @@ class Button extends React.Component {
               {...this.props}
               backgroundColor={this.props.backgroundColor}
               hoverBackgroundColor={this.props.hoverBackgroundColor}
-              filled={this.props.filled}
               to={this.props.to}
             >
               <Label
@@ -137,7 +129,6 @@ class Button extends React.Component {
             justifyContent={'center'}
             backgroundColor={this.props.backgroundColor}
             hoverBackgroundColor={this.props.hoverBackgroundColor}
-            filled={this.props.filled}
           >
             <Label color={this.props.color} hoverColor={this.props.hoverColor}>
               {this.props.label}
