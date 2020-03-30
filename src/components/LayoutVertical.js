@@ -7,6 +7,7 @@ import useWindowWidth from '../utils/dimension';
 import Header from './Header';
 import Footer from './Footer';
 import theme from '../styles/theme';
+import breakpoints from '../utils/breakpoints';
 
 const Vertical = styled.div`
   overflow-x: hidden;
@@ -19,14 +20,14 @@ const LayoutVertical = ({ children }) => {
     <Body>
       <Vertical>
         {
-          winWidth <= 1440 && (
+          winWidth <= breakpoints.xxlg && (
             <Header>
               {children}
             </Header>
           )
         }
         {
-          winWidth > 1440 && (
+          winWidth > breakpoints.xxlg && (
             <Navigator>
               {children}
             </Navigator>
