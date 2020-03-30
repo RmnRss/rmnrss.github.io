@@ -26,12 +26,10 @@ const SiteInfos = styled(FlexboxColumn)`
 const Infos = styled.p`
   font-size: 0.75rem;
   margin: 0 0.5rem 0 0;
-  padding-left: 1rem;
 `;
 
 const Author = styled.p`
   margin: 0;
-  padding-left: 1rem;
 `;
 
 class Footer extends Component {
@@ -56,7 +54,7 @@ class Footer extends Component {
             <SocialIcons
               iconSize={24}
               color={'#181818'}
-              hoverColor={'#e28420'}
+              hoverColor={'#22CAAC'}
             />
           </FooterContent>
       </FooterContainer>
