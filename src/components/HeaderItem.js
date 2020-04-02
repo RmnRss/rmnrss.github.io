@@ -6,45 +6,38 @@ import FlexboxRow from './FlexboxRow';
 const ItemContainer = styled(FlexboxRow)`
   position: relative;
   pointer-events: all;
+  margin: 0 1rem;
 
   &:hover {
     cursor: pointer;
   }
 `;
 
-const Circle = styled.span`
-  height: 0.5rem;
-  width: 0.5rem;
-  border-radius: 50%;
-
-  background-color: ${props =>
-    props.active ? props.theme.primary : props.theme.grey};
-  transform: ${props => (props.active ? 'scale(1.5)' : 'scale(1)')};
-
-  margin: 0.5rem 2rem 0.5rem 0.5rem;
-
-  transition: all 0.3s ease-in-out;
-
-  ${ItemContainer}:hover & {
-    transform: scale(1.5);
-    background-color: ${props => props.theme.primary};
-  }
-`;
-
 const Label = styled.p`
-  opacity: 0;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  color: ${props => props.theme.primary};
+  color: ${props => props.theme.dark};
 
   transition: all 0.1s ease;
 
-  ${ItemContainer}:hover & {
+  &:after {
+    background-color: #181818;
+    content: '';
+    display: block;
+    height: 2px;
+    opacity: ${props => (props.active ? 1 : 0.35)};
+    transform-origin: ${props => (props.active ? '0 0' : '100% 0')};
+    transform: ${props => (props.active ? 'scaleX(1)' : 'scaleX(0)')};
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  ${ItemContainer}:hover &:after {
     opacity: 1;
+    transform-origin: 0 0;
+    transform: scaleX(1);
   }
 `;
 
-class NavigatorItem extends Component {
+class HeaderItem extends Component {
   constructor(props) {
     super(props);
 
@@ -106,22 +99,21 @@ class NavigatorItem extends Component {
         onClick={() => this.scrollToOffset()}
       >
         <Label active={this.state.active}>{this.props.label}</Label>
-        <Circle active={this.state.active} />
       </ItemContainer>
     );
   }
 }
 
-NavigatorItem.propTypes = {
+HeaderItem.propTypes = {
   horizontal: PropTypes.bool,
   label: PropTypes.string,
   sectionID: PropTypes.string,
   onClick: PropTypes.func,
 };
 
-NavigatorItem.defaultProps = {
+HeaderItem.defaultProps = {
   label: 'Link',
   active: false,
 };
 
-export default NavigatorItem;
+export default HeaderItem;

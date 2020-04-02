@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import NavigatorItem from './NavigatorItem';
+import HeaderItem from './HeaderItem';
 
 const NavContainer = styled.header`
   position: fixed;
@@ -34,7 +34,7 @@ class Header extends Component {
           className={this.props.className}
         >
           {React.Children.toArray(this.props.children).map(section => (
-            <NavigatorItem
+            <HeaderItem
               key={section.key}
               horizontal={this.props.horizontal}
               sectionID={section.props.id}
