@@ -4,6 +4,7 @@ import Card from './Card';
 import styled from 'styled-components';
 import Button from './Button';
 import BackgroundImage from 'gatsby-background-image';
+import ButtonLink from './ButtonLink';
 
 const Rectangle = styled.div`
   display: block;
@@ -23,7 +24,7 @@ const BgImg = styled(BackgroundImage)`
   width: fill-available;
   height: inherit;
   background-position: top;
-  
+
   transition: all 0.8s ease-out;
 `;
 
@@ -43,7 +44,7 @@ const CardContent = styled.div`
   color: ${props => props.theme.light};
 `;
 
-const CardButton = styled(Button)`
+const CardButton = styled(ButtonLink)`
   && {
     margin-top: auto;
   }
@@ -55,7 +56,7 @@ const CardContainer = styled(Card)`
   &:hover ${CardContent} {
     transform: translateY(0%);
   }
-  
+
   &:hover ${BgImg} {
     filter: brightness(0.2);
     transform: scale(1.15);
@@ -72,7 +73,6 @@ const CardTitle = styled.h4`
   color: inherit;
   margin: 0.5rem 0;
 `;
-
 
 class CardProject extends React.Component {
   constructor(props) {
@@ -91,15 +91,14 @@ class CardProject extends React.Component {
         width={'auto'}
         height={'24rem'}
       >
-        <BgImg fluid={this.props.fluid}>
-        </BgImg>
+        <BgImg fluid={this.props.fluid}></BgImg>
         <CardContent color={this.props.color}>
           <Rectangle sepColor={this.props.sepColor} />
           <CardTitle>{this.props.title}</CardTitle>
           <CardDescription>{this.props.description}</CardDescription>
           <CardButton
-            link
             to={this.props.link}
+            external={this.props.external}
             backgroundColor={'#22CAAC'}
             hoverBackgroundColor={'#FAFAFA'}
             color={'#FAFAFA'}
@@ -116,6 +115,7 @@ CardProject.propTypes = {
   backgroundColor: PropTypes.string,
   color: PropTypes.string,
   description: PropTypes.string,
+  external: PropTypes.bool,
   fluid: PropTypes.object,
   height: PropTypes.string,
   link: PropTypes.string,

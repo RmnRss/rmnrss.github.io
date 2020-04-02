@@ -131,14 +131,14 @@ class IndexPage extends Component {
                 title={'Educational & personal projects'}
               >
                 <CardProject
-                  title={'Squirrel Defender'}
+                  title={'Rick & Morty Network Analysis'}
                   description={
-                    'Squirrel Defender is a reflex-based mobile game in which you\n' +
-                    'have to defend a cute squirrel from angry badgers!'
+                    'A data science network analysis of the Rick & Morty Show'
                   }
-                  fluid={this.props.data.sdImg.childImageSharp.fluid}
+                  fluid={this.props.data.rmImg.childImageSharp.fluid}
                   sepColor={theme.secondary}
-                  link={'/projects/squirrel-defender'}
+                  external
+                  link={'https://rmnrss.github.io/rm-social-graphs/'}
                 />
                 <CardProject
                   title={'TTFL'}
@@ -162,6 +162,16 @@ class IndexPage extends Component {
                   sepColor={theme.secondary}
                   link={'/projects/sios'}
                 />
+                {/*<CardProject
+                  title={'Squirrel Defender'}
+                  description={
+                    'Squirrel Defender is a reflex-based mobile game in which you\n' +
+                    'have to defend a cute squirrel from angry badgers!'
+                  }
+                  fluid={this.props.data.sdImg.childImageSharp.fluid}
+                  sepColor={theme.secondary}
+                  link={'/projects/squirrel-defender'}
+                />
                 <CardProject
                   title={'Munchkin Assistant'}
                   description={
@@ -172,16 +182,8 @@ class IndexPage extends Component {
                   fluid={this.props.data.munchkinImg.childImageSharp.fluid}
                   sepColor={theme.secondary}
                   link={'/projects/munchkin-assistant'}
-                />
-                <CardProject
-                  title={'Rick & Morty Network Analysis'}
-                  description={
-                    'A data science network analysis of the Rick & Morty Show'
-                  }
-                  fluid={this.props.data.rmImg.childImageSharp.fluid}
-                  sepColor={theme.secondary}
-                  link={''}
-                />
+                />*/}
+
               </SubSection>
             </Section>
           </div>

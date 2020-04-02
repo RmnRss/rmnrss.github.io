@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import BackgroundTitle from '../../components/BackgroundTitle';
 import theme from '../../styles/theme';
-import Button from '../../components/Button';
 import LayoutHorizontal from '../../components/LayoutHorizontal';
 import SEO from '../../components/seo';
 import Section from '../../components/Section';
 import FlexboxColumn from '../../components/FlexboxColumn';
+import ButtonLink from '../../components/ButtonLink';
 
 const ContentCenter = styled(FlexboxColumn)`
   margin: auto;
@@ -27,15 +27,11 @@ const SquirrelDefender = () => {
                 This project is currently in the works :)
               </h3>
 
-              <Button
-                filled
-                link
+              <ButtonLink
                 to={'/'}
-                label={'' + 'Main page'}
-                backgroundColor={'#22CAAC'}
-                hoverBackgroundColor={'#181818'}
-                color={'#FAFAFA'}
-                hoverColor={'#22CAAC'}
+                label={'Main page'}
+                hoverBackgroundColor={'#febe81'}
+                hoverColor={'#fafafa'}
               />
             </ContentCenter>
           </Section>

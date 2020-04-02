@@ -1,55 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'gatsby';
 import styled from 'styled-components';
+import FlexboxRow from './FlexboxRow';
 
-const ButtonContainer = styled.div`
+const ButtonContainer = styled(FlexboxRow)`
   position: relative;
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 1rem 2rem;
-
-  overflow: hidden;
-
-  background-color: ${props => props.backgroundColor };
-
-  border-radius: 4px;
-
-  transition: 0.4s ease;
-
-  &:after {
-    position: absolute;
-    content: '';
-    height: 120%;
-    width: 0;
-    left: -10%;
-    bottom: 0%;
-    background: ${props => props.hoverBackgroundColor};
-    transform: skewX(15deg);
-    z-index: -1;
-    transition: 0.3s ease;
-  }
-
-  &:hover {
-    border-color: ${props => props.hoverBackgroundColor};
-    background-color: transparent;
-    cursor: pointer;
-  }
-
-  &:hover:after {
-    width: 120%;
-  }
-`;
-
-const ButtonLinkContainer = styled(Link)`
-  position: relative;
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   padding: 1rem 2rem;
 
@@ -94,68 +49,51 @@ const Label = styled.b`
 
   transition: color 0.4s ease;
 
-  ${ButtonContainer}:hover &, ${ButtonLinkContainer}:hover & {
+  ${ButtonContainer}:hover & {
     color: ${props => props.hoverColor};
   }
 `;
 
-class Button extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <>
-        {this.props.link && (
-            <ButtonLinkContainer
-              {...this.props}
-              backgroundColor={this.props.backgroundColor}
-              hoverBackgroundColor={this.props.hoverBackgroundColor}
-              to={this.props.to}
-            >
-              <Label
-                color={this.props.color}
-                hoverColor={this.props.hoverColor}
-              >
-                {this.props.label}
-              </Label>
-            </ButtonLinkContainer>
-        )}
-        {!this.props.link && (
-          <ButtonContainer
-            {...this.props}
-            alignItems={'center'}
-            justifyContent={'center'}
-            backgroundColor={this.props.backgroundColor}
-            hoverBackgroundColor={this.props.hoverBackgroundColor}
-          >
-            <Label color={this.props.color} hoverColor={this.props.hoverColor}>
-              {this.props.label}
-            </Label>
-          </ButtonContainer>
-        )}
-      </>
-    );
-  }
-}
+const Button = ({
+  backgroundColor,
+  color,
+  className,
+  hoverBackgroundColor,
+  hoverColor,
+  label,
+  onClick,
+}) => {
+  return (
+    <ButtonContainer
+      className={className}
+      onClick={onClick}
+      backgroundColor={backgroundColor}
+      hoverBackgroundColor={hoverBackgroundColor}
+      justifyContent={'center'}
+      alignItems={'center'}
+    >
+      <Label color={color} hoverColor={hoverColor}>
+        {label}
+      </Label>
+    </ButtonContainer>
+  );
+};
 
 Button.propTypes = {
   backgroundColor: PropTypes.string,
-  hoverBackgroundColor: PropTypes.string,
   color: PropTypes.string,
+  hoverBackgroundColor: PropTypes.string,
   hoverColor: PropTypes.string,
   label: PropTypes.string,
-  link: PropTypes.bool,
   onClick: PropTypes.func,
-  to: PropTypes.string,
 };
 
 Button.defaultProps = {
-  color: '#000',
-  hoverColor: '#e28420',
-  label: 'Button',
-  link: false,
+  backgroundColor: `#181818`,
+  color: `#fafafa`,
+  hoverBackgroundColor: `#fafafa`,
+  hoverColor: `#181818`,
+  label: `Button`,
 };
 
 export default Button;
