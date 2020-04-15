@@ -6,7 +6,7 @@ import FlexboxRow from './FlexboxRow';
 const ItemContainer = styled(FlexboxRow)`
   position: relative;
   pointer-events: all;
-
+  
   &:hover {
     cursor: pointer;
   }
@@ -21,26 +21,13 @@ const Circle = styled.span`
     props.active ? props.theme.primary : props.theme.grey};
   transform: ${props => (props.active ? 'scale(1.5)' : 'scale(1)')};
 
-  margin: 0.5rem 2rem 0.5rem 0.5rem;
+  margin: 1rem 2rem 1rem 1.25rem;
 
   transition: all 0.3s ease-in-out;
 
   ${ItemContainer}:hover & {
     transform: scale(1.5);
     background-color: ${props => props.theme.primary};
-  }
-`;
-
-const Label = styled.p`
-  opacity: 0;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: ${props => props.theme.primary};
-
-  transition: all 0.1s ease;
-
-  ${ItemContainer}:hover & {
-    opacity: 1;
   }
 `;
 
@@ -55,6 +42,7 @@ class NavigatorItem extends Component {
 
   componentDidMount() {
     this.setState({ active: false });
+    this.navLabel = document.getElementById("navigator-label");
     this.linkedSection = document.getElementById(this.props.sectionID);
     window.addEventListener('scroll', this.handleScroll, true);
     this.handleScroll();
@@ -89,23 +77,28 @@ class NavigatorItem extends Component {
   isActive(offset, size) {
     if (this.props.horizontal) {
       this.setState({
-        active: window.scrollX >= offset && window.scrollX < offset + size,
-      });
+        active: window.scrollX >= offset-100 && window.scrollX < offset + size,
+      }, this.changeLabel());
     } else {
       this.setState({
-        active: window.scrollY >= offset && window.scrollY < offset + size,
-      });
+        active: window.scrollY >= offset-100 && window.scrollY < offset + size,
+      }, this.changeLabel());
+    }
+  }
+
+  changeLabel() {
+    if(this.state.active){
+      this.navLabel.textContent = this.props.label;
     }
   }
 
   render() {
     return (
       <ItemContainer
-        justifyContent={'flex-end'}
+        justifyContent={'center'}
         alignItems={'center'}
         onClick={() => this.scrollToOffset()}
       >
-        <Label active={this.state.active}>{this.props.label}</Label>
         <Circle active={this.state.active} />
       </ItemContainer>
     );

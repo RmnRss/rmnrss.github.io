@@ -1,10 +1,14 @@
 const Theme = {
   secondary: '#FEBE81',
-  secondaryDark: '#e28420',
+  secondaryDark: '#EFA45D',
   secondaryLight: '#FFD875',
 
   primary: '#22CAAC',
   primaryDark: '#001A20',
+
+  purple: '#5A4A94',
+  purpleDark: '#312952',
+  purpleLight: '#7B6BC6',
 
   light: '#fafafa',
   lightDark: '#ececec',
@@ -16,7 +20,7 @@ const Theme = {
 
   fontFamily: 'Poppins',
 
-  cardRadius: '8px',
+  cardRadius: '4px',
 };
 
 export default Theme;
