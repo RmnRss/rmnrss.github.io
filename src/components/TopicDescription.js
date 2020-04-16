@@ -2,35 +2,37 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import FlexboxColumn from './FlexboxColumn';
+import Card from './Card';
+import FlexboxRow from './FlexboxRow';
 
-const Container = styled(FlexboxColumn)`
-  padding: 1rem;
+const Container = styled.div`
+  padding: 1rem 1rem 1rem 3rem;
+  margin: 1rem 0;
+  background-color: ${props => props.theme.light};
 `;
 
-const Title = styled.h4`
-  text-transform: capitalize;
-  text-align: center;
+const Title = styled.b`
+  margin: 0;
 `;
 
 const Description = styled.p`
+  font-size: 0.85em;
   margin: 0;
-  text-align: center;
 `;
 
-const IconContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  width: 6em;
-  height: 6em;
-  background-color: ${props => props.theme.secondary};
-  border-radius: 50%;
+const TextContainer = styled(FlexboxColumn)`
+`;
+
+const IconContainer = styled(FlexboxColumn)`
+  padding: 1rem;
+  margin-right: -2.5rem;
+  z-index:1;
+  background-color: ${props => props.theme.purpleDark};
 `;
 
 const Icon = styled.i`
   text-align: center;
-  font-size: 3.5em !important;
+  font-size: 3em !important;
   color: ${props => props.theme.light};
 `;
 
@@ -41,21 +43,24 @@ class TopicDescription extends Component {
 
   render() {
     return (
-      <Container alignItems={'center'} justifyContent={'flex-start'}>
-        <IconContainer>
-          {this.props.iconLibrary === 'material' && (
-            <Icon className={'material-icons'}>
-              {this.props.iconName}
-            </Icon>
-          )}
+        <FlexboxRow justifyContent={'center'} alignItems={'center'}>
+          <IconContainer justifyContent={'center'} alignItems={'center'}>
+            {this.props.iconLibrary === 'material' && (
+              <Icon className={'material-icons'}>{this.props.iconName}</Icon>
+            )}
 
-          {this.props.iconLibrary === 'fontawesome' && (
-            <Icon className={this.props.iconName} />
-          )}
-        </IconContainer>
-          <Title>{this.props.title}</Title>
-          <Description>{this.props.description}</Description>
-      </Container>
+            {this.props.iconLibrary === 'fontawesome' && (
+              <Icon className={this.props.iconName} />
+            )}
+          </IconContainer>
+          <Container
+            justifyContent={'flex-start'}
+            alignItems={'flex-start'}
+          >
+            <Title>{this.props.title}</Title>
+            <Description>{this.props.description}</Description>
+          </Container>
+        </FlexboxRow>
     );
   }
 }
