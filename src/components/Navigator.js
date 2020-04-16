@@ -6,7 +6,7 @@ import NavigatorItem from './NavigatorItem';
 const NavContainer = styled.div`
   position: fixed;
   bottom: ${props => (props.horizontal ? '0%' : '70%')};
-  left: calc(((100% - 1024px)/2) - 4rem);
+  left: calc(((100% - 1440px)/2) - 4rem);
   display: flex;
 
   flex-direction: ${props => (props.horizontal ? 'row' : 'column')};
