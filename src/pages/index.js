@@ -9,8 +9,7 @@ import SubSection from '../components/SubSection';
 import theme from '../styles/theme';
 import SectionHead from '../components/SectionHead';
 import styled from 'styled-components';
-import SubSectionIntro from '../components/SubSectionIntro';
-import BackgroundTitle from '../components/BackgroundTitle';
+import SectionIntro from '../components/SectionIntro';
 import AnimatedComponent from '../components/AnimatedComponent';
 import SocialIcons from '../components/SocialIcons';
 import { ReactComponent as FlatMeSVG } from '../assets/svg/me-space.svg';
@@ -26,7 +25,7 @@ const SVGContainer = styled(FlatMeSVG)`
     width: 75%;
     height: 240px;
   }
-  
+
   @media screen and (max-width: 640px) {
     width: 75%;
     height: 180px;
@@ -49,7 +48,7 @@ class IndexPage extends Component {
       <>
         <SEO title={`Welcome`} />
         <LayoutVertical>
-          <div className={'Intro'} id="head-section">
+          <div className={'Welcome'} id="head-section">
             <SectionHead>
               <SVGContainer />
 
@@ -81,51 +80,11 @@ class IndexPage extends Component {
             id="about-me-section"
             ref={this.aboutMeRef}
           >
-            <Section>
-              <BackgroundTitle label={'About Me'} />
-              <SubSectionIntro/>
-
-              <SubSection nbColumns={2} title={'My interests & hobbies'}>
-                <TopicDescription
-                  title={'Basketball'}
-                  iconLibrary={'material'}
-                  iconName={'sports_basketball'}
-                  description={
-                    'Basketball was probably my first passion. Playing it made my learn about my thrive for competition, team-work and the importance of practice and execution in any learning process. '
-                  }
-                />
-                <TopicDescription
-                  title={'Video Games'}
-                  iconLibrary={'material'}
-                  iconName={'sports_esports'}
-                  description={
-                    'A lot of what I like about travelling and science-fiction comes together through video games. Exploration, discoveries, competition and even creation from the comfort of your home! '
-                  }
-                />
-                <TopicDescription
-                  title={'Science-Fiction'}
-                  iconLibrary={'fontawesome'}
-                  iconName={'fas fa-meteor'}
-                  description={
-                    'I love discovering new world and ideas through Sci-Fi ! When it comes, to watching, playing, reading, or even listening to Science-Fiction my towels are always ready and upgraded.'
-                  }
-                />
-                <TopicDescription
-                  title={'Traveling'}
-                  iconLibrary={'material'}
-                  iconName={'map'}
-                  description={
-                    '“Once you start travelling you can never stop”. That quote from every travel enthusiast turned out to be true for me too, I enjoy travelling and think it has open my mind over the years.'
-                  }
-                />
-              </SubSection>
-            </Section>
+              <SectionIntro />
           </div>
 
           <div className={'Portfolio'} id="portfolio-section">
             <Section backgroundColor={theme.lightDark}>
-              <BackgroundTitle label={'Portfolio'} color={theme.light} />
-
               <SubSection
                 nbColumns={3}
                 title={'Educational & personal projects'}
@@ -183,7 +142,6 @@ class IndexPage extends Component {
                   sepColor={theme.secondary}
                   link={'/projects/munchkin-assistant'}
                 />*/}
-
               </SubSection>
             </Section>
           </div>
