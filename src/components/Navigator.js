@@ -6,7 +6,7 @@ import NavigatorItem from './NavigatorItem';
 const NavContainer = styled.div`
   position: fixed;
   bottom: ${props => (props.horizontal ? '0%' : '70%')};
-  left: calc(((100% - 1440px)/2) - 4rem);
+  left: calc(((100% - 1440px) / 2) - 4rem);
   display: flex;
 
   flex-direction: ${props => (props.horizontal ? 'row' : 'column')};
@@ -21,12 +21,12 @@ const NavContainer = styled.div`
 const Label = styled.h3`
   font-weight: 800;
   text-transform: uppercase;
-  
-  margin: 0 0 1rem 0;
-  
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-  
+
+  margin: ${props => (props.horizontal ? '0' : '0 0 1rem 0')};
+
+  writing-mode: ${props => (props.horizontal ? '' : 'vertical-lr')};
+  transform: ${props => (props.horizontal ? '' : 'rotate(180deg)')};
+
   letter-spacing: 0.05em;
   color: ${props => props.theme.primary};
 
@@ -45,7 +45,12 @@ class Navigator extends Component {
           horizontal={this.props.horizontal}
           className={this.props.className}
         >
-          <Label id="navigator-label">Welcome</Label>
+          {!this.props.horizontal && (
+            <Label id="navigator-label" horizontal={this.props.horizontal}>
+
+            </Label>
+          )}
+
           {React.Children.toArray(this.props.children).map(section => (
             <NavigatorItem
               key={section.key}
@@ -54,6 +59,12 @@ class Navigator extends Component {
               label={section.props.className}
             />
           ))}
+
+          {this.props.horizontal && (
+            <Label id="navigator-label" horizontal={this.props.horizontal}>
+
+            </Label>
+          )}
         </NavContainer>
         {this.props.children}
       </>
