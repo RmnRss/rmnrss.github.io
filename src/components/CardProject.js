@@ -2,17 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Card from './Card';
 import styled from 'styled-components';
-import Button from './Button';
 import BackgroundImage from 'gatsby-background-image';
 import ButtonLink from './ButtonLink';
-
-const Rectangle = styled.div`
-  display: block;
-  height: 3px;
-  width: 4rem;
-  background-color: ${props => props.sepColor};
-  margin-bottom: 1em;
-`;
+import Separator from './Separator';
 
 const BgImg = styled(BackgroundImage)`
   && {
@@ -93,7 +85,7 @@ class CardProject extends React.Component {
       >
         <BgImg fluid={this.props.fluid}></BgImg>
         <CardContent color={this.props.color}>
-          <Rectangle sepColor={this.props.sepColor} />
+          <Separator color={this.props.sepColor} margin={'0 0 1rem 0'} width={'4rem'} />
           <CardTitle>{this.props.title}</CardTitle>
           <CardDescription>{this.props.description}</CardDescription>
           <CardButton
