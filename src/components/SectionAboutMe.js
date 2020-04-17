@@ -2,9 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import FlexboxColumn from './FlexboxColumn';
 import FlexboxRow from './FlexboxRow';
-import useWindowWidth from '../utils/dimension';
 import Section from './Section';
 import TopicDescription from './TopicDescription';
+import AnimatedComponentInView from './AnimatedComponentInView';
+import SectionTitle from './SectionTitle';
+import Separator from './Separator';
 
 const BackgroundFill = styled.div`
   position: absolute;
@@ -32,35 +34,13 @@ const Grid = styled.div`
 `;
 
 const Column = styled(FlexboxColumn)`
-  padding: 1rem;
+  z-index: 1;
+  padding: 2rem;
 `;
 
 const RightColumn = styled(Column)`
+  z-index: 2;
   background: ${props => props.theme.secondary};
-`;
-
-const FirstName = styled.h1`
-  font-size: 6.625rem;
-  line-height: 7rem;
-  letter-spacing: -0.0415em;
-
-  margin: 0;
-  color: ${props => props.theme.secondary};
-`;
-
-const LastName = styled(FirstName)`
-  && {
-    color: ${props => props.theme.secondaryDark};
-  }
-`;
-
-const Sep = styled.div`
-  display: block;
-  background: ${props => props.theme.primary};
-  height: 4px;
-  width: 3rem;
-
-  margin: 1rem 0;
 `;
 
 const Text = styled.p`
@@ -82,15 +62,15 @@ const SkillCardContainer = styled(FlexboxColumn)`
   padding: 1rem;
   background-color: ${props => props.theme.light};
   overflow: hidden;
-  
+
   border-radius: 1px;
-  
+
   &:after {
     content: '';
     position: absolute;
     top: 0%;
     left: 0%;
-    
+
     display: block;
     width: 4px;
     height: 192px;
@@ -124,28 +104,23 @@ const TooltipText = styled.p`
   transition: opacity 0.3s;
 `;
 
-const Name = () => {
-  return (
-    <FlexboxColumn>
-      <FirstName>Romain</FirstName>
-      <LastName>Rousseau</LastName>
-    </FlexboxColumn>
-  );
-};
-
 const Infos = () => {
   return (
-    <>
-      <Sep/>
-      <Text>24 years old</Text>
-      <Text>
-        Student in <b>Computer Science Engineering</b>
-      </Text>
-      <Text>
-        Specialized <b>Human-Machine Interactions</b>
-      </Text>
-      <Text>Not an astronaut</Text>
-    </>
+    <AnimatedComponentInView animationClass={'animated slideInUp'}>
+      <FlexboxColumn>
+        <SectionTitle color={'#FEBE81'}>Romain</SectionTitle>
+        <SectionTitle color={'#EFA45D'}>Rousseau</SectionTitle>
+        <Separator color={'#22CAAC'} margin={'2rem 0 1rem 0'} width={'3rem'} />
+        <Text>24 years old</Text>
+        <Text>
+          Student in <b>Computer Science Engineering</b>
+        </Text>
+        <Text>
+          Specialized <b>Human-Machine Interactions</b>
+        </Text>
+        <Text>Not an astronaut</Text>
+      </FlexboxColumn>
+    </AnimatedComponentInView>
   );
 };
 
@@ -212,15 +187,14 @@ const SkillsCard = () => {
   );
 };
 
-const SectionIntro = () => {
+const SectionAboutMe = () => {
   return (
     <Section>
       <Grid>
-        <Column alignItems={'flex-start'} justifyContent={'center'}>
-          <Name/>
+        <Column alignItems={'stretch'} justifyContent={'center'}>
           <Infos/>
         </Column>
-        <RightColumn alignItems={'flex-start'} justifyContent={'center'}>
+        <RightColumn alignItems={'stretch'} justifyContent={'center'}>
           <BackgroundFill/>
 
           <Subtitle>My interests & hobbies</Subtitle>
@@ -269,8 +243,8 @@ const SectionIntro = () => {
   );
 };
 
-SectionIntro.propTypes = {};
+SectionAboutMe.propTypes = {};
 
-SectionIntro.defaultProps = {};
+SectionAboutMe.defaultProps = {};
 
-export default SectionIntro;
+export default SectionAboutMe;
