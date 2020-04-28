@@ -10,8 +10,8 @@ const Element = styled.div`
   margin: ${props => props.margin};
 `;
 
-const Separator = ({ color, margin,  width }) => {
-  return <Element color={color} margin={margin} width={width} />;
+const Separator = ({ color, className, margin,  width }) => {
+  return <Element color={color} className={className} margin={margin} width={width} />;
 };
 
 Separator.propTypes = {
