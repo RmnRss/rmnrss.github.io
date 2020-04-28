@@ -1,43 +1,42 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const IconContainer = styled.a`
   color: ${props => props.color};
-  transition: color 0.3s ease-out;
+  font-weight: 500;
+
+  transition: color 0.3s ease-out, transform 0.3s ease-out;
 
   &:visited {
     color: ${props => props.color};
   }
 
   &:hover {
+    transform: scale(1.1);
     color: ${props => props.hoverColor};
   }
 `;
 
-class ClickableIcon extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <IconContainer
-        color={this.props.color}
-        hoverColor={this.props.hoverColor}
-        href={this.props.href}
-      >
-        <i
-          style={{
-            fontSize: this.props.size,
-            margin: this.props.size / 2,
-          }}
-          className={this.props.iconName}
-        />
-      </IconContainer>
-    );
-  }
-}
+const ClickableIcon = ({
+  color,
+  hoverColor,
+  href,
+  iconName,
+  size,
+}) => {
+  return (
+    <IconContainer color={color} hoverColor={hoverColor} href={href}>
+      <i
+        style={{
+          fontSize: size,
+          margin: size / 2,
+        }}
+        className={iconName}
+      />
+    </IconContainer>
+  );
+};
 
 ClickableIcon.propTypes = {
   color: PropTypes.string,
@@ -48,8 +47,8 @@ ClickableIcon.propTypes = {
 };
 
 ClickableIcon.defaultProps = {
-  color: '#181818',
-  hoverColor: '#FEBE81',
+  color: '#000',
+  hoverColor: '#CCC',
   size: 16,
 };
 
