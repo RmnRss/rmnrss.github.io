@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import useWindowWidth from '../utils/dimension';
 import Header from './Header';
 import Footer from './Footer';
-import theme from '../styles/theme';
+import theme from '../styles/main-theme';
 import breakpoints from '../utils/breakpoints';
 
 const Vertical = styled.div`
@@ -17,7 +17,7 @@ const LayoutVertical = ({ children }) => {
   const winWidth = useWindowWidth();
 
   return (
-    <Body>
+    <Body theme={theme}>
       <Vertical>
         {
           winWidth <= breakpoints.xxlg && (
@@ -34,7 +34,7 @@ const LayoutVertical = ({ children }) => {
           )
         }
       </Vertical>
-      <Footer backgroundColor={theme.primary}/>
+      <Footer backgroundColor={theme.secondary}/>
     </Body>
   );
 };

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import theme from '../styles/theme';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -11,66 +11,68 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${props => props.theme.fontFamily};
     
     color: ${props => (props.light ? props.theme.dark : props.theme.light)};
+    letter-spacing: 0.0015em;
+    
     background-color: ${props =>
       props.light ? props.theme.light : props.theme.dark};
     margin: 0;
   }
-
+  
+  h1, h2 {
+    font-size: clamp(2em, 2.5vw, 4em);
+  }
+  
   h1 {
-    font-size: clamp(1.5em, 2.5vw, 3em);
-    font-weight: bold;
-    letter-spacing: 0.0015em;
+    font-weight: 800;
   }
 
   h2 {
-    font-size: clamp(1.5em, 2.25vw, 2.5em);
-    font-weight: bold;
-    letter-spacing: 0.0015em;
+    font-weight: 700;
     margin: 1rem 0;
   }
 
   h3 {
     font-size: clamp(1em, 2vw, 2em);
     font-weight: 600;
-    letter-spacing: 0.0015em;
   }
   
   h4 {
     font-size: clamp(1.25em, 2vw, 1.5em);
     font-weight: bold;
-    letter-spacing: 0.0015em;
+  }
+  
+  p,b {
+    font-size: 1em;
+    line-height: 1.5em;
   }
   
   p {
-    font-size: 1em;
     font-weight: normal;
     text-transform: none;
-    color: ${props => props.theme.darkLight};
-    max-width: 50rem;
+    color: ${props => props.theme.dark};
+    max-width: 640px;
   }
   
   a,
   a:visited {
+    color: ${props => props.theme.secondary};
+    font-weight: 700;
     text-decoration: none;
   }
 `;
 
-class Body extends Component {
-  constructor(props) {
-    super(props);
-  }
+const Body = ({ children, theme }) => {
+  return (
+    <ThemeProvider theme={theme}>
+      {children}
+      <GlobalStyle light />
+    </ThemeProvider>
+  );
+};
 
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        {this.props.children}
-        <GlobalStyle light />
-      </ThemeProvider>
-    );
-  }
-}
-
-Body.propTypes = {};
+Body.propTypes = {
+  theme: PropTypes.object.isRequired,
+};
 
 Body.defaultProps = {};
 
