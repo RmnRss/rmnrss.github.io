@@ -8,11 +8,12 @@ const CardContainer = styled.div`
 
   background-color: ${props => props.backgroundColor};
 
-  border-radius: 4px;
+  border-radius: ${props => props.theme.borderRadius};
   border: ${props => (props.border ? '1px solid' : '')};
   border-color: ${props => props.theme.grey};
 
   padding: 1rem;
+  margin: 1rem;
 
   width: ${props => props.width};
   height: ${props => props.height};

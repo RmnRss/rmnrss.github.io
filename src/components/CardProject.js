@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import BackgroundImage from 'gatsby-background-image';
 import ButtonLink from './ButtonLink';
 import Separator from './Separator';
+import AnimatedComponentInView from './AnimatedComponentInView';
 
 const BgImg = styled(BackgroundImage)`
   && {
@@ -45,6 +46,17 @@ const CardButton = styled(ButtonLink)`
 const CardContainer = styled(Card)`
   padding: 0rem;
 
+  opacity: 0;
+  transform: translateX(12vh);
+  visibility: hidden;
+  transition: opacity 0.5s ease-out, transform 0.6s ease-out;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+  }
+
   &:hover ${CardContent} {
     transform: translateY(0%);
   }
@@ -77,28 +89,34 @@ class CardProject extends React.Component {
 
   render() {
     return (
-      <CardContainer
-        {...this.props}
-        backgroundColor={this.props.backgroundColor}
-        width={'auto'}
-        height={'24rem'}
-      >
-        <BgImg fluid={this.props.fluid}></BgImg>
-        <CardContent color={this.props.color}>
-          <Separator color={this.props.sepColor} margin={'0 0 1rem 0'} width={'4rem'} />
-          <CardTitle>{this.props.title}</CardTitle>
-          <CardDescription>{this.props.description}</CardDescription>
-          <CardButton
-            to={this.props.link}
-            external={this.props.external}
-            backgroundColor={'#22CAAC'}
-            hoverBackgroundColor={'#FAFAFA'}
-            color={'#FAFAFA'}
-            hoverColor={'#22CAAC'}
-            label={'Learn More'}
-          />
-        </CardContent>
-      </CardContainer>
+      <AnimatedComponentInView>
+        <CardContainer
+          {...this.props}
+          backgroundColor={this.props.backgroundColor}
+          width={'auto'}
+          height={'24rem'}
+        >
+          <BgImg fluid={this.props.fluid}></BgImg>
+          <CardContent color={this.props.color}>
+            <Separator
+              color={this.props.sepColor}
+              margin={'0 0 1rem 0'}
+              width={'4rem'}
+            />
+            <CardTitle>{this.props.title}</CardTitle>
+            <CardDescription>{this.props.description}</CardDescription>
+            <CardButton
+              to={this.props.link}
+              external={this.props.external}
+              backgroundColor={'#22CAAC'}
+              hoverBackgroundColor={'#FAFAFA'}
+              color={'#FAFAFA'}
+              hoverColor={'#22CAAC'}
+              label={'Learn More'}
+            />
+          </CardContent>
+        </CardContainer>
+      </AnimatedComponentInView>
     );
   }
 }
