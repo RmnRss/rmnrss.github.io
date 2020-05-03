@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import handleViewport from 'react-in-viewport';
-import '../../node_modules/animate.css/animate.min.css';
 import AnimatedComponent from './AnimatedComponent';
 
 class AnimatedElement extends Component {
@@ -13,7 +12,7 @@ class AnimatedElement extends Component {
     const { inViewport, enterCount } = this.props;
 
     if (inViewport && enterCount === 1) {
-      return this.props.animationClass;
+      return 'is-visible';
     } else {
       return '';
     }
@@ -39,5 +38,6 @@ AnimatedElement.propTypes = {
 AnimatedElement.defaultProps = {
   animationClass: '',
 };
+
 
 export default AnimatedComponentInView;

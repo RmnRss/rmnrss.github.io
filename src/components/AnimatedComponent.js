@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import '../../node_modules/animate.css/animate.min.css';
 
 class AnimatedComponent extends Component {
   constructor(props) {

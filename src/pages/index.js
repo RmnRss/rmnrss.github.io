@@ -4,18 +4,16 @@ import Button from '../components/Button';
 import Section from '../components/Section';
 import SEO from '../components/seo';
 import CardProject from '../components/CardProject';
-import TopicDescription from '../components/TopicDescription';
-import SubSection from '../components/SubSection';
-import theme from '../styles/theme';
+import SectionPortfolio from '../components/SectionPortfolio';
+import theme from '../styles/main-theme';
 import SectionHead from '../components/SectionHead';
 import styled from 'styled-components';
-import SectionIntro from '../components/SectionIntro';
-import AnimatedComponent from '../components/AnimatedComponent';
+import SectionAboutMe from '../components/SectionAboutMe';
 import SocialIcons from '../components/SocialIcons';
 import { ReactComponent as FlatMeSVG } from '../assets/svg/me-space.svg';
 import LayoutVertical from '../components/LayoutVertical';
 
-const Title = styled.h1`
+const Title = styled.h2`
   text-align: center;
   color: ${props => props.theme.lightDark};
 `;
@@ -52,15 +50,13 @@ class IndexPage extends Component {
             <SectionHead>
               <SVGContainer />
 
-              <AnimatedComponent animationClass={'animated slideInUp'}>
-                <Title>
-                  “ A front-end developer with the <br /> heart of a designer ”
-                </Title>
-              </AnimatedComponent>
+              <Title>
+                “ A front-end developer with the <br /> heart of a designer ”
+              </Title>
 
               <Button
                 backgroundColor={theme.dark}
-                hoverBackgroundColor={theme.primary}
+                hoverBackgroundColor={theme.secondary}
                 color={theme.lightDark}
                 hoverColor={theme.lightDark}
                 label={'Learn More'}
@@ -70,7 +66,7 @@ class IndexPage extends Component {
               <SocialIcons
                 iconSize={32}
                 color={theme.lightDark}
-                hoverColor={theme.primary}
+                hoverColor={theme.secondary}
               />
             </SectionHead>
           </div>
@@ -80,22 +76,19 @@ class IndexPage extends Component {
             id="about-me-section"
             ref={this.aboutMeRef}
           >
-              <SectionIntro />
+            <SectionAboutMe />
           </div>
 
           <div className={'Portfolio'} id="portfolio-section">
             <Section backgroundColor={theme.lightDark}>
-              <SubSection
-                nbColumns={3}
-                title={'Educational & personal projects'}
-              >
+              <SectionPortfolio>
                 <CardProject
                   title={'Rick & Morty Network Analysis'}
                   description={
                     'A data science network analysis of the Rick & Morty Show'
                   }
                   fluid={this.props.data.rmImg.childImageSharp.fluid}
-                  sepColor={theme.secondary}
+                  sepColor={theme.primary}
                   external
                   link={'https://rmnrss.github.io/rm-social-graphs/'}
                 />
@@ -107,7 +100,7 @@ class IndexPage extends Component {
                     'mobile, so I decided to make an application it for it.'
                   }
                   fluid={this.props.data.TTFLImg.childImageSharp.fluid}
-                  sepColor={theme.secondary}
+                  sepColor={theme.primary}
                   link={'/projects/ttfl'}
                 />
                 <CardProject
@@ -118,31 +111,10 @@ class IndexPage extends Component {
                     'for our school.'
                   }
                   fluid={this.props.data.siosImg.childImageSharp.fluid}
-                  sepColor={theme.secondary}
-                  link={'/projects/sios'}
+                  sepColor={theme.primary}
+                  link={'/projects/in-progress'}
                 />
-                {/*<CardProject
-                  title={'Squirrel Defender'}
-                  description={
-                    'Squirrel Defender is a reflex-based mobile game in which you\n' +
-                    'have to defend a cute squirrel from angry badgers!'
-                  }
-                  fluid={this.props.data.sdImg.childImageSharp.fluid}
-                  sepColor={theme.secondary}
-                  link={'/projects/squirrel-defender'}
-                />
-                <CardProject
-                  title={'Munchkin Assistant'}
-                  description={
-                    'As big Munchkin enthusiast my friend and I always found it\n' +
-                    'very challenging to keep track of all the figures in a game.\n' +
-                    'So I developed a quick and practical assistant for us!'
-                  }
-                  fluid={this.props.data.munchkinImg.childImageSharp.fluid}
-                  sepColor={theme.secondary}
-                  link={'/projects/munchkin-assistant'}
-                />*/}
-              </SubSection>
+              </SectionPortfolio>
             </Section>
           </div>
         </LayoutVertical>
