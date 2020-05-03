@@ -1,16 +1,24 @@
 import React from 'react';
 import SEO from '../components/seo';
 import Body from '../components/Body';
-import Button from '../components/Button';
-import theme from '../styles/theme';
+import theme from '../styles/main-theme';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
-import BackgroundTitle from '../components/BackgroundTitle';
 import SectionHead from '../components/SectionHead';
+import ButtonLink from '../components/ButtonLink';
 
-const Subtitle = styled.h1`
+const Number = styled.h1`
+  font-size: 8rem;
   text-align: center;
   color: #fafafa;
+  
+  margin: 1rem 0;
+`;
+
+const Subtitle = styled.h2`
+  text-align: center;
+  color: #fafafa;
+  margin: 1rem 0;
 `;
 
 const Text = styled.p`
@@ -27,25 +35,24 @@ const FixedFooter = styled(Footer)`
 
 const NotFoundPage = () => (
   <>
-    <SEO title="Page not found." />
-    <Body>
+    <SEO title="Page not found."/>
+    <Body theme={theme}>
       <SectionHead>
-        <BackgroundTitle label={'404'} color={theme.light} />
+        <Number>404</Number>
         <Subtitle>PAGE NOT FOUND</Subtitle>
         <Text>
           Apparently this page doesn't exist... Weird.
-          <br />
+          <br/>
           You can go back or use the button below to go back to the main page.
         </Text>
 
-        <Button
-          link
+        <ButtonLink
           to={'/'}
-          label={'' + 'Main page'}
-          backgroundColor={'#22CAAC'}
-          hoverBackgroundColor={'#181818'}
+          label={'Main page'}
+          backgroundColor={'#181818'}
+          hoverBackgroundColor={'#22CAAC'}
           color={'#FAFAFA'}
-          hoverColor={'#22CAAC'}
+          hoverColor={'#FAFAFA'}
         />
       </SectionHead>
       <FixedFooter backgroundColor={theme.light}/>
