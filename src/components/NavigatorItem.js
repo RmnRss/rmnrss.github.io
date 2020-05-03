@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import FlexboxRow from './FlexboxRow';
 
 const ItemContainer = styled(FlexboxRow)`
   position: relative;
   pointer-events: all;
-  
+
   &:hover {
     cursor: pointer;
   }
@@ -21,7 +21,7 @@ const Circle = styled.span`
     props.active ? props.theme.primary : props.theme.grey};
   transform: ${props => (props.active ? 'scale(1.5)' : 'scale(1)')};
 
-  margin: 1rem 2rem 1rem 1.25rem;
+  margin: 1rem;
 
   transition: all 0.3s ease-in-out;
 
@@ -31,79 +31,64 @@ const Circle = styled.span`
   }
 `;
 
-class NavigatorItem extends Component {
-  constructor(props) {
-    super(props);
+const NavigatorItem = ({ horizontal, label, sectionID }) => {
+  const [active, setActive] = useState(false);
+  const navLabel = document.getElementById('navigator-label');
 
-    this.state = {
-      active: false,
-    };
-  }
+  const height = document.getElementById(sectionID).offsetHeight;
+  const width = document.getElementById(sectionID).offsetWidth;
+  const x = document.getElementById(sectionID).offsetLeft;
+  const y = document.getElementById(sectionID).offsetTop;
 
-  componentDidMount() {
-    this.setState({ active: false });
-    this.navLabel = document.getElementById("navigator-label");
-    this.linkedSection = document.getElementById(this.props.sectionID);
-    window.addEventListener('scroll', this.handleScroll, true);
-    this.handleScroll();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-  }
-
-  handleScroll = () => {
-    if (this.props.horizontal) {
-      this.isActive(
-        this.linkedSection.offsetLeft,
-        this.linkedSection.offsetWidth
-      );
+  function scrollToSection() {
+    if (horizontal) {
+      window.scrollTo(x, 0);
     } else {
-      this.isActive(
-        this.linkedSection.offsetTop,
-        this.linkedSection.offsetHeight
-      );
+      window.scrollTo(0, y);
     }
-  };
+  }
 
-  scrollToOffset() {
-    if (this.props.horizontal) {
-      window.scrollTo(this.linkedSection.offsetLeft, 0);
+  function changeLabelDisplayed() {
+    if (active) {
+      navLabel.textContent = label;
+      navLabel.className = navLabel.className.replace('is-visible', '');
+      navLabel.className = [navLabel.className, 'is-visible'].join(' ');
+    }
+  }
+
+  function isSectionInViewport(offset, size) {
+    if (horizontal) {
+      return window.scrollX >= offset - 10 && window.scrollX < offset + size;
     } else {
-      window.scrollTo(0, this.linkedSection.offsetTop);
+      return window.scrollY >= offset - 10 && window.scrollY < offset + size;
     }
   }
 
-  isActive(offset, size) {
-    if (this.props.horizontal) {
-      this.setState({
-        active: window.scrollX >= offset-100 && window.scrollX < offset + size,
-      }, this.changeLabel());
-    } else {
-      this.setState({
-        active: window.scrollY >= offset-100 && window.scrollY < offset + size,
-      }, this.changeLabel());
+  useEffect(() => {
+    function handleScroll() {
+      if (horizontal) {
+        setActive(isSectionInViewport(x, width));
+      } else {
+        setActive(isSectionInViewport(y, height));
+      }
+      changeLabelDisplayed();
     }
-  }
 
-  changeLabel() {
-    if(this.state.active){
-      this.navLabel.textContent = this.props.label;
-    }
-  }
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, true);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [active]);
 
-  render() {
-    return (
-      <ItemContainer
-        justifyContent={'center'}
-        alignItems={'center'}
-        onClick={() => this.scrollToOffset()}
-      >
-        <Circle active={this.state.active} />
-      </ItemContainer>
-    );
-  }
-}
+  return (
+    <ItemContainer
+      justifyContent={'center'}
+      alignItems={'center'}
+      onClick={() => scrollToSection()}
+    >
+      <Circle active={active} />
+    </ItemContainer>
+  );
+};
 
 NavigatorItem.propTypes = {
   horizontal: PropTypes.bool,

@@ -12,13 +12,14 @@ const NavContainer = styled.header`
 
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: ${props => (props.horizontal ? 'flex-start' : 'center')};
+  margin-left: ${props => (props.horizontal ? '2rem' : '')};
 
   z-index: 999;
   
-  background-color: ${props => props.theme.light};
-  border-bottom: 1px solid;
-  border-color: #bcbcbc;
+  background-color: ${props => (props.horizontal ? 'transparent' : props.theme.light)};
+  border-bottom: ${props => (props.horizontal ? '' : '1px solid')};
+  border-color: ${props => (props.horizontal ? '' : '#bcbcbc')};
 `;
 
 class Header extends Component {
