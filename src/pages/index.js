@@ -44,7 +44,7 @@ class IndexPage extends Component {
   render() {
     return (
       <>
-        <SEO title={`Welcome`} />
+        <SEO title={`Portfolio`} />
         <LayoutVertical>
           <div className={'Welcome'} id="head-section">
             <SectionHead>

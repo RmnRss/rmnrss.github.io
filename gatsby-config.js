@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Romain Rousseau | Portfolio`,
-    description: `Come and learn a little bit more about me and my work.`,
+    title: `Romain Rousseau`,
+    description: `A little bit about me and my work.`,
     author: `Romain Rousseau`,
   },
 
@@ -19,8 +19,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `gatsby-portfolio`,
+        short_name: `portfolio`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
@@ -43,7 +43,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Poppins:100,200,300,400,500,600,700,800,900', 'sans-serif', 'Material Icons'],
+          families: ['Poppins:100,200,300,400,500,600,700,800,900', 'Inter:400,500,600,700,800,900', 'Montserrat:700,900', 'sans-serif', 'Material Icons'],
         },
         custom: {
           families: ['Font Awesome 5 Icons:400,900', 'Font Awesome 5 Brands:400'],
