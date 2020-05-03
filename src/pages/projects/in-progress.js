@@ -5,9 +5,8 @@ import SEO from '../../components/seo';
 import Section from '../../components/Section';
 import FlexboxColumn from '../../components/FlexboxColumn';
 import ButtonLink from '../../components/ButtonLink';
-import TtflTheme from '../../styles/ttfl-theme';
 import Footer from '../../components/Footer';
-import LayoutHorizontal from '../../components/LayoutHorizontal';
+import Body from '../../components/Body';
 
 const ContentCenter = styled(FlexboxColumn)`
   margin: auto;
@@ -23,9 +22,9 @@ const FixedFooter = styled(Footer)`
 const InProgress = () => {
   return (
     <>
-      <SEO title="Coming soon." />
+      <SEO title="Coming soon."/>
 
-      <LayoutHorizontal theme={TtflTheme}>
+      <Body theme={theme}>
         <Section backgroundColor={theme.light}>
           <ContentCenter alignItems={'center'}>
             <h3 style={{ textAlign: 'center' }}>
@@ -40,8 +39,8 @@ const InProgress = () => {
             />
           </ContentCenter>
         </Section>
-        <FixedFooter backgroundColor={theme.light} />
-      </LayoutHorizontal>
+        <FixedFooter backgroundColor={theme.light}/>
+      </Body>
     </>
   );
 };
