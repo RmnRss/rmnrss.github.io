@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import FlexboxColumn from './FlexboxColumn';
-import FlexboxRow from './FlexboxRow';
 import Section from './Section';
-import TopicDescription from './TopicDescription';
-import AnimatedComponentInView from './AnimatedComponentInView';
+import CardHobby from './CardHobby';
 import SectionTitle from './SectionTitle';
 import Separator from './Separator';
+import CardSkills from './CardSkills';
+import ClickableIcon from './ClickableIcon';
 
 const BackgroundFill = styled.div`
   position: absolute;
@@ -15,7 +15,7 @@ const BackgroundFill = styled.div`
   width: 50vw;
   height: 100%;
   z-index: -999;
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.primary};
 
   @media (max-width: 1280px) {
     display: none;
@@ -40,7 +40,7 @@ const Column = styled(FlexboxColumn)`
 
 const RightColumn = styled(Column)`
   z-index: 2;
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.primary};
 `;
 
 const Text = styled.p`
@@ -57,132 +57,75 @@ const Subtitle = styled.h4`
   margin: 0 0 1rem 0;
 `;
 
-const SkillCardContainer = styled(FlexboxColumn)`
-  position: relative;
-  padding: 1rem;
-  background-color: ${props => props.theme.light};
-  overflow: hidden;
-
-  border-radius: 1px;
-
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0%;
-    left: 0%;
-
-    display: block;
-    width: 4px;
-    height: 192px;
-    background-color: ${props => props.theme.purpleDark};
-  }
-`;
-
-const Icon = styled.i`
-  position: relative;
-  color: ${props => props.theme.purpleLight};
-  font-size: 2rem;
-  margin: 0.5rem;
-`;
-
-const TooltipText = styled.p`
-  visibility: hidden;
-
-  font-family: ${props => props.theme.fontFamily};
-  font-size: 0.5em;
-
-  color: ${props => props.theme.primary};
-
-  position: absolute;
-  z-index: 1;
-  top: 75%;
-  left: 0%;
-
-  text-wrap: no-wrap;
-
-  opacity: 0;
-  transition: opacity 0.3s;
-`;
+const SkillIcon = ({ className, href }) => {
+  return (
+    <ClickableIcon
+      iconName={className}
+      href={href}
+      size={32}
+      color={'#7B6BC6'}
+      hoverColor={'#312952'}
+    />
+  );
+};
 
 const Infos = () => {
   return (
-    <AnimatedComponentInView animationClass={'animated slideInUp'}>
-      <FlexboxColumn>
-        <SectionTitle color={'#FEBE81'}>Romain</SectionTitle>
-        <SectionTitle color={'#EFA45D'}>Rousseau</SectionTitle>
-        <Separator color={'#22CAAC'} margin={'2rem 0 1rem 0'} width={'3rem'} />
-        <Text>24 years old</Text>
-        <Text>
-          Student in <b>Computer Science Engineering</b>
-        </Text>
-        <Text>
-          Specialized <b>Human-Machine Interactions</b>
-        </Text>
-        <Text>Not an astronaut</Text>
-      </FlexboxColumn>
-    </AnimatedComponentInView>
+    <FlexboxColumn>
+      <SectionTitle color={'#FEBE81'}>Romain</SectionTitle>
+      <SectionTitle color={'#EFA45D'}>Rousseau</SectionTitle>
+      <Separator color={'#22CAAC'} margin={'2rem 0 1rem 0'} width={'3rem'}/>
+      <Text>24 years old</Text>
+      <Text>
+        Student in <b>Computer Science Engineering</b>
+      </Text>
+      <Text>
+        Specialized <b>Human-Machine Interactions</b>
+      </Text>
+      <Text>Not an astronaut</Text>
+    </FlexboxColumn>
   );
 };
 
 const SkillsCard = () => {
   return (
     <CardGrid>
-      <SkillCardContainer>
-        <b>Web & Mobile Development</b>
-        <FlexboxRow>
-          <Icon className={'fab fa-angular'}>
-            <TooltipText>Angular</TooltipText>
-          </Icon>
-          <Icon className={'fab fa-react'}>
-            <TooltipText>React</TooltipText>
-          </Icon>
-          <Icon className={'fab fa-bootstrap'}>
-            <TooltipText>Bootstrap</TooltipText>
-          </Icon>
-          <Icon className={'fab fa-android'}>
-            <TooltipText>Android</TooltipText>
-          </Icon>
-        </FlexboxRow>
-      </SkillCardContainer>
-      <SkillCardContainer>
-        <b>UI/UX Design</b>
-        <FlexboxRow>
-          <Icon className={'fab fa-figma'}>
-            <TooltipText>Figma</TooltipText>
-          </Icon>
-        </FlexboxRow>
-      </SkillCardContainer>
-      <SkillCardContainer>
-        <b>IT Projects Management</b>
-        <FlexboxRow>
-          <Icon className={'fab fa-git-alt'}>
-            <TooltipText>Git</TooltipText>
-          </Icon>
-          <Icon className={'fab fa-gitkraken'}>
-            <TooltipText>Gitkraken</TooltipText>
-          </Icon>
-          <Icon className={'fab fa-npm'}>
-            <TooltipText>npm</TooltipText>
-          </Icon>
-          <Icon className={'fab fa-node-js'}>
-            <TooltipText>node-js</TooltipText>
-          </Icon>
-        </FlexboxRow>
-      </SkillCardContainer>
-      <SkillCardContainer>
-        <b>Programming Languages</b>
-        <FlexboxRow>
-          <Icon className={'fab fa-js'}>
-            <TooltipText>Javascript</TooltipText>
-          </Icon>
-          <Icon className={'fab fa-java'}>
-            <TooltipText>Java</TooltipText>
-          </Icon>
-          <Icon className={'fab fa-python'}>
-            <TooltipText>Python</TooltipText>
-          </Icon>
-        </FlexboxRow>
-      </SkillCardContainer>
+      <CardSkills title={'Web & Mobile Development'}>
+        <SkillIcon className={'fab fa-angular'} href={'https://angular.io/'}/>
+        <SkillIcon className={'fab fa-react'} href={'https://reactjs.org/'}/>
+        <SkillIcon
+          className={'fab fa-bootstrap'}
+          href={'https://getbootstrap.com/'}
+        />
+        <SkillIcon
+          className={'fab fa-android'}
+          href={'https://developer.android.com/studio'}
+        />
+      </CardSkills>
+      <CardSkills title={`UI/UX Design`}>
+        <SkillIcon className={'fab fa-figma'} href={'https://www.figma.com/'}/>
+        <SkillIcon
+          className={'fab fa-adobe'}
+          href={'https://www.adobe.com/ch_fr/products/xd.html'}
+        />
+      </CardSkills>
+      <CardSkills title={'IT Projects Management'}>
+        <SkillIcon className={'fab fa-git-alt'} href={'https://git-scm.com/'}/>
+        <SkillIcon
+          className={'fab fa-gitkraken'}
+          href={'https://www.gitkraken.com/'}
+        />
+        <SkillIcon className={'fab fa-npm'} href={'https://www.npmjs.com/'}/>
+        <SkillIcon className={'fab fa-node-js'} href={'https://nodejs.org/'}/>
+      </CardSkills>
+      <CardSkills title={`Programming Languages`}>
+        <SkillIcon className={'fab fa-js'}/>
+        <SkillIcon className={'fab fa-java'} href={'https://www.java.com'}/>
+        <SkillIcon
+          className={'fab fa-python'}
+          href={'https://www.python.org/'}
+        />
+      </CardSkills>
     </CardGrid>
   );
 };
@@ -198,7 +141,7 @@ const SectionAboutMe = () => {
           <BackgroundFill/>
 
           <Subtitle>My interests & hobbies</Subtitle>
-          <TopicDescription
+          <CardHobby
             title={'Basketball'}
             iconLibrary={'material'}
             iconName={'sports_basketball'}
@@ -207,7 +150,7 @@ const SectionAboutMe = () => {
               'team-work and the importance of practice and execution. '
             }
           />
-          <TopicDescription
+          <CardHobby
             title={'Video Games'}
             iconLibrary={'material'}
             iconName={'sports_esports'}
@@ -216,7 +159,7 @@ const SectionAboutMe = () => {
               'from the comfort of your home! '
             }
           />
-          <TopicDescription
+          <CardHobby
             title={'Science-Fiction'}
             iconLibrary={'fontawesome'}
             iconName={'fas fa-meteor'}
@@ -226,7 +169,7 @@ const SectionAboutMe = () => {
               'my towels are always ready and upgraded.'
             }
           />
-          <TopicDescription
+          <CardHobby
             title={'Traveling'}
             iconLibrary={'material'}
             iconName={'map'}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import AnimatedComponentInView from './AnimatedComponentInView';
 
 const TitlePart = styled.h1`
   font-size: 6.625rem;
@@ -9,14 +10,26 @@ const TitlePart = styled.h1`
 
   margin: 0;
   color: ${props => props.color};
+
+  opacity: 0;
+  transform: translateY(5vh);
+  visibility: hidden;
+  transition: opacity 0.5s ease-out, transform 1s ease-out;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+  }
 `;
 
-
-const SectionTitle = ({ color, children }) => {
+const SectionTitle = ({ color, className, children }) => {
   return (
-    <TitlePart color={color}>
-      {children}
-    </TitlePart>
+    <AnimatedComponentInView>
+      <TitlePart className={className} color={color}>
+        {children}
+      </TitlePart>
+    </AnimatedComponentInView>
   );
 };
 
