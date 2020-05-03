@@ -1,10 +1,11 @@
-const Theme = {
-  secondary: '#FEBE81',
-  secondaryDark: '#EFA45D',
-  secondaryLight: '#FFD875',
+const MainTheme = {
 
-  primary: '#22CAAC',
-  primaryDark: '#001A20',
+  primary: '#FEBE81',
+  primaryDark: '#EFA45D',
+  primaryLight: '#FFD875',
+
+  secondary: '#22CAAC',
+  secondaryDark: '#001A20',
 
   purple: '#5A4A94',
   purpleDark: '#312952',
@@ -20,7 +21,7 @@ const Theme = {
 
   fontFamily: 'Poppins',
 
-  cardRadius: '4px',
+  borderRadius: '4px',
 };
 
-export default Theme;
+export default MainTheme;
