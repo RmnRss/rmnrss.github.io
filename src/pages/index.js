@@ -101,7 +101,7 @@ class IndexPage extends Component {
                   }
                   fluid={this.props.data.TTFLImg.childImageSharp.fluid}
                   sepColor={theme.primary}
-                  link={'/projects/ttfl'}
+                  link={'/projects/in-progress'}
                 />
                 <CardProject
                   title={'SIOS'}
