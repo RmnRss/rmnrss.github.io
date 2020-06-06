@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
 import { graphql } from 'gatsby';
-import Button from '../components/Button';
-import Section from '../components/Section';
-import SEO from '../components/seo';
-import CardProject from '../components/CardProject';
-import SectionPortfolio from '../components/SectionPortfolio';
-import theme from '../styles/main-theme';
-import SectionHead from '../components/SectionHead';
+import React from 'react';
 import styled from 'styled-components';
-import SectionAboutMe from '../components/SectionAboutMe';
-import SocialIcons from '../components/SocialIcons';
 import { ReactComponent as FlatMeSVG } from '../assets/svg/me-space.svg';
+import Button from '../components/Button';
+import CardProject from '../components/CardProject';
 import LayoutVertical from '../components/LayoutVertical';
+import Section from '../components/Section';
+import SectionAboutMe from '../components/SectionAboutMe';
+import SectionHead from '../components/SectionHead';
+import SectionPortfolio from '../components/SectionPortfolio';
+import SEO from '../components/seo';
+import SocialIcons from '../components/SocialIcons';
+import theme from '../styles/main-theme';
 
 const Title = styled.h2`
   text-align: center;
@@ -34,136 +34,108 @@ const scrollToRef = ref => {
   window.scrollTo(0, ref.current.offsetTop);
 };
 
-class IndexPage extends Component {
-  constructor(props) {
-    super(props);
+function IndexPage({ data }) {
+  const aboutMeRef = React.useRef();
 
-    this.aboutMeRef = React.createRef();
-  }
+  return (
+    <>
+      <SEO title={`Portfolio`} />
+      <LayoutVertical>
+        <div className={'Welcome'} id="head-section">
+          <SectionHead>
+            <SVGContainer />
 
-  render() {
-    return (
-      <>
-        <SEO title={`Portfolio`} />
-        <LayoutVertical>
-          <div className={'Welcome'} id="head-section">
-            <SectionHead>
-              <SVGContainer />
+            <Title>
+              “ A front-end developer with the <br /> heart of a designer ”
+            </Title>
 
-              <Title>
-                “ A front-end developer with the <br /> heart of a designer ”
-              </Title>
+            <Button
+              backgroundColor={theme.dark}
+              hoverBackgroundColor={theme.secondary}
+              color={theme.lightDark}
+              hoverColor={theme.lightDark}
+              label={'Learn More'}
+              onClick={() => scrollToRef(aboutMeRef)}
+            />
 
-              <Button
-                backgroundColor={theme.dark}
-                hoverBackgroundColor={theme.secondary}
-                color={theme.lightDark}
-                hoverColor={theme.lightDark}
-                label={'Learn More'}
-                onClick={() => scrollToRef(this.aboutMeRef)}
-              />
+            <SocialIcons
+              iconSize={32}
+              color={theme.lightDark}
+              hoverColor={theme.secondary}
+            />
+          </SectionHead>
+        </div>
 
-              <SocialIcons
-                iconSize={32}
-                color={theme.lightDark}
-                hoverColor={theme.secondary}
-              />
-            </SectionHead>
-          </div>
+        <div className={'About Me'} id="about-me-section" ref={aboutMeRef}>
+          <SectionAboutMe
+            hobbies={data.hobbies.edges}
+            skillsCategory={data.skillsCategory.edges}
+          />
+        </div>
 
-          <div
-            className={'About Me'}
-            id="about-me-section"
-            ref={this.aboutMeRef}
-          >
-            <SectionAboutMe />
-          </div>
-
-          <div className={'Portfolio'} id="portfolio-section">
-            <Section backgroundColor={theme.lightDark}>
-              <SectionPortfolio>
-                <CardProject
-                  title={'Rick & Morty Network Analysis'}
-                  description={
-                    'A data science network analysis of the Rick & Morty Show'
-                  }
-                  fluid={this.props.data.rmImg.childImageSharp.fluid}
-                  sepColor={theme.primary}
-                  external
-                  link={'https://rmnrss.github.io/rm-social-graphs/'}
-                />
-                <CardProject
-                  title={'TTFL'}
-                  description={
-                    'The TrashTalk Fantasy League is a NBA Fantasy League from\n' +
-                    'the guys at trashtalk.co. I always had trouble using it on\n' +
-                    'mobile, so I decided to make an application it for it.'
-                  }
-                  fluid={this.props.data.TTFLImg.childImageSharp.fluid}
-                  sepColor={theme.primary}
-                  link={'/projects/in-progress'}
-                />
-                <CardProject
-                  title={'SIOS'}
-                  description={
-                    'SIOS is a web application dedicated to managing room\n' +
-                    'schedules in any buildings. We developed this application\n' +
-                    'for our school.'
-                  }
-                  fluid={this.props.data.siosImg.childImageSharp.fluid}
-                  sepColor={theme.primary}
-                  link={'/projects/in-progress'}
-                />
-              </SectionPortfolio>
-            </Section>
-          </div>
-        </LayoutVertical>
-      </>
-    );
-  }
+        <div className={'Portfolio'} id="portfolio-section">
+          <Section backgroundColor={theme.lightDark}>
+            <SectionPortfolio>
+              {data.projects.edges.map(obj => {
+                let project = obj.node;
+                return (
+                  <CardProject
+                    title={project.name}
+                    description={project.description.description}
+                    fluid={project.cover.fluid}
+                    sepColor={project.color}
+                    link={project.url}
+                  />
+                );
+              })}
+            </SectionPortfolio>
+          </Section>
+        </div>
+      </LayoutVertical>
+    </>
+  );
 }
 
 export const data = graphql`
   query {
-    placeholder: file(relativePath: { eq: "gatsby-astronaut.png" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid_tracedSVG
+    projects: allContentfulProject {
+      edges {
+        node {
+          name
+          color
+          url
+          description {
+            description
+          }
+          cover {
+            fluid {
+              ...GatsbyContentfulFluid_tracedSVG
+            }
+          }
         }
       }
     }
-    rmImg: file(relativePath: { eq: "rick-and-morty.jpg" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid_tracedSVG
+    hobbies: allContentfulHobby {
+      edges {
+        node {
+          name
+          iconName
+          iconLibrary
+          description {
+            description
+          }
         }
       }
     }
-    TTFLImg: file(relativePath: { eq: "ttfl.png" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid_tracedSVG
-        }
-      }
-    }
-    munchkinImg: file(relativePath: { eq: "munchkin.png" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid_tracedSVG
-        }
-      }
-    }
-    siosImg: file(relativePath: { eq: "sios.png" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid_tracedSVG
-        }
-      }
-    }
-    sdImg: file(relativePath: { eq: "sd.png" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid_tracedSVG
+    skillsCategory: allContentfulSkillCategory {
+      edges {
+        node {
+          name
+          skills {
+            name
+            url
+            iconName
+          }
         }
       }
     }
