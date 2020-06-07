@@ -66,6 +66,7 @@ function IndexPage({ data }) {
 
         <div className={'About Me'} id="about-me-section" ref={aboutMeRef}>
           <SectionAboutMe
+            me={data.me}
             hobbies={data.hobbies.edges}
             skillsCategory={data.skillsCategory.edges}
           />
@@ -135,6 +136,13 @@ export const data = graphql`
             iconName
           }
         }
+      }
+    }
+    me: contentfulOwner {
+      firstName
+      lastName
+      childContentfulOwnerDescriptionRichTextNode {
+        json
       }
     }
   }

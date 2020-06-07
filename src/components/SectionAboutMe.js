@@ -1,12 +1,13 @@
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import React from 'react';
 import styled from 'styled-components';
-import FlexboxColumn from './FlexboxColumn';
-import Section from './Section';
 import CardHobby from './CardHobby';
-import SectionTitle from './SectionTitle';
-import Separator from './Separator';
 import CardSkills from './CardSkills';
 import ClickableIcon from './ClickableIcon';
+import FlexboxColumn from './FlexboxColumn';
+import Section from './Section';
+import SectionTitle from './SectionTitle';
+import Separator from './Separator';
 
 const BackgroundFill = styled.div`
   position: absolute;
@@ -43,8 +44,10 @@ const RightColumn = styled(Column)`
   background: ${props => props.theme.primary};
 `;
 
-const Text = styled.p`
-  margin: 0;
+const Description = styled.div`
+  & p {
+    margin: 0;
+  }
 `;
 
 const CardGrid = styled.div`
@@ -69,30 +72,24 @@ const SkillIcon = ({ className, href }) => {
   );
 };
 
-const Infos = () => {
-  return (
-    <FlexboxColumn>
-      <SectionTitle color={'#FEBE81'}>Romain</SectionTitle>
-      <SectionTitle color={'#EFA45D'}>Rousseau</SectionTitle>
-      <Separator color={'#22CAAC'} margin={'2rem 0 1rem 0'} width={'3rem'} />
-      <Text>24 years old</Text>
-      <Text>
-        Student in <b>Computer Science Engineering</b>
-      </Text>
-      <Text>
-        Specialized <b>Human-Machine Interactions</b>
-      </Text>
-      <Text>Not an astronaut</Text>
-    </FlexboxColumn>
+const SectionAboutMe = ({ me, hobbies, skillsCategory }) => {
+  const description = documentToHtmlString(
+    me.childContentfulOwnerDescriptionRichTextNode.json
   );
-};
-
-const SectionAboutMe = ({ hobbies, skillsCategory }) => {
   return (
     <Section>
       <Grid>
         <Column alignItems={'stretch'} justifyContent={'center'}>
-          <Infos />
+          <FlexboxColumn>
+            <SectionTitle color={'#FEBE81'}>{me.firstName}</SectionTitle>
+            <SectionTitle color={'#EFA45D'}>{me.lastName}</SectionTitle>
+            <Separator
+              color={'#22CAAC'}
+              margin={'2rem 0 1rem 0'}
+              width={'3rem'}
+            />
+            <Description dangerouslySetInnerHTML={{ __html: description }} />
+          </FlexboxColumn>
         </Column>
         <RightColumn alignItems={'stretch'} justifyContent={'center'}>
           <BackgroundFill />
