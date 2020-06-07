@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Particles from 'react-particles-js';
+import styled from 'styled-components';
 import particlesConfig from '../assets/particles';
-import Section from './Section';
 import FlexboxColumn from './FlexboxColumn';
+import Section from './Section';
 
 const ContentCenter = styled(FlexboxColumn)`
   margin: auto;
@@ -20,26 +21,20 @@ const BackgroundParticles = styled(Particles)`
   z-index: -1;
 `;
 
-class SectionHead extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Section
-        animatedBackground={<BackgroundParticles params={particlesConfig} />}
-      >
-        <ContentCenter justifyContent={'center'} alignItems={'center'}>
-          {this.props.children}
-        </ContentCenter>
-      </Section>
-    );
-  }
+function SectionHead(props) {
+  return (
+    <Section
+      animatedBackground={<BackgroundParticles params={particlesConfig} />}
+    >
+      <ContentCenter justifyContent={'center'} alignItems={'center'}>
+        {props.children}
+      </ContentCenter>
+    </Section>
+  );
 }
 
-SectionHead.propTypes = {};
-
-SectionHead.defaultProps = {};
+SectionHead.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default SectionHead;

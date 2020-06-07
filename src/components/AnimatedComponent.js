@@ -8,12 +8,14 @@ class AnimatedComponent extends Component {
     this.animateChildren = this.animateChildren.bind(this);
   }
 
+  /***
+   * Adds the animation class to the children of the component
+   */
   animateChildren(child, animClass) {
-    const className = [child.props.className,
-      animClass].join(' ');
+    const className = [child.props.className, animClass].join(' ');
 
     const props = {
-      className
+      className,
     };
 
     return React.cloneElement(child, props);
@@ -22,16 +24,16 @@ class AnimatedComponent extends Component {
   render() {
     return (
       <React.Fragment>
-        {React.Children.map(this.props.children, child => this.animateChildren(child, this.props.animationClass))}
+        {React.Children.map(this.props.children, child =>
+          this.animateChildren(child, this.props.animationClass)
+        )}
       </React.Fragment>
     );
   }
 }
 
 AnimatedComponent.propTypes = {
-  animationClass: PropTypes.string,
+  animationClass: PropTypes.string.isRequired,
 };
-
-AnimatedComponent.defaultProps = {};
 
 export default AnimatedComponent;

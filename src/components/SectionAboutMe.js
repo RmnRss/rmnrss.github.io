@@ -1,4 +1,5 @@
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import CardHobby from './CardHobby';
@@ -67,22 +68,21 @@ const SkillIcon = ({ className, href }) => {
       href={href}
       size={32}
       color={'#7B6BC6'}
-      hoverColor={'#312952'}
     />
   );
 };
 
-const SectionAboutMe = ({ me, hobbies, skillsCategory }) => {
+function SectionAboutMe(props) {
   const description = documentToHtmlString(
-    me.childContentfulOwnerDescriptionRichTextNode.json
+    props.me.childContentfulOwnerDescriptionRichTextNode.json
   );
   return (
     <Section>
       <Grid>
         <Column alignItems={'stretch'} justifyContent={'center'}>
           <FlexboxColumn>
-            <SectionTitle color={'#FEBE81'}>{me.firstName}</SectionTitle>
-            <SectionTitle color={'#EFA45D'}>{me.lastName}</SectionTitle>
+            <SectionTitle color={'#FEBE81'}>{props.me.firstName}</SectionTitle>
+            <SectionTitle color={'#EFA45D'}>{props.me.lastName}</SectionTitle>
             <Separator
               color={'#22CAAC'}
               margin={'2rem 0 1rem 0'}
@@ -95,7 +95,7 @@ const SectionAboutMe = ({ me, hobbies, skillsCategory }) => {
           <BackgroundFill />
 
           <Subtitle>My interests & hobbies</Subtitle>
-          {hobbies.map(obj => {
+          {props.hobbies.map(obj => {
             let hobby = obj.node;
             return (
               <CardHobby
@@ -109,7 +109,7 @@ const SectionAboutMe = ({ me, hobbies, skillsCategory }) => {
           })}
           <Subtitle>Technical Skills</Subtitle>
           <CardGrid>
-            {skillsCategory.map(obj => {
+            {props.skillsCategory.map(obj => {
               let category = obj.node;
               return (
                 <CardSkills key={category.id} title={category.name}>
@@ -128,10 +128,12 @@ const SectionAboutMe = ({ me, hobbies, skillsCategory }) => {
       </Grid>
     </Section>
   );
+}
+
+SectionAboutMe.propTypes = {
+  me: PropTypes.object.isRequired,
+  hobbies: PropTypes.object.isRequired,
+  skillsCategory: PropTypes.object.isRequired,
 };
-
-SectionAboutMe.propTypes = {};
-
-SectionAboutMe.defaultProps = {};
 
 export default SectionAboutMe;

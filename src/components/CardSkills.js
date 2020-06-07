@@ -2,16 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import AnimatedComponentInView from './AnimatedComponentInView';
-import FlexboxColumn from './FlexboxColumn';
+import Card from './Card';
 import FlexboxRow from './FlexboxRow';
 
-const SkillCardContainer = styled(FlexboxColumn)`
-  position: relative;
-  padding: 1rem;
+const Container = styled(Card)`
   background-color: ${props => props.theme.light};
-  overflow: hidden;
-
-  border-radius: 1px;
 
   &:after {
     content: '';
@@ -37,26 +32,22 @@ const SkillCardContainer = styled(FlexboxColumn)`
   }
 `;
 
-const CardSkills = ({ children, title }) => {
+function CardSkills(props) {
   return (
     <AnimatedComponentInView>
-      <SkillCardContainer>
-        <b>{title}</b>
+      <Container>
+        <b>{props.title}</b>
         <FlexboxRow justifyContent={'flex-start'} alignItems={'center'}>
-          {children}
+          {props.children}
         </FlexboxRow>
-      </SkillCardContainer>
+      </Container>
     </AnimatedComponentInView>
   );
-};
+}
 
 CardSkills.propTypes = {
-  children: PropTypes.node,
-  title: PropTypes.string,
-};
-
-CardSkills.defaultProps = {
-  title: 'Title',
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default CardSkills;

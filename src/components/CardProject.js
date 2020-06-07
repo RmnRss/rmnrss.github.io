@@ -6,6 +6,7 @@ import AnimatedComponentInView from './AnimatedComponentInView';
 import Button from './Button';
 import Card from './Card';
 import Separator from './Separator';
+import FlexboxColumn from './FlexboxColumn';
 
 const BgImg = styled(BackgroundImage)`
   && {
@@ -14,30 +15,28 @@ const BgImg = styled(BackgroundImage)`
     left: 0;
   }
 
-  width: fill-available;
-  height: inherit;
   background-position: top;
+  width: 100%;
+  height: 100%;
 
   transition: all 0.8s ease-out;
 `;
 
-const CardContent = styled.div`
+const CardContent = styled(FlexboxColumn)`
   padding: 1rem;
+  height: 100%;
 
-  height: fill-available;
-
-  display: flex;
-  flex-direction: column;
+  color: ${props => props.theme.light};
 
   transform: translateY(90%);
 
   transition: all 0.8s cubic-bezier(0.44, 0.01, 0, 1);
-
-  color: ${props => props.theme.light};
 `;
 
 const CardContainer = styled(Card)`
   padding: 0;
+  width: 100%;
+  height: 24rem;
 
   opacity: 0;
   transform: translateX(12vh);
@@ -67,7 +66,6 @@ const CardButton = styled(Button)`
 
 const CardDescription = styled.p`
   color: inherit;
-  margin: 0;
 `;
 
 const CardTitle = styled.h4`
@@ -79,7 +77,7 @@ const CardTitle = styled.h4`
 function CardProject(props) {
   return (
     <AnimatedComponentInView>
-      <CardContainer {...props} width={'auto'} height={'24rem'}>
+      <CardContainer {...props}>
         <BgImg fluid={props.fluid} />
         <CardContent>
           <Separator color={props.color} margin={'0 0 1rem 0'} width={'4rem'} />

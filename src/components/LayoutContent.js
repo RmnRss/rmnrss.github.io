@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
 import FlexboxColumn from './FlexboxColumn';
 
@@ -14,15 +14,20 @@ const Content = styled(FlexboxColumn)`
   z-index: 2;
 `;
 
-const LayoutContent = ({ className, children }) => {
+function LayoutContent(props) {
   return (
-    <Content className={className} alignItems={'stretch'} justifyContent={'flex-start'}>
-      {children}
+    <Content
+      className={props.className}
+      alignItems={'stretch'}
+      justifyContent={'flex-start'}
+    >
+      {props.children}
     </Content>
   );
-};
+}
 
 LayoutContent.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 

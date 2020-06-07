@@ -56,11 +56,7 @@ function IndexPage({ data }) {
               onClick={() => scrollToRef(aboutMeRef)}
             />
 
-            <SocialIcons
-              iconSize={32}
-              color={theme.lightDark}
-              hoverColor={theme.secondary}
-            />
+            <SocialIcons iconSize={32} color={theme.lightDark} />
           </SectionHead>
         </div>
 

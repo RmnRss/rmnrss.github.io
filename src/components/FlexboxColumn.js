@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
 
 const FlexBox = styled.div`
@@ -10,24 +10,30 @@ const FlexBox = styled.div`
   align-items: ${props => props.alignItems};
 `;
 
-const FlexboxColumn = ({ className, children, justifyContent, alignItems, onClick }) => {
+function FlexboxColumn(props) {
   return (
     <FlexBox
-      onClick={onClick}
-      className={className}
-      justifyContent={justifyContent}
-      alignItems={alignItems}
+      onClick={props.onClick}
+      className={props.className}
+      justifyContent={props.justifyContent}
+      alignItems={props.alignItems}
     >
-      {children}
+      {props.children}
     </FlexBox>
   );
-};
+}
 
 FlexboxColumn.propTypes = {
   alignItems: PropTypes.string,
+  justifyContent: PropTypes.string,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  justifyContent: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+FlexboxColumn.defaultProps = {
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
 };
 
 export default FlexboxColumn;

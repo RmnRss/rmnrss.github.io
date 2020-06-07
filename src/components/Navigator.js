@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import NavigatorItem from './NavigatorItem';
 import Button from './Button';
+import NavigatorItem from './NavigatorItem';
 
-const NavContainer = styled.div`
+const NavContainer = styled.nav`
   position: fixed;
 
   width: ${props => (props.horizontal ? 'calc(50% - 4rem)' : '')};
@@ -51,68 +51,59 @@ const NextButton = styled(Button)`
   }
 `;
 
-class Navigator extends Component {
-  constructor(props) {
-    super(props);
-  }
+function scrollToNext(current, allPos) {
+  let next;
 
-  scrollToNext(current, allPos) {
-    let next;
-
-    for (let pos of allPos) {
-      if (pos > current) {
-        next = pos;
-        window.scrollTo(next, 0);
-        break;
-      }
+  for (let pos of allPos) {
+    if (pos > current) {
+      next = pos;
+      window.scrollTo(next, 0);
+      break;
     }
   }
+}
 
-  render() {
-    const sections = React.Children.toArray(this.props.children);
-    const allPos = [];
+function Navigator(props) {
+  const sections = React.Children.toArray(props.children);
+  const allPos = [];
 
-    sections.map(section => {
-      let offset = document.getElementById(section.props.id).offsetLeft;
-      allPos.push(offset);
-    });
+  sections.map(section => {
+    let offset = document.getElementById(section.props.id).offsetLeft;
+    allPos.push(offset);
+  });
 
-    return (
-      <>
-        <NavContainer
-          horizontal={this.props.horizontal}
-          className={this.props.className}
-        >
-          {!this.props.horizontal && (
-            <Label id="navigator-label" horizontal={this.props.horizontal} />
-          )}
+  return (
+    <>
+      <NavContainer horizontal={props.horizontal} className={props.className}>
+        {!props.horizontal && (
+          <Label id="navigator-label" horizontal={props.horizontal} />
+        )}
 
-          {sections.map(section => (
-            <NavigatorItem
-              key={section.key}
-              horizontal={this.props.horizontal}
-              sectionID={section.props.id}
-              label={section.props.className}
+        {sections.map(section => (
+          <NavigatorItem
+            key={section.key}
+            horizontal={props.horizontal}
+            sectionID={section.props.id}
+            label={section.props.className}
+          />
+        ))}
+
+        {props.horizontal && (
+          <>
+            <Label id="navigator-label" horizontal={props.horizontal} />
+
+            <NextButton
+              label={'Next'}
+              color={'dark'}
+              hoverColor={'light'}
+              onClick={() => scrollToNext(window.scrollX, allPos)}
             />
-          ))}
-
-          {this.props.horizontal && (
-            <>
-              <Label id="navigator-label" horizontal={this.props.horizontal} />
-
-              <NextButton
-                label={'Next'}
-                color={'dark'}
-                hoverColor={'light'}
-                onClick={() => this.scrollToNext(window.scrollX, allPos)}
-              />
-            </>
-          )}
-        </NavContainer>
-        {this.props.children}
-      </>
-    );
-  }
+          </>
+        )}
+      </NavContainer>
+      {props.children}
+    </>
+  );
 }
 
 Navigator.propTypes = {

@@ -21,7 +21,8 @@ const Title = styled(FlexboxColumn)``;
 
 const CardGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 2rem;
+  grid-template-columns: 1fr;
 `;
 
 class SectionPortfolio extends Component {

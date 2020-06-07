@@ -14,8 +14,7 @@ const Body = ({ children, theme }) => {
 
 Body.propTypes = {
   theme: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
 };
-
-Body.defaultProps = {};
 
 export default Body;

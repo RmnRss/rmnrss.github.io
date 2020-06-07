@@ -1,7 +1,7 @@
+import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
 
 const ButtonContainer = styled.button`
   position: relative;
@@ -26,8 +26,7 @@ const ButtonContainer = styled.button`
 
   overflow: hidden;
 
-  background: ${props =>
-    props.inverted ? props.theme[props.hoverColor] : props.theme[props.color]};
+  background: ${props => props.theme[props.color]};
   color: ${props => props.theme.light};
 
   transition: 0.4s ease;
@@ -43,10 +42,7 @@ const ButtonContainer = styled.button`
     height: 120%;
     width: 0;
 
-    background: ${props =>
-      props.inverted
-        ? props.theme[props.color]
-        : props.theme[props.hoverColor]};
+    background: ${props => props.theme[props.hoverColor]};
     transform: skewX(15deg);
     transition: 0.3s ease;
   }
@@ -107,15 +103,14 @@ function Button(props) {
 Button.propTypes = {
   color: PropTypes.string,
   hoverColor: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   to: PropTypes.string,
 };
 
 Button.defaultProps = {
-  color: `#fafafa`,
-  hoverColor: `#181818`,
-  label: `Button`,
+  color: `dark`,
+  hoverColor: `secondary`,
   to: null,
 };
 

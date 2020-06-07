@@ -23,18 +23,20 @@ const TitlePart = styled.h1`
   }
 `;
 
-const SectionTitle = ({ color, className, children }) => {
+function SectionTitle(props) {
   return (
     <AnimatedComponentInView>
-      <TitlePart className={className} color={color}>
-        {children}
+      <TitlePart className={props.className} color={props.color}>
+        {props.children}
       </TitlePart>
     </AnimatedComponentInView>
   );
-};
+}
 
 SectionTitle.propTypes = {
   color: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 SectionTitle.defaultProps = {

@@ -1,17 +1,11 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import AnimatedComponentInView from './AnimatedComponentInView';
 import FlexboxColumn from './FlexboxColumn';
 import FlexboxRow from './FlexboxRow';
-import AnimatedComponentInView from './AnimatedComponentInView';
 
-const Container = styled.div`
-  padding: 1rem 1rem 1rem 3rem;
-  margin: 1rem 0;
-  background-color: ${props => props.theme.light};
-`;
-
-const Element = styled(FlexboxRow)`
+const Container = styled(FlexboxRow)`
   opacity: 0;
   transform: translateX(12vh);
   visibility: hidden;
@@ -22,15 +16,6 @@ const Element = styled(FlexboxRow)`
     transform: none;
     visibility: visible;
   }
-`;
-
-const Title = styled.b`
-  margin: 0;
-`;
-
-const Description = styled.p`
-  font-size: 0.85em;
-  margin: 0;
 `;
 
 const IconContainer = styled(FlexboxColumn)`
@@ -46,45 +31,43 @@ const Icon = styled.i`
   color: ${props => props.theme.light};
 `;
 
-class CardHobby extends Component {
-  constructor(props) {
-    super(props);
-  }
+const TextContainer = styled.div`
+  padding: 1rem 1rem 1rem 3rem;
+  margin: 1rem 0;
+  background-color: ${props => props.theme.light};
+`;
 
-  render() {
-    return (
-      <AnimatedComponentInView>
-        <Element justifyContent={'center'} alignItems={'center'}>
-          <IconContainer justifyContent={'center'} alignItems={'center'}>
-            {this.props.iconLibrary === 'material' && (
-              <Icon className={'material-icons'}>{this.props.iconName}</Icon>
-            )}
+const Description = styled.p`
+  font-size: 0.85em;
+`;
 
-            {this.props.iconLibrary === 'fontawesome' && (
-              <Icon className={this.props.iconName} />
-            )}
-          </IconContainer>
-          <Container justifyContent={'flex-start'} alignItems={'flex-start'}>
-            <Title>{this.props.title}</Title>
-            <Description>{this.props.description}</Description>
-          </Container>
-        </Element>
-      </AnimatedComponentInView>
-    );
-  }
+function CardHobby(props) {
+  return (
+    <AnimatedComponentInView>
+      <Container justifyContent={'center'} alignItems={'center'}>
+        <IconContainer justifyContent={'center'} alignItems={'center'}>
+          {props.iconLibrary === 'material' && (
+            <Icon className={'material-icons'}>{props.iconName}</Icon>
+          )}
+
+          {props.iconLibrary === 'fontawesome' && (
+            <Icon className={props.iconName} />
+          )}
+        </IconContainer>
+        <TextContainer justifyContent={'flex-start'} alignItems={'flex-start'}>
+          <b>{props.title}</b>
+          <Description>{props.description}</Description>
+        </TextContainer>
+      </Container>
+    </AnimatedComponentInView>
+  );
 }
 
 CardHobby.propTypes = {
-  description: PropTypes.string,
+  description: PropTypes.string.isRequired,
   iconLibrary: PropTypes.string.isRequired,
-  iconName: PropTypes.string,
-  title: PropTypes.string,
-};
-
-CardHobby.defaultProps = {
-  description: '',
-  iconName: '',
-  title: 'Title',
+  iconName: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default CardHobby;

@@ -1,52 +1,55 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import HeaderItem from './HeaderItem';
 
-const NavContainer = styled.header`
+const Container = styled.header`
   position: fixed;
   top: 0%;
 
-  width: 100%;
   display: flex;
-
   flex-direction: row;
   align-items: center;
+
+  padding: 1rem;
+
+  width: 100%;
+
   justify-content: ${props => (props.horizontal ? 'flex-start' : 'center')};
   margin-left: ${props => (props.horizontal ? '2rem' : '')};
 
   z-index: 999;
-  
-  background-color: ${props => (props.horizontal ? 'transparent' : props.theme.light)};
+
+  background-color: ${props =>
+    props.horizontal ? 'transparent' : props.theme.light};
   border-bottom: ${props => (props.horizontal ? '' : '1px solid')};
   border-color: ${props => (props.horizontal ? '' : '#bcbcbc')};
 `;
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
+const Nav = styled.nav`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 
-  render() {
-    return (
-      <>
-        <NavContainer
-          horizontal={this.props.horizontal}
-          className={this.props.className}
-        >
-          {React.Children.toArray(this.props.children).map(section => (
+function Header(props) {
+  return (
+    <>
+      <Container horizontal={props.horizontal} className={props.className}>
+        <Nav>
+          {React.Children.toArray(props.children).map(section => (
             <HeaderItem
               key={section.key}
-              horizontal={this.props.horizontal}
+              horizontal={props.horizontal}
               sectionID={section.props.id}
               label={section.props.className}
             />
           ))}
-        </NavContainer>
-        {this.props.children}
-      </>
-    );
-  }
+        </Nav>
+      </Container>
+      {props.children}
+    </>
+  );
 }
 
 Header.propTypes = {
@@ -55,6 +58,8 @@ Header.propTypes = {
   horizontal: PropTypes.bool,
 };
 
-Header.defaultProps = {};
+Header.defaultProps = {
+  horizontal: false,
+};
 
 export default Header;

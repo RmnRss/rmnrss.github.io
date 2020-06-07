@@ -1,73 +1,48 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import SocialIcons from './SocialIcons';
-import FlexboxRow from './FlexboxRow';
+import React from 'react';
+import styled from 'styled-components';
 import FlexboxColumn from './FlexboxColumn';
+import FlexboxRow from './FlexboxRow';
+import SocialIcons from './SocialIcons';
 
 const FooterContainer = styled.footer`
   position: relative;
+  padding: 1rem;
   background: ${props => props.theme.light};
   border-top: 1px solid #bcbcbc;
 `;
 
 const FooterContent = styled(FlexboxRow)`
-  flex-grow: 1;
   flex-wrap: wrap;
-`;
-
-const SiteInfos = styled(FlexboxColumn)`
-  flex-wrap: wrap;
-  align-content: center;
-
-  margin: 0.75rem;
 `;
 
 const Infos = styled.p`
   font-size: 0.75rem;
-  margin: 0 0.5rem 0 0;
 `;
 
-const Author = styled.p`
-  margin: 0;
-`;
+function Footer(props) {
+  return (
+    <FooterContainer
+      className={props.className}
+      backgroundColor={props.backgroundColor}
+    >
+      <FooterContent alignItems={'center'} justifyContent={'space-evenly'}>
+        <FlexboxColumn alignItems={'flex-start'}>
+          <p>Romain Rousseau</p>
+          <Infos>
+            Site hosted on <b>Github</b>
+          </Infos>
+        </FlexboxColumn>
 
-class Footer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <FooterContainer
-        className={this.props.className}
-        backgroundColor={this.props.backgroundColor}
-      >
-          <FooterContent alignItems={'center'} justifyContent={'space-evenly'}>
-            <SiteInfos alignItems={'flex-start'}>
-              <Author>Romain Rousseau</Author>
-              <Infos>
-                Site hosted on <b>Github</b>
-              </Infos>
-            </SiteInfos>
-
-            <SocialIcons
-              iconSize={24}
-              color={'#181818'}
-              hoverColor={'#22CAAC'}
-            />
-          </FooterContent>
-      </FooterContainer>
-    );
-  }
+        <SocialIcons iconSize={24} color={'#181818'} />
+      </FooterContent>
+    </FooterContainer>
+  );
 }
 
 Footer.propTypes = {
-  backgroundColor: PropTypes.string,
-};
-
-Footer.defaultProps = {
-  backgroundColor: 'transparent',
+  backgroundColor: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export default Footer;

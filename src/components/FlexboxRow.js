@@ -5,29 +5,35 @@ import styled from 'styled-components';
 const FlexBox = styled.div`
   display: flex;
   flex-direction: row;
-  
+
   justify-content: ${props => props.justifyContent};
   align-items: ${props => props.alignItems};
 `;
 
-const FlexboxRow = ({ className, children, justifyContent, alignItems,onClick }) => {
+function FlexboxRow(props) {
   return (
     <FlexBox
-      onClick={onClick}
-      className={className}
-      justifyContent={justifyContent}
-      alignItems={alignItems}
+      onClick={props.onClick}
+      className={props.className}
+      justifyContent={props.justifyContent}
+      alignItems={props.alignItems}
     >
-      {children}
+      {props.children}
     </FlexBox>
   );
-};
+}
 
 FlexboxRow.propTypes = {
   alignItems: PropTypes.string,
+  justifyContent: PropTypes.string,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  justifyContent: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+FlexboxRow.defaultProps = {
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
 };
 
 export default FlexboxRow;

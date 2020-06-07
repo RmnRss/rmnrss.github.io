@@ -31,17 +31,18 @@ const Circle = styled.span`
   }
 `;
 
-const NavigatorItem = ({ horizontal, label, sectionID }) => {
-  const [active, setActive] = useState(false);
+function NavigatorItem(props) {
+  const [active, setActive] = useState(props.active);
   const navLabel = document.getElementById('navigator-label');
 
-  const height = document.getElementById(sectionID).offsetHeight;
-  const width = document.getElementById(sectionID).offsetWidth;
-  const x = document.getElementById(sectionID).offsetLeft;
-  const y = document.getElementById(sectionID).offsetTop;
+  const section = document.getElementById(props.sectionID);
+  const height = section.offsetHeight;
+  const width = section.offsetWidth;
+  const x = section.offsetLeft;
+  const y = section.offsetTop;
 
   function scrollToSection() {
-    if (horizontal) {
+    if (props.horizontal) {
       window.scrollTo(x, 0);
     } else {
       window.scrollTo(0, y);
@@ -50,14 +51,14 @@ const NavigatorItem = ({ horizontal, label, sectionID }) => {
 
   function changeLabelDisplayed() {
     if (active) {
-      navLabel.textContent = label;
+      navLabel.textContent = props.label;
       navLabel.className = navLabel.className.replace('is-visible', '');
       navLabel.className = [navLabel.className, 'is-visible'].join(' ');
     }
   }
 
   function isSectionInViewport(offset, size) {
-    if (horizontal) {
+    if (props.horizontal) {
       return window.scrollX >= offset - 10 && window.scrollX < offset + size;
     } else {
       return window.scrollY >= offset - 10 && window.scrollY < offset + size;
@@ -66,7 +67,7 @@ const NavigatorItem = ({ horizontal, label, sectionID }) => {
 
   useEffect(() => {
     function handleScroll() {
-      if (horizontal) {
+      if (props.horizontal) {
         setActive(isSectionInViewport(x, width));
       } else {
         setActive(isSectionInViewport(y, height));
@@ -88,18 +89,18 @@ const NavigatorItem = ({ horizontal, label, sectionID }) => {
       <Circle active={active} />
     </ItemContainer>
   );
-};
+}
 
 NavigatorItem.propTypes = {
   horizontal: PropTypes.bool,
-  label: PropTypes.string,
-  sectionID: PropTypes.string,
+  active: PropTypes.bool.isRequired,
+  label: PropTypes.string.isRequired,
+  sectionID: PropTypes.string.isRequired,
   onClick: PropTypes.func,
 };
 
 NavigatorItem.defaultProps = {
-  label: 'Link',
-  active: false,
+  horizontal: false,
 };
 
 export default NavigatorItem;

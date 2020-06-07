@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import handleViewport from 'react-in-viewport';
 import AnimatedComponent from './AnimatedComponent';
@@ -30,14 +29,5 @@ class AnimatedElement extends Component {
 const AnimatedComponentInView = handleViewport(AnimatedElement, {
   rootMargin: '-1.0px',
 });
-
-AnimatedElement.propTypes = {
-  animationClass: PropTypes.string,
-};
-
-AnimatedElement.defaultProps = {
-  animationClass: '',
-};
-
 
 export default AnimatedComponentInView;
