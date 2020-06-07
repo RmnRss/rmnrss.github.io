@@ -18,15 +18,14 @@ const IconContainer = styled.a`
   }
 `;
 
-const ClickableIcon = ({
-  color,
-  hoverColor,
-  href,
-  iconName,
-  size,
-}) => {
+const ClickableIcon = ({ color, hoverColor, href, iconName, size }) => {
   return (
-    <IconContainer color={color} hoverColor={hoverColor} href={href}>
+    <IconContainer
+      color={color}
+      hoverColor={hoverColor}
+      href={href}
+      target="_blank"
+    >
       <i
         style={{
           fontSize: size,
