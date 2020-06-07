@@ -78,7 +78,7 @@ function NavigatorItem(props) {
     handleScroll();
     window.addEventListener('scroll', handleScroll, true);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [active]);
+  });
 
   return (
     <ItemContainer

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import FlexboxColumn from './FlexboxColumn';
 import SectionTitle from './SectionTitle';
@@ -17,47 +17,28 @@ const Grid = styled.div`
   }
 `;
 
-const Title = styled(FlexboxColumn)``;
-
 const CardGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: 1fr;
 `;
 
-class SectionPortfolio extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Grid>
-        <Title alignItems={'stretch'} justifyContent={'center'}>
-          <SectionTitle color={'#FFD875'}>Educational</SectionTitle>
-          <SectionTitle color={'#FEBE81'}>& Personal</SectionTitle>
-          <SectionTitle color={'#EFA45D'}>Projects</SectionTitle>
-          <Separator
-            color={'#22CAAC'}
-            margin={'2rem 0 1rem 0'}
-            width={'3rem'}
-          />
-        </Title>
-        <CardGrid nbColumns={this.props.nbColumns}>
-          {this.props.children}
-        </CardGrid>
-      </Grid>
-    );
-  }
+function SectionPortfolio(props) {
+  return (
+    <Grid>
+      <FlexboxColumn alignItems={'stretch'} justifyContent={'center'}>
+        <SectionTitle color={'#FFD875'}>Educational</SectionTitle>
+        <SectionTitle color={'#FEBE81'}>& Personal</SectionTitle>
+        <SectionTitle color={'#EFA45D'}>Projects</SectionTitle>
+        <Separator color={'#22CAAC'} margin={'2rem 0 1rem 0'} width={'3rem'} />
+      </FlexboxColumn>
+      <CardGrid>{props.children}</CardGrid>
+    </Grid>
+  );
 }
 
 SectionPortfolio.propTypes = {
-  nbColumns: PropTypes.number,
-  title: PropTypes.string,
-};
-
-SectionPortfolio.defaultProps = {
-  title: 'Title',
+  children: PropTypes.node.isRequired,
 };
 
 export default SectionPortfolio;

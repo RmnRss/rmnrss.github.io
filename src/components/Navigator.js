@@ -65,12 +65,12 @@ function scrollToNext(current, allPos) {
 
 function Navigator(props) {
   const sections = React.Children.toArray(props.children);
-  const allPos = [];
+  let allPos = [];
 
-  sections.map(section => {
+  for (let section of sections) {
     let offset = document.getElementById(section.props.id).offsetLeft;
     allPos.push(offset);
-  });
+  }
 
   return (
     <>
