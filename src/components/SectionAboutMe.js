@@ -99,6 +99,7 @@ const SectionAboutMe = ({ me, hobbies, skillsCategory }) => {
             let hobby = obj.node;
             return (
               <CardHobby
+                key={hobby.id}
                 title={hobby.name}
                 iconLibrary={hobby.iconLibrary}
                 iconName={hobby.iconName}
@@ -111,9 +112,10 @@ const SectionAboutMe = ({ me, hobbies, skillsCategory }) => {
             {skillsCategory.map(obj => {
               let category = obj.node;
               return (
-                <CardSkills title={category.name}>
+                <CardSkills key={category.id} title={category.name}>
                   {category.skills.map(skill => (
                     <SkillIcon
+                      key={skill.id}
                       className={`fab ${skill.iconName}`}
                       href={skill.url}
                     />

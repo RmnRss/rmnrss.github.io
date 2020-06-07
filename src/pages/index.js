@@ -79,6 +79,7 @@ function IndexPage({ data }) {
                 let project = obj.node;
                 return (
                   <CardProject
+                    key={project.id}
                     title={project.name}
                     description={project.description.description}
                     fluid={project.cover.fluid}
@@ -100,6 +101,7 @@ export const data = graphql`
     projects: allContentfulProject {
       edges {
         node {
+          id
           name
           color
           url
@@ -117,6 +119,7 @@ export const data = graphql`
     hobbies: allContentfulHobby {
       edges {
         node {
+          id
           name
           iconName
           iconLibrary
@@ -129,8 +132,10 @@ export const data = graphql`
     skillsCategory: allContentfulSkillCategory {
       edges {
         node {
+          id
           name
           skills {
+            id
             name
             url
             iconName
