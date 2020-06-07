@@ -88,7 +88,7 @@ function Button(props) {
       {hasLink ? (
         <>
           {external ? (
-            <form action={props.to}>
+            <form action={props.to} className={props.className}>
               <PureButton {...props} type={'submit'} />
             </form>
           ) : (
