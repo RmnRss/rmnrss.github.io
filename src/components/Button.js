@@ -1,31 +1,53 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import FlexboxRow from './FlexboxRow';
+import { Link } from 'gatsby';
 
-const ButtonContainer = styled(FlexboxRow)`
+const ButtonContainer = styled.button`
   position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  outline: none;
+  border: none;
+  border-radius: 4px;
+
+  font-family: ${props => props.theme.fontFamily};
+  font-size: 1em;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.0515em;
 
   padding: 1rem 2rem;
 
   overflow: hidden;
 
-  background-color: ${props => props.backgroundColor};
-
-  border-radius: 4px;
+  background: ${props =>
+    props.inverted ? props.theme[props.hoverColor] : props.theme[props.color]};
+  color: ${props => props.theme.light};
 
   transition: 0.4s ease;
 
   &:after {
-    position: absolute;
     content: '';
-    height: 120%;
-    width: 0;
+
+    position: absolute;
+    z-index: -1;
     left: -10%;
     bottom: 0%;
-    background: ${props => props.hoverBackgroundColor};
+
+    height: 120%;
+    width: 0;
+
+    background: ${props =>
+      props.inverted
+        ? props.theme[props.color]
+        : props.theme[props.hoverColor]};
     transform: skewX(15deg);
-    z-index: -1;
     transition: 0.3s ease;
   }
 
@@ -39,61 +61,62 @@ const ButtonContainer = styled(FlexboxRow)`
   }
 `;
 
-const Label = styled.b`
-  font-size: 1em;
-
-  text-transform: uppercase;
-  text-align: center;
-  letter-spacing: 0.0515em;
-  color: ${props => props.color};
-
-  transition: color 0.4s ease;
-
-  ${ButtonContainer}:hover & {
-    color: ${props => props.hoverColor};
-  }
-`;
-
-const Button = ({
-  backgroundColor,
-  color,
-  className,
-  hoverBackgroundColor,
-  hoverColor,
-  label,
-  onClick,
-}) => {
+function PureButton({ className, color, hoverColor, label, onClick, type }) {
   return (
     <ButtonContainer
       className={className}
       onClick={onClick}
-      backgroundColor={backgroundColor}
-      hoverBackgroundColor={hoverBackgroundColor}
-      justifyContent={'center'}
-      alignItems={'center'}
+      color={color}
+      hoverColor={hoverColor}
+      type={type}
     >
-      <Label color={color} hoverColor={hoverColor}>
-        {label}
-      </Label>
+      {label}
     </ButtonContainer>
   );
-};
+}
+
+function Button(props) {
+  const hasLink = props.to != null;
+  let external = false;
+
+  if (hasLink) {
+    external = props.to.includes('https');
+  }
+
+  return (
+    <>
+      {hasLink ? (
+        <>
+          {external ? (
+            <form action={props.to}>
+              <PureButton {...props} type={'submit'} />
+            </form>
+          ) : (
+            <Link to={props.to} className={props.className}>
+              <PureButton {...props} />
+            </Link>
+          )}
+        </>
+      ) : (
+        <PureButton {...props} />
+      )}
+    </>
+  );
+}
 
 Button.propTypes = {
-  backgroundColor: PropTypes.string,
   color: PropTypes.string,
-  hoverBackgroundColor: PropTypes.string,
   hoverColor: PropTypes.string,
   label: PropTypes.string,
   onClick: PropTypes.func,
+  to: PropTypes.string,
 };
 
 Button.defaultProps = {
-  backgroundColor: `#181818`,
   color: `#fafafa`,
-  hoverBackgroundColor: `#fafafa`,
   hoverColor: `#181818`,
   label: `Button`,
+  to: null,
 };
 
 export default Button;

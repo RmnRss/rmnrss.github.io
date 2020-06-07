@@ -102,8 +102,8 @@ class Navigator extends Component {
 
               <NextButton
                 label={'Next'}
-                hoverColor={'#F3F3F3'}
-                hoverBackgroundColor={'#006BB6'}
+                color={'dark'}
+                hoverColor={'light'}
                 onClick={() => this.scrollToNext(window.scrollX, allPos)}
               />
             </>

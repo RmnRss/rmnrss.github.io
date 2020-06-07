@@ -1,11 +1,11 @@
+import BackgroundImage from 'gatsby-background-image';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Card from './Card';
 import styled from 'styled-components';
-import BackgroundImage from 'gatsby-background-image';
-import ButtonLink from './ButtonLink';
-import Separator from './Separator';
 import AnimatedComponentInView from './AnimatedComponentInView';
+import Button from './Button';
+import Card from './Card';
+import Separator from './Separator';
 
 const BgImg = styled(BackgroundImage)`
   && {
@@ -28,7 +28,6 @@ const CardContent = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
 
   transform: translateY(90%);
 
@@ -37,14 +36,8 @@ const CardContent = styled.div`
   color: ${props => props.theme.light};
 `;
 
-const CardButton = styled(ButtonLink)`
-  && {
-    margin-top: auto;
-  }
-`;
-
 const CardContainer = styled(Card)`
-  padding: 0rem;
+  padding: 0;
 
   opacity: 0;
   transform: translateX(12vh);
@@ -67,6 +60,11 @@ const CardContainer = styled(Card)`
   }
 `;
 
+const CardButton = styled(Button)`
+  margin-top: auto;
+  width: 100%;
+`;
+
 const CardDescription = styled.p`
   color: inherit;
   margin: 0;
@@ -78,68 +76,33 @@ const CardTitle = styled.h4`
   margin: 0.5rem 0;
 `;
 
-class CardProject extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      borderColor: this.props.borderColor,
-    };
-  }
-
-  render() {
-    return (
-      <AnimatedComponentInView>
-        <CardContainer
-          {...this.props}
-          backgroundColor={this.props.backgroundColor}
-          width={'auto'}
-          height={'24rem'}
-        >
-          <BgImg fluid={this.props.fluid}></BgImg>
-          <CardContent color={this.props.color}>
-            <Separator
-              color={this.props.sepColor}
-              margin={'0 0 1rem 0'}
-              width={'4rem'}
-            />
-            <CardTitle>{this.props.title}</CardTitle>
-            <CardDescription>{this.props.description}</CardDescription>
-            <CardButton
-              to={this.props.link}
-              external={this.props.external}
-              backgroundColor={'#22CAAC'}
-              hoverBackgroundColor={'#FAFAFA'}
-              color={'#FAFAFA'}
-              hoverColor={'#22CAAC'}
-              label={'Learn More'}
-            />
-          </CardContent>
-        </CardContainer>
-      </AnimatedComponentInView>
-    );
-  }
+function CardProject(props) {
+  return (
+    <AnimatedComponentInView>
+      <CardContainer {...props} width={'auto'} height={'24rem'}>
+        <BgImg fluid={props.fluid} />
+        <CardContent>
+          <Separator color={props.color} margin={'0 0 1rem 0'} width={'4rem'} />
+          <CardTitle>{props.title}</CardTitle>
+          <CardDescription>{props.description}</CardDescription>
+          <CardButton
+            to={props.link}
+            color={'secondary'}
+            hoverColor={'primary'}
+            label={'Learn More'}
+          />
+        </CardContent>
+      </CardContainer>
+    </AnimatedComponentInView>
+  );
 }
 
 CardProject.propTypes = {
-  backgroundColor: PropTypes.string,
-  color: PropTypes.string,
-  description: PropTypes.string,
-  external: PropTypes.bool,
-  fluid: PropTypes.object,
-  height: PropTypes.string,
-  link: PropTypes.string,
-  sepColor: PropTypes.string,
-  title: PropTypes.string,
-  width: PropTypes.string,
-};
-
-CardProject.defaultProps = {
-  description: 'Card description',
-  height: 'auto',
-  link: '#',
-  title: 'Card Title',
-  sepColor: '#181818',
+  color: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  fluid: PropTypes.object.isRequired,
+  link: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default CardProject;

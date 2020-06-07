@@ -4,7 +4,7 @@ import theme from '../../styles/main-theme';
 import SEO from '../../components/seo';
 import Section from '../../components/Section';
 import FlexboxColumn from '../../components/FlexboxColumn';
-import ButtonLink from '../../components/ButtonLink';
+import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 import Body from '../../components/Body';
 
@@ -22,7 +22,7 @@ const FixedFooter = styled(Footer)`
 const InProgress = () => {
   return (
     <>
-      <SEO title="Coming soon."/>
+      <SEO title="Coming soon." />
 
       <Body theme={theme}>
         <Section backgroundColor={theme.light}>
@@ -31,15 +31,15 @@ const InProgress = () => {
               This project is currently in the works :)
             </h3>
 
-            <ButtonLink
+            <Button
               to={'/'}
               label={'Main page'}
-              hoverBackgroundColor={'#febe81'}
-              hoverColor={'#fafafa'}
+              color={'dark'}
+              hoverColor={'primary'}
             />
           </ContentCenter>
         </Section>
-        <FixedFooter backgroundColor={theme.light}/>
+        <FixedFooter backgroundColor={theme.light} />
       </Body>
     </>
   );

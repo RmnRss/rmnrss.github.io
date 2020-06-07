@@ -50,10 +50,8 @@ function IndexPage({ data }) {
             </Title>
 
             <Button
-              backgroundColor={theme.dark}
-              hoverBackgroundColor={theme.secondary}
-              color={theme.lightDark}
-              hoverColor={theme.lightDark}
+              color={'dark'}
+              hoverColor={'secondary'}
               label={'Learn More'}
               onClick={() => scrollToRef(aboutMeRef)}
             />
@@ -83,7 +81,7 @@ function IndexPage({ data }) {
                     title={project.name}
                     description={project.description.description}
                     fluid={project.cover.fluid}
-                    sepColor={project.color}
+                    color={project.color}
                     link={project.url}
                   />
                 );

@@ -124,7 +124,6 @@ const SectionAboutMe = ({ hobbies, skillsCategory }) => {
                 </CardSkills>
               );
             })}
-            ;
           </CardGrid>
         </RightColumn>
       </Grid>
