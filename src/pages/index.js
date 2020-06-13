@@ -3,12 +3,12 @@ import React from "react";
 import styled from "styled-components";
 import { ReactComponent as FlatMeSVG } from "../assets/svg/me-space.svg";
 import Button from "../components/Button";
-import CardProject from "../components/cards/CardProject";
-import LayoutVertical from "../components/layouts/LayoutVertical";
+import ProjectCard from "../components/cards/ProjectCard";
+import VerticalLayout from "../components/layouts/VerticalLayout";
+import AboutMeSection from "../components/sections/AboutMeSection";
+import HeadSection from "../components/sections/HeadSection";
+import PortfolioSection from "../components/sections/PortfolioSection";
 import Section from "../components/sections/Section";
-import SectionAboutMe from "../components/sections/SectionAboutMe";
-import SectionHead from "../components/sections/SectionHead";
-import SectionPortfolio from "../components/sections/SectionPortfolio";
 import SEO from "../components/seo";
 import SocialIcons from "../components/SocialIcons";
 import theme from "../styles/main-theme";
@@ -40,9 +40,9 @@ function IndexPage({ data }) {
   return (
     <>
       <SEO title={`Portfolio`} />
-      <LayoutVertical>
+      <VerticalLayout>
         <div className={"Welcome"} id="head-section">
-          <SectionHead>
+          <HeadSection>
             <SVGContainer />
 
             <Title>
@@ -57,11 +57,11 @@ function IndexPage({ data }) {
             />
 
             <SocialIcons iconSize={32} color={theme.lightDark} />
-          </SectionHead>
+          </HeadSection>
         </div>
 
         <div className={"About Me"} id="about-me-section" ref={aboutMeRef}>
-          <SectionAboutMe
+          <AboutMeSection
             me={data.me}
             hobbies={data.hobbies.edges}
             skillsCategory={data.skillsCategory.edges}
@@ -70,11 +70,11 @@ function IndexPage({ data }) {
 
         <div className={"Portfolio"} id="portfolio-section">
           <Section backgroundColor={theme.lightDark}>
-            <SectionPortfolio>
+            <PortfolioSection>
               {data.projects.edges.map(obj => {
                 let project = obj.node;
                 return (
-                  <CardProject
+                  <ProjectCard
                     key={project.id}
                     title={project.name}
                     description={project.description.description}
@@ -84,10 +84,10 @@ function IndexPage({ data }) {
                   />
                 );
               })}
-            </SectionPortfolio>
+            </PortfolioSection>
           </Section>
         </div>
-      </LayoutVertical>
+      </VerticalLayout>
     </>
   );
 }

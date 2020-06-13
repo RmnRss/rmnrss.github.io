@@ -74,7 +74,7 @@ const CardTitle = styled.h4`
   margin: 0.5rem 0;
 `;
 
-function CardProject(props) {
+function ProjectCard(props) {
   return (
     <AnimatedComponentInView>
       <CardContainer {...props}>
@@ -95,7 +95,7 @@ function CardProject(props) {
   );
 }
 
-CardProject.propTypes = {
+ProjectCard.propTypes = {
   color: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   fluid: PropTypes.object.isRequired,
@@ -103,4 +103,4 @@ CardProject.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default CardProject;
+export default ProjectCard;

@@ -23,7 +23,7 @@ const CardGrid = styled.div`
   grid-template-columns: 1fr;
 `;
 
-function SectionPortfolio(props) {
+function PortfolioSection(props) {
   return (
     <Grid>
       <FlexboxColumn alignItems={"stretch"} justifyContent={"center"}>
@@ -37,8 +37,8 @@ function SectionPortfolio(props) {
   );
 }
 
-SectionPortfolio.propTypes = {
+PortfolioSection.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default SectionPortfolio;
+export default PortfolioSection;

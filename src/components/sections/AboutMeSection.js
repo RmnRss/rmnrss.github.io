@@ -2,13 +2,13 @@ import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import CardSkills from "../cards/CardSkills";
+import HobbyCard from "../cards/HobbyCard";
+import SkillsCard from "../cards/SkillsCard";
 import ClickableIcon from "../ClickableIcon";
 import FlexboxColumn from "../FlexboxColumn";
 import Separator from "../Separator";
 import Section from "./Section";
 import SectionTitle from "./SectionTitle";
-import CardHobby from "../cards/CardHobby";
 
 const BackgroundFill = styled.div`
   position: absolute;
@@ -72,7 +72,7 @@ const SkillIcon = ({ className, href }) => {
   );
 };
 
-function SectionAboutMe(props) {
+function AboutMeSection(props) {
   const description = documentToHtmlString(
     props.me.childContentfulOwnerDescriptionRichTextNode.json
   );
@@ -98,7 +98,7 @@ function SectionAboutMe(props) {
           {props.hobbies.map(obj => {
             let hobby = obj.node;
             return (
-              <CardHobby
+              <HobbyCard
                 key={hobby.id}
                 title={hobby.name}
                 iconLibrary={hobby.iconLibrary}
@@ -112,7 +112,7 @@ function SectionAboutMe(props) {
             {props.skillsCategory.map(obj => {
               let category = obj.node;
               return (
-                <CardSkills key={category.id} title={category.name}>
+                <SkillsCard key={category.id} title={category.name}>
                   {category.skills.map(skill => (
                     <SkillIcon
                       key={skill.id}
@@ -120,7 +120,7 @@ function SectionAboutMe(props) {
                       href={skill.url}
                     />
                   ))}
-                </CardSkills>
+                </SkillsCard>
               );
             })}
           </CardGrid>
@@ -130,10 +130,10 @@ function SectionAboutMe(props) {
   );
 }
 
-SectionAboutMe.propTypes = {
+AboutMeSection.propTypes = {
   me: PropTypes.object.isRequired,
   hobbies: PropTypes.object.isRequired,
   skillsCategory: PropTypes.object.isRequired,
 };
 
-export default SectionAboutMe;
+export default AboutMeSection;

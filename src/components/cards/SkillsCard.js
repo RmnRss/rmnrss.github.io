@@ -45,7 +45,7 @@ const GridItem = styled.div`
   align-items: center;
 `;
 
-function CardSkills(props) {
+function SkillsCard(props) {
   return (
     <AnimatedComponentInView>
       <Container>
@@ -60,9 +60,9 @@ function CardSkills(props) {
   );
 }
 
-CardSkills.propTypes = {
+SkillsCard.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
 };
 
-export default CardSkills;
+export default SkillsCard;

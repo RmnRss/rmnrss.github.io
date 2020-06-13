@@ -41,7 +41,7 @@ const Description = styled.p`
   font-size: 0.85em;
 `;
 
-function CardHobby(props) {
+function HobbyCard(props) {
   return (
     <AnimatedComponentInView>
       <Container justifyContent={"center"} alignItems={"center"}>
@@ -63,11 +63,11 @@ function CardHobby(props) {
   );
 }
 
-CardHobby.propTypes = {
+HobbyCard.propTypes = {
   description: PropTypes.string.isRequired,
   iconLibrary: PropTypes.string.isRequired,
   iconName: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
-export default CardHobby;
+export default HobbyCard;

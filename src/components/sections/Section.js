@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import LayoutContent from "../layouts/LayoutContent";
+import ContentLayout from "../layouts/ContentLayout";
 
 const SectionContainer = styled.section`
   position: relative;
@@ -21,7 +21,7 @@ function Section(props) {
       horizontal={props.horizontal}
     >
       {props.animatedBackground}
-      <LayoutContent>{props.children}</LayoutContent>
+      <ContentLayout>{props.children}</ContentLayout>
     </SectionContainer>
   );
 }

@@ -7,7 +7,7 @@ import FlexboxRow from "../FlexboxRow";
 import Header from "../Header";
 import Navigator from "../navigation/Navigator";
 
-function LayoutHorizontal(props) {
+function HorizontalLayout(props) {
   const winWidth = useWindowWidth();
 
   return (
@@ -24,9 +24,9 @@ function LayoutHorizontal(props) {
   );
 }
 
-LayoutHorizontal.propTypes = {
+HorizontalLayout.propTypes = {
   theme: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export default LayoutHorizontal;
+export default HorizontalLayout;

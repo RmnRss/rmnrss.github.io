@@ -14,7 +14,7 @@ const Content = styled(FlexboxColumn)`
   z-index: 2;
 `;
 
-function LayoutContent(props) {
+function ContentLayout(props) {
   return (
     <Content
       className={props.className}
@@ -26,9 +26,9 @@ function LayoutContent(props) {
   );
 }
 
-LayoutContent.propTypes = {
+ContentLayout.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
-export default LayoutContent;
+export default ContentLayout;

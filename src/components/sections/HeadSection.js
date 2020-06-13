@@ -21,7 +21,7 @@ const BackgroundParticles = styled(Particles)`
   z-index: -1;
 `;
 
-function SectionHead(props) {
+function HeadSection(props) {
   return (
     <Section
       animatedBackground={<BackgroundParticles params={particlesConfig} />}
@@ -33,8 +33,8 @@ function SectionHead(props) {
   );
 }
 
-SectionHead.propTypes = {
+HeadSection.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default SectionHead;
+export default HeadSection;
