@@ -24,12 +24,17 @@ const TitlePart = styled.h1`
   }
 
   @media screen and (max-width: ${breakpoints.md}px) {
-    font-size: 4rem;
+    font-size: 5rem;
   }
 
   @media screen and (max-width: ${breakpoints.sm}px) {
-    font-size: 3rem;
+    font-size: 4rem;
     line-height: 1.15;
+  }
+
+  @media screen and (max-width: ${breakpoints.xsm}px) {
+    font-size: 3rem;
+    line-height: 1;
   }
 `;
 
