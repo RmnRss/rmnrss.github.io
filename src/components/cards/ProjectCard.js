@@ -35,7 +35,7 @@ const CardContent = styled(FlexboxColumn)`
 
 const CardContainer = styled(Card)`
   padding: 0;
-  width: 100%;
+  max-width: 680px;
   height: 24rem;
 
   opacity: 0;

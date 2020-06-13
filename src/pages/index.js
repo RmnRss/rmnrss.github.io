@@ -1,7 +1,6 @@
 import { graphql } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as FlatMeSVG } from "../assets/svg/me-space.svg";
 import Button from "../components/Button";
 import ProjectCard from "../components/cards/ProjectCard";
 import VerticalLayout from "../components/layouts/VerticalLayout";
@@ -11,23 +10,12 @@ import PortfolioSection from "../components/sections/PortfolioSection";
 import Section from "../components/sections/Section";
 import SEO from "../components/seo";
 import SocialIcons from "../components/SocialIcons";
+import SpaceMe from "../components/SpaceMe";
 import theme from "../styles/main-theme";
 
 const Title = styled.h2`
   text-align: center;
   color: ${props => props.theme.lightDark};
-`;
-
-const SVGContainer = styled(FlatMeSVG)`
-  @media screen and (max-width: 1024px) {
-    width: 75%;
-    height: 240px;
-  }
-
-  @media screen and (max-width: 840px) {
-    width: 75%;
-    height: 180px;
-  }
 `;
 
 const scrollToRef = ref => {
@@ -43,7 +31,7 @@ function IndexPage({ data }) {
       <VerticalLayout>
         <div className={"Welcome"} id="head-section">
           <HeadSection>
-            <SVGContainer />
+            <SpaceMe />
 
             <Title>
               “ A front-end developer with the <br /> heart of a designer ”

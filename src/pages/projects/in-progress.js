@@ -27,8 +27,8 @@ const InProgress = () => {
       <Body theme={theme}>
         <Section backgroundColor={theme.light}>
           <ContentCenter alignItems={"center"}>
-            <h3 style={{ textAlign: "center" }}>
-              This project is currently in the works :)
+            <h3 style={{ textAlign: "center", marginBottom: "2rem" }}>
+              This case study is currently in development.
             </h3>
 
             <Button

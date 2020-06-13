@@ -52,7 +52,7 @@ function SkillsCard(props) {
         <b>{props.title}</b>
         <Grid>
           {props.children.map(child => (
-            <GridItem>{child}</GridItem>
+            <GridItem key={child.key}>{child}</GridItem>
           ))}
         </Grid>
       </Container>

@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
 const Element = styled.div`
   display: block;
@@ -30,8 +30,8 @@ Separator.propTypes = {
 
 Separator.defaultProps = {
   color: `#181818`,
-  margin: '1rem 0',
-  width: '4rem',
+  margin: "1rem 0",
+  width: "4rem",
 };
 
 export default Separator;

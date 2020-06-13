@@ -5,7 +5,7 @@ import FlexboxColumn from "../FlexboxColumn";
 
 const Content = styled(FlexboxColumn)`
   position: relative;
-  flex-grow: 1;
+  flex: 1;
 
   margin: 0 auto;
   max-width: 1440px;

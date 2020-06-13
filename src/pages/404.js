@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Body from "../components/Body";
 import Button from "../components/Button";
-import Footer from "../components/Footer";
-import SectionHead from "../components/sections/SectionHead";
+import SectionHead from "../components/sections/HeadSection";
 import SEO from "../components/seo";
 import theme from "../styles/main-theme";
 
@@ -27,12 +26,6 @@ const Text = styled.p`
   margin-bottom: 2rem;
 `;
 
-const FixedFooter = styled(Footer)`
-  position: fixed;
-  bottom: 0%;
-  width: 100%;
-`;
-
 const NotFoundPage = () => (
   <>
     <SEO title="Page not found." />
@@ -53,7 +46,6 @@ const NotFoundPage = () => (
           hoverColor={"primary"}
         />
       </SectionHead>
-      <FixedFooter backgroundColor={theme.light} />
     </Body>
   </>
 );

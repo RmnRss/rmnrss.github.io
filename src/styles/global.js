@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   h1, h2 {
-    font-size: clamp(2em, 2.5vw, 4em);
+    font-size: clamp(1.25em, 2.5vw, 4em);
   }
   
   h1 {
@@ -54,7 +54,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     text-transform: none;
     color: ${props => props.theme.dark};
-    max-width: 640px;
+    max-width: 512px;
   }
   
   a,

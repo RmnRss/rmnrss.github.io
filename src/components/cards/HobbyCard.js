@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
+import breakpoints from "../../utils/breakpoints";
 import AnimatedComponentInView from "../AnimatedComponentInView";
 import FlexboxColumn from "../FlexboxColumn";
-import FlexboxRow from "../FlexboxRow";
 
-const Container = styled(FlexboxRow)`
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   opacity: 0;
   transform: translateX(12vh);
   visibility: hidden;
@@ -16,6 +20,10 @@ const Container = styled(FlexboxRow)`
     transform: none;
     visibility: visible;
   }
+
+  @media screen and (max-width: ${breakpoints.sm}px) {
+    flex-direction: column;
+  }
 `;
 
 const IconContainer = styled(FlexboxColumn)`
@@ -23,6 +31,10 @@ const IconContainer = styled(FlexboxColumn)`
   margin-right: -2.5rem;
   z-index: 1;
   background-color: ${props => props.theme.purpleDark};
+
+  @media screen and (max-width: ${breakpoints.sm}px) {
+    display: none;
+  }
 `;
 
 const Icon = styled.i`
@@ -35,6 +47,10 @@ const TextContainer = styled.div`
   padding: 1rem 1rem 1rem 3rem;
   margin: 1rem 0;
   background-color: ${props => props.theme.light};
+
+  @media screen and (max-width: ${breakpoints.sm}px) {
+    padding: 1rem;
+  }
 `;
 
 const Description = styled.p`
@@ -44,7 +60,7 @@ const Description = styled.p`
 function HobbyCard(props) {
   return (
     <AnimatedComponentInView>
-      <Container justifyContent={"center"} alignItems={"center"}>
+      <Container>
         <IconContainer justifyContent={"center"} alignItems={"center"}>
           {props.iconLibrary === "material" && (
             <Icon className={"material-icons"}>{props.iconName}</Icon>

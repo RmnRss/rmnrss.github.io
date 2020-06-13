@@ -2,11 +2,12 @@ import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
+import breakpoints from "../../utils/breakpoints";
 import HobbyCard from "../cards/HobbyCard";
 import SkillsCard from "../cards/SkillsCard";
-import ClickableIcon from "../ClickableIcon";
 import FlexboxColumn from "../FlexboxColumn";
 import Separator from "../Separator";
+import SkillIcon from "../SkillIcon";
 import Section from "./Section";
 import SectionTitle from "./SectionTitle";
 
@@ -19,7 +20,7 @@ const BackgroundFill = styled.div`
   z-index: -999;
   background: ${props => props.theme.primary};
 
-  @media (max-width: 1280px) {
+  @media (max-width: ${breakpoints.xlg}px) {
     display: none;
   }
 `;
@@ -30,18 +31,18 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 
-  @media (max-width: 1280px) {
+  @media (max-width: ${breakpoints.xlg}px) {
     grid-template-columns: repeat(1, 1fr);
+    max-width: 768px;
+    margin: auto;
   }
 `;
 
 const Column = styled(FlexboxColumn)`
-  z-index: 1;
   padding: 2rem;
 `;
 
 const RightColumn = styled(Column)`
-  z-index: 2;
   background: ${props => props.theme.primary};
 `;
 
@@ -55,22 +56,15 @@ const CardGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const Subtitle = styled.h4`
   margin: 0 0 1rem 0;
 `;
-
-const SkillIcon = ({ className, href }) => {
-  return (
-    <ClickableIcon
-      iconName={className}
-      href={href}
-      size={32}
-      color={"#7B6BC6"}
-    />
-  );
-};
 
 function AboutMeSection(props) {
   const description = documentToHtmlString(
@@ -80,16 +74,14 @@ function AboutMeSection(props) {
     <Section>
       <Grid>
         <Column alignItems={"stretch"} justifyContent={"center"}>
-          <FlexboxColumn>
-            <SectionTitle color={"#FEBE81"}>{props.me.firstName}</SectionTitle>
-            <SectionTitle color={"#EFA45D"}>{props.me.lastName}</SectionTitle>
-            <Separator
-              color={"#22CAAC"}
-              margin={"2rem 0 1rem 0"}
-              width={"3rem"}
-            />
-            <Description dangerouslySetInnerHTML={{ __html: description }} />
-          </FlexboxColumn>
+          <SectionTitle color={"#FEBE81"}>{props.me.firstName}</SectionTitle>
+          <SectionTitle color={"#EFA45D"}>{props.me.lastName}</SectionTitle>
+          <Separator
+            color={"#22CAAC"}
+            margin={"1rem 0 1rem 0"}
+            width={"3rem"}
+          />
+          <Description dangerouslySetInnerHTML={{ __html: description }} />
         </Column>
         <RightColumn alignItems={"stretch"} justifyContent={"center"}>
           <BackgroundFill />
@@ -132,8 +124,8 @@ function AboutMeSection(props) {
 
 AboutMeSection.propTypes = {
   me: PropTypes.object.isRequired,
-  hobbies: PropTypes.object.isRequired,
-  skillsCategory: PropTypes.object.isRequired,
+  hobbies: PropTypes.arrayOf(PropTypes.object).isRequired,
+  skillsCategory: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default AboutMeSection;
