@@ -1,14 +1,14 @@
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
-import CardHobby from './CardHobby';
-import CardSkills from './CardSkills';
-import ClickableIcon from './ClickableIcon';
-import FlexboxColumn from './FlexboxColumn';
-import Section from './Section';
-import SectionTitle from './SectionTitle';
-import Separator from './Separator';
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
+import CardSkills from "../cards/CardSkills";
+import ClickableIcon from "../ClickableIcon";
+import FlexboxColumn from "../FlexboxColumn";
+import Separator from "../Separator";
+import Section from "./Section";
+import SectionTitle from "./SectionTitle";
+import CardHobby from "../cards/CardHobby";
 
 const BackgroundFill = styled.div`
   position: absolute;
@@ -67,7 +67,7 @@ const SkillIcon = ({ className, href }) => {
       iconName={className}
       href={href}
       size={32}
-      color={'#7B6BC6'}
+      color={"#7B6BC6"}
     />
   );
 };
@@ -79,19 +79,19 @@ function SectionAboutMe(props) {
   return (
     <Section>
       <Grid>
-        <Column alignItems={'stretch'} justifyContent={'center'}>
+        <Column alignItems={"stretch"} justifyContent={"center"}>
           <FlexboxColumn>
-            <SectionTitle color={'#FEBE81'}>{props.me.firstName}</SectionTitle>
-            <SectionTitle color={'#EFA45D'}>{props.me.lastName}</SectionTitle>
+            <SectionTitle color={"#FEBE81"}>{props.me.firstName}</SectionTitle>
+            <SectionTitle color={"#EFA45D"}>{props.me.lastName}</SectionTitle>
             <Separator
-              color={'#22CAAC'}
-              margin={'2rem 0 1rem 0'}
-              width={'3rem'}
+              color={"#22CAAC"}
+              margin={"2rem 0 1rem 0"}
+              width={"3rem"}
             />
             <Description dangerouslySetInnerHTML={{ __html: description }} />
           </FlexboxColumn>
         </Column>
-        <RightColumn alignItems={'stretch'} justifyContent={'center'}>
+        <RightColumn alignItems={"stretch"} justifyContent={"center"}>
           <BackgroundFill />
 
           <Subtitle>My interests & hobbies</Subtitle>

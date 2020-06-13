@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import Particles from 'react-particles-js';
-import styled from 'styled-components';
-import particlesConfig from '../assets/particles';
-import FlexboxColumn from './FlexboxColumn';
-import Section from './Section';
+import PropTypes from "prop-types";
+import React from "react";
+import Particles from "react-particles-js";
+import styled from "styled-components";
+import particlesConfig from "../../assets/particles";
+import FlexboxColumn from "../FlexboxColumn";
+import Section from "./Section";
 
 const ContentCenter = styled(FlexboxColumn)`
   margin: auto;
@@ -26,7 +26,7 @@ function SectionHead(props) {
     <Section
       animatedBackground={<BackgroundParticles params={particlesConfig} />}
     >
-      <ContentCenter justifyContent={'center'} alignItems={'center'}>
+      <ContentCenter justifyContent={"center"} alignItems={"center"}>
         {props.children}
       </ContentCenter>
     </Section>

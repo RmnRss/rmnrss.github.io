@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import breakpoints from '../utils/breakpoints';
-import useWindowWidth from '../utils/dimension';
-import Body from './Body';
-import FlexboxRow from './FlexboxRow';
-import Header from './Header';
-import Navigator from './Navigator';
+import PropTypes from "prop-types";
+import React from "react";
+import breakpoints from "../../utils/breakpoints";
+import useWindowWidth from "../../utils/dimension";
+import Body from "../Body";
+import FlexboxRow from "../FlexboxRow";
+import Header from "../Header";
+import Navigator from "../navigation/Navigator";
 
 function LayoutHorizontal(props) {
   const winWidth = useWindowWidth();

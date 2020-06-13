@@ -1,17 +1,17 @@
-import { graphql } from 'gatsby';
-import React from 'react';
-import styled from 'styled-components';
-import { ReactComponent as FlatMeSVG } from '../assets/svg/me-space.svg';
-import Button from '../components/Button';
-import CardProject from '../components/CardProject';
-import LayoutVertical from '../components/LayoutVertical';
-import Section from '../components/Section';
-import SectionAboutMe from '../components/SectionAboutMe';
-import SectionHead from '../components/SectionHead';
-import SectionPortfolio from '../components/SectionPortfolio';
-import SEO from '../components/seo';
-import SocialIcons from '../components/SocialIcons';
-import theme from '../styles/main-theme';
+import { graphql } from "gatsby";
+import React from "react";
+import styled from "styled-components";
+import { ReactComponent as FlatMeSVG } from "../assets/svg/me-space.svg";
+import Button from "../components/Button";
+import CardProject from "../components/cards/CardProject";
+import LayoutVertical from "../components/layouts/LayoutVertical";
+import Section from "../components/sections/Section";
+import SectionAboutMe from "../components/sections/SectionAboutMe";
+import SectionHead from "../components/sections/SectionHead";
+import SectionPortfolio from "../components/sections/SectionPortfolio";
+import SEO from "../components/seo";
+import SocialIcons from "../components/SocialIcons";
+import theme from "../styles/main-theme";
 
 const Title = styled.h2`
   text-align: center;
@@ -24,7 +24,7 @@ const SVGContainer = styled(FlatMeSVG)`
     height: 240px;
   }
 
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 840px) {
     width: 75%;
     height: 180px;
   }
@@ -41,7 +41,7 @@ function IndexPage({ data }) {
     <>
       <SEO title={`Portfolio`} />
       <LayoutVertical>
-        <div className={'Welcome'} id="head-section">
+        <div className={"Welcome"} id="head-section">
           <SectionHead>
             <SVGContainer />
 
@@ -50,9 +50,9 @@ function IndexPage({ data }) {
             </Title>
 
             <Button
-              color={'dark'}
-              hoverColor={'secondary'}
-              label={'Learn More'}
+              color={"dark"}
+              hoverColor={"secondary"}
+              label={"Learn More"}
               onClick={() => scrollToRef(aboutMeRef)}
             />
 
@@ -60,7 +60,7 @@ function IndexPage({ data }) {
           </SectionHead>
         </div>
 
-        <div className={'About Me'} id="about-me-section" ref={aboutMeRef}>
+        <div className={"About Me"} id="about-me-section" ref={aboutMeRef}>
           <SectionAboutMe
             me={data.me}
             hobbies={data.hobbies.edges}
@@ -68,7 +68,7 @@ function IndexPage({ data }) {
           />
         </div>
 
-        <div className={'Portfolio'} id="portfolio-section">
+        <div className={"Portfolio"} id="portfolio-section">
           <Section backgroundColor={theme.lightDark}>
             <SectionPortfolio>
               {data.projects.edges.map(obj => {
@@ -94,6 +94,13 @@ function IndexPage({ data }) {
 
 export const data = graphql`
   query {
+    svg: file(relativePath: { eq: "assets/svg/me-space.svg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
     projects: allContentfulProject {
       edges {
         node {

@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
-import theme from '../styles/main-theme';
-import breakpoints from '../utils/breakpoints';
-import useWindowWidth from '../utils/dimension';
-import Body from './Body';
-import Footer from './Footer';
-import Header from './Header';
-import Navigator from './Navigator';
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
+import breakpoints from "../../utils/breakpoints";
+import useWindowWidth from "../../utils/dimension";
+import Body from "../Body";
+import Footer from "../Footer";
+import Header from "../navigation/Header";
+import Navigator from "../navigation/Navigator";
+import theme from "../../styles/main-theme";
 
 const Vertical = styled.div`
   overflow-x: hidden;

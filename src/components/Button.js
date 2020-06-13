@@ -1,7 +1,7 @@
-import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
+import { Link } from "gatsby";
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
 const ButtonContainer = styled.button`
   position: relative;
@@ -26,13 +26,15 @@ const ButtonContainer = styled.button`
 
   overflow: hidden;
 
-  background: ${props => props.theme[props.color]};
+  background: ${props =>
+    props.disabled ? props.theme.grey : props.theme[props.color]};
   color: ${props => props.theme.light};
 
   transition: 0.4s ease;
 
   &:after {
-    content: '';
+    content: "";
+    display: ${props => (props.disabled ? "none" : "block")};
 
     position: absolute;
     z-index: -1;
@@ -48,8 +50,8 @@ const ButtonContainer = styled.button`
   }
 
   &:hover {
-    background-color: transparent;
-    cursor: pointer;
+    background-color: ${props => (props.disabled ? "none" : "transparent")};
+    cursor: ${props => (props.disabled ? "default" : "pointer")};
   }
 
   &:hover:after {
@@ -57,16 +59,15 @@ const ButtonContainer = styled.button`
   }
 `;
 
-function PureButton({ className, color, hoverColor, label, onClick, type }) {
+function PureButton(props) {
   return (
     <ButtonContainer
-      className={className}
-      onClick={onClick}
-      color={color}
-      hoverColor={hoverColor}
-      type={type}
+      className={props.className}
+      color={props.color}
+      hoverColor={props.hoverColor}
+      {...props}
     >
-      {label}
+      {props.label}
     </ButtonContainer>
   );
 }
@@ -76,7 +77,7 @@ function Button(props) {
   let external = false;
 
   if (hasLink) {
-    external = props.to.includes('https');
+    external = props.to.includes("https");
   }
 
   return (
@@ -85,7 +86,7 @@ function Button(props) {
         <>
           {external ? (
             <form action={props.to} className={props.className}>
-              <PureButton {...props} type={'submit'} />
+              <PureButton {...props} type={"submit"} />
             </form>
           ) : (
             <Link to={props.to} className={props.className}>
@@ -104,7 +105,6 @@ Button.propTypes = {
   color: PropTypes.string,
   hoverColor: PropTypes.string,
   label: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
   to: PropTypes.string,
 };
 

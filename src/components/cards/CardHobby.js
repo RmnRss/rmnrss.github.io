@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
-import AnimatedComponentInView from './AnimatedComponentInView';
-import FlexboxColumn from './FlexboxColumn';
-import FlexboxRow from './FlexboxRow';
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
+import AnimatedComponentInView from "../AnimatedComponentInView";
+import FlexboxColumn from "../FlexboxColumn";
+import FlexboxRow from "../FlexboxRow";
 
 const Container = styled(FlexboxRow)`
   opacity: 0;
@@ -44,17 +44,17 @@ const Description = styled.p`
 function CardHobby(props) {
   return (
     <AnimatedComponentInView>
-      <Container justifyContent={'center'} alignItems={'center'}>
-        <IconContainer justifyContent={'center'} alignItems={'center'}>
-          {props.iconLibrary === 'material' && (
-            <Icon className={'material-icons'}>{props.iconName}</Icon>
+      <Container justifyContent={"center"} alignItems={"center"}>
+        <IconContainer justifyContent={"center"} alignItems={"center"}>
+          {props.iconLibrary === "material" && (
+            <Icon className={"material-icons"}>{props.iconName}</Icon>
           )}
 
-          {props.iconLibrary === 'fontawesome' && (
+          {props.iconLibrary === "fontawesome" && (
             <Icon className={props.iconName} />
           )}
         </IconContainer>
-        <TextContainer justifyContent={'flex-start'} alignItems={'flex-start'}>
+        <TextContainer justifyContent={"flex-start"} alignItems={"flex-start"}>
           <b>{props.title}</b>
           <Description>{props.description}</Description>
         </TextContainer>

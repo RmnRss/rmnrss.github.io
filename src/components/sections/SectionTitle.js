@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import AnimatedComponentInView from './AnimatedComponentInView';
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
+import AnimatedComponentInView from "../AnimatedComponentInView";
 
 const TitlePart = styled.h1`
   font-size: 6.625rem;
@@ -40,7 +40,7 @@ SectionTitle.propTypes = {
 };
 
 SectionTitle.defaultProps = {
-  color: '#000',
+  color: "#000",
 };
 
 export default SectionTitle;

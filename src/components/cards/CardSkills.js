@@ -1,15 +1,14 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
-import AnimatedComponentInView from './AnimatedComponentInView';
-import Card from './Card';
-import FlexboxRow from './FlexboxRow';
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
+import AnimatedComponentInView from "../AnimatedComponentInView";
+import Card from "./Card";
 
 const Container = styled(Card)`
   background-color: ${props => props.theme.light};
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0%;
     left: 0%;
@@ -32,14 +31,30 @@ const Container = styled(Card)`
   }
 `;
 
+const Grid = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+
+  text-align: center;
+`;
+
+const GridItem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 function CardSkills(props) {
   return (
     <AnimatedComponentInView>
       <Container>
         <b>{props.title}</b>
-        <FlexboxRow justifyContent={'flex-start'} alignItems={'center'}>
-          {props.children}
-        </FlexboxRow>
+        <Grid>
+          {props.children.map(child => (
+            <GridItem>{child}</GridItem>
+          ))}
+        </Grid>
       </Container>
     </AnimatedComponentInView>
   );

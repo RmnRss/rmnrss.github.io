@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
 const CardContainer = styled.div`
   position: relative;
@@ -29,12 +29,12 @@ function Card(props) {
 
 Card.propTypes = {
   backgroundColor: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
 
 Card.defaultProps = {
-  backgroundColor: 'transparent',
+  backgroundColor: "transparent",
 };
 
 export default Card;

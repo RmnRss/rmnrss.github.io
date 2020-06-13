@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
-import FlexboxColumn from './FlexboxColumn';
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
+import FlexboxColumn from "../FlexboxColumn";
 
 const Content = styled(FlexboxColumn)`
   position: relative;
@@ -18,8 +18,8 @@ function LayoutContent(props) {
   return (
     <Content
       className={props.className}
-      alignItems={'stretch'}
-      justifyContent={'flex-start'}
+      alignItems={"stretch"}
+      justifyContent={"flex-start"}
     >
       {props.children}
     </Content>

@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import FlexboxRow from './FlexboxRow';
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import FlexboxRow from "../FlexboxRow";
 
 const ItemContainer = styled(FlexboxRow)`
   position: relative;
@@ -19,7 +19,7 @@ const Circle = styled.span`
 
   background-color: ${props =>
     props.active ? props.theme.primary : props.theme.grey};
-  transform: ${props => (props.active ? 'scale(1.5)' : 'scale(1)')};
+  transform: ${props => (props.active ? "scale(1.5)" : "scale(1)")};
 
   margin: 1rem;
 
@@ -33,7 +33,7 @@ const Circle = styled.span`
 
 function NavigatorItem(props) {
   const [active, setActive] = useState(props.active);
-  const navLabel = document.getElementById('navigator-label');
+  const navLabel = document.getElementById("navigator-label");
 
   const section = document.getElementById(props.sectionID);
   const height = section.offsetHeight;
@@ -52,8 +52,8 @@ function NavigatorItem(props) {
   function changeLabelDisplayed() {
     if (active) {
       navLabel.textContent = props.label;
-      navLabel.className = navLabel.className.replace('is-visible', '');
-      navLabel.className = [navLabel.className, 'is-visible'].join(' ');
+      navLabel.className = navLabel.className.replace("is-visible", "");
+      navLabel.className = [navLabel.className, "is-visible"].join(" ");
     }
   }
 
@@ -76,14 +76,14 @@ function NavigatorItem(props) {
     }
 
     handleScroll();
-    window.addEventListener('scroll', handleScroll, true);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, true);
+    return () => window.removeEventListener("scroll", handleScroll);
   });
 
   return (
     <ItemContainer
-      justifyContent={'center'}
-      alignItems={'center'}
+      justifyContent={"center"}
+      alignItems={"center"}
       onClick={() => scrollToSection()}
     >
       <Circle active={active} />

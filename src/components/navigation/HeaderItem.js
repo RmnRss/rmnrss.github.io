@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import FlexboxRow from './FlexboxRow';
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import styled from "styled-components";
+import FlexboxRow from "../FlexboxRow";
 
 const ItemContainer = styled(FlexboxRow)`
   position: relative;
@@ -21,12 +21,12 @@ const Label = styled.p`
 
   &:after {
     background-color: #181818;
-    content: '';
+    content: "";
     display: block;
     height: 2px;
     opacity: ${props => (props.active ? 1 : 0.35)};
-    transform-origin: ${props => (props.active ? '0 0' : '100% 0')};
-    transform: ${props => (props.active ? 'scaleX(1)' : 'scaleX(0)')};
+    transform-origin: ${props => (props.active ? "0 0" : "100% 0")};
+    transform: ${props => (props.active ? "scaleX(1)" : "scaleX(0)")};
     transition: transform 0.2s ease, opacity 0.2s ease;
   }
 
@@ -49,12 +49,12 @@ class HeaderItem extends Component {
   componentDidMount() {
     this.setState({ active: false });
     this.linkedSection = document.getElementById(this.props.sectionID);
-    window.addEventListener('scroll', this.handleScroll, true);
+    window.addEventListener("scroll", this.handleScroll, true);
     this.handleScroll();
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   handleScroll = () => {
@@ -94,8 +94,8 @@ class HeaderItem extends Component {
   render() {
     return (
       <ItemContainer
-        justifyContent={'flex-end'}
-        alignItems={'center'}
+        justifyContent={"flex-end"}
+        alignItems={"center"}
         onClick={() => this.scrollToOffset()}
       >
         <Label active={this.state.active}>{this.props.label}</Label>
@@ -112,7 +112,7 @@ HeaderItem.propTypes = {
 };
 
 HeaderItem.defaultProps = {
-  label: 'Link',
+  label: "Link",
   active: false,
 };
 

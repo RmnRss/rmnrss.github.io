@@ -1,11 +1,11 @@
-import React from 'react';
-import SEO from '../components/seo';
-import Body from '../components/Body';
-import theme from '../styles/main-theme';
-import styled from 'styled-components';
-import Footer from '../components/Footer';
-import SectionHead from '../components/SectionHead';
-import Button from '../components/Button';
+import React from "react";
+import styled from "styled-components";
+import Body from "../components/Body";
+import Button from "../components/Button";
+import Footer from "../components/Footer";
+import SectionHead from "../components/sections/SectionHead";
+import SEO from "../components/seo";
+import theme from "../styles/main-theme";
 
 const Number = styled.h1`
   font-size: 8rem;
@@ -47,10 +47,10 @@ const NotFoundPage = () => (
         </Text>
 
         <Button
-          to={'/'}
-          label={'Main page'}
-          color={'dark'}
-          hoverColor={'primary'}
+          to={"/"}
+          label={"Main page"}
+          color={"dark"}
+          hoverColor={"primary"}
         />
       </SectionHead>
       <FixedFooter backgroundColor={theme.light} />

@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
 const Container = styled.i`
   color: ${props => props.color};
 
   font-weight: 500;
   font-size: ${props => `${props.size}px`};
-  margin: ${props => `${props.margins}px`};
+  margin-top: ${props => `${props.margins}px`};
 
   transition: color 0.3s ease-out;
 `;
@@ -31,7 +31,7 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
-  color: '#000',
+  color: "#000",
   size: 16,
 };
 

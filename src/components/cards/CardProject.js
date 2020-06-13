@@ -1,12 +1,12 @@
-import BackgroundImage from 'gatsby-background-image';
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
-import AnimatedComponentInView from './AnimatedComponentInView';
-import Button from './Button';
-import Card from './Card';
-import Separator from './Separator';
-import FlexboxColumn from './FlexboxColumn';
+import BackgroundImage from "gatsby-background-image";
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
+import AnimatedComponentInView from "../AnimatedComponentInView";
+import Button from "../Button";
+import FlexboxColumn from "../FlexboxColumn";
+import Separator from "../Separator";
+import Card from "./Card";
 
 const BgImg = styled(BackgroundImage)`
   && {
@@ -23,12 +23,12 @@ const BgImg = styled(BackgroundImage)`
 `;
 
 const CardContent = styled(FlexboxColumn)`
-  padding: 1rem;
+  padding: 2rem;
   height: 100%;
 
   color: ${props => props.theme.light};
 
-  transform: translateY(90%);
+  transform: translateY(85%);
 
   transition: all 0.8s cubic-bezier(0.44, 0.01, 0, 1);
 `;
@@ -80,14 +80,14 @@ function CardProject(props) {
       <CardContainer {...props}>
         <BgImg fluid={props.fluid} />
         <CardContent>
-          <Separator color={props.color} margin={'0 0 1rem 0'} width={'4rem'} />
+          <Separator color={props.color} margin={"0 0 1rem 0"} width={"4rem"} />
           <CardTitle>{props.title}</CardTitle>
           <CardDescription>{props.description}</CardDescription>
           <CardButton
             to={props.link}
-            color={'secondary'}
-            hoverColor={'primary'}
-            label={'Learn More'}
+            color={"secondary"}
+            hoverColor={"primary"}
+            label={"Learn More"}
           />
         </CardContent>
       </CardContainer>
