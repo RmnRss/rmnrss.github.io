@@ -1,26 +1,19 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import styled from "styled-components";
-import FlexboxRow from "../FlexboxRow";
 
-const ItemContainer = styled(FlexboxRow)`
+const Label = styled.a`
   position: relative;
   pointer-events: all;
   margin: 0 1rem;
 
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const Label = styled.p`
   font-weight: 600;
   color: ${props => props.theme.dark};
 
   transition: all 0.1s ease;
 
   &:after {
-    background-color: #181818;
+    background-color: ${props => props.theme.purpleLight};
     content: "";
     display: block;
     height: 2px;
@@ -30,7 +23,11 @@ const Label = styled.p`
     transition: transform 0.2s ease, opacity 0.2s ease;
   }
 
-  ${ItemContainer}:hover &:after {
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:hover:after {
     opacity: 1;
     transform-origin: 0 0;
     transform: scaleX(1);
@@ -93,13 +90,14 @@ class HeaderItem extends Component {
 
   render() {
     return (
-      <ItemContainer
-        justifyContent={"flex-end"}
-        alignItems={"center"}
+      <Label
+        rel={"next"}
+        target={"_self"}
+        active={this.state.active}
         onClick={() => this.scrollToOffset()}
       >
-        <Label active={this.state.active}>{this.props.label}</Label>
-      </ItemContainer>
+        {this.props.label}
+      </Label>
     );
   }
 }

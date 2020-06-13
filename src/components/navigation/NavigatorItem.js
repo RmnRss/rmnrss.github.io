@@ -1,18 +1,11 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import FlexboxRow from "../FlexboxRow";
 
-const ItemContainer = styled(FlexboxRow)`
+const Circle = styled.a`
   position: relative;
   pointer-events: all;
 
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const Circle = styled.span`
   height: 0.5rem;
   width: 0.5rem;
   border-radius: 50%;
@@ -25,7 +18,11 @@ const Circle = styled.span`
 
   transition: all 0.3s ease-in-out;
 
-  ${ItemContainer}:hover & {
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:hover: {
     transform: scale(1.5);
     background-color: ${props => props.theme.primary};
   }
@@ -81,13 +78,12 @@ function NavigatorItem(props) {
   });
 
   return (
-    <ItemContainer
-      justifyContent={"center"}
-      alignItems={"center"}
+    <Circle
+      rel={"next"}
+      target={"_self"}
+      active={active}
       onClick={() => scrollToSection()}
-    >
-      <Circle active={active} />
-    </ItemContainer>
+    />
   );
 }
 

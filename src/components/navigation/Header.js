@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
-import HeaderItem from './HeaderItem';
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
+import HeaderItem from "./HeaderItem";
 
 const Container = styled.header`
   position: fixed;
@@ -15,15 +15,15 @@ const Container = styled.header`
 
   width: 100%;
 
-  justify-content: ${props => (props.horizontal ? 'flex-start' : 'center')};
-  margin-left: ${props => (props.horizontal ? '2rem' : '')};
+  justify-content: ${props => (props.horizontal ? "flex-start" : "center")};
+  margin-left: ${props => (props.horizontal ? "2rem" : "")};
 
   z-index: 999;
 
   background-color: ${props =>
-    props.horizontal ? 'transparent' : props.theme.light};
-  border-bottom: ${props => (props.horizontal ? '' : '1px solid')};
-  border-color: ${props => (props.horizontal ? '' : '#bcbcbc')};
+    props.horizontal ? "transparent" : props.theme.light};
+  border-bottom: ${props => (props.horizontal ? "" : "1px solid")};
+  border-color: ${props => (props.horizontal ? "" : props.theme.purpleLight)};
 `;
 
 const Nav = styled.nav`
