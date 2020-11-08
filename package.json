@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "author": "Romain Rousseau <romain.rousseau5@gmail.com>",
   "dependencies": {
-    "@contentful/rich-text-html-renderer": "^13.4.0",
+    "@contentful/rich-text-react-renderer": "^14.1.2",
     "contentful": "^7.14.8",
     "gatsby": "^2.25.3",
     "gatsby-background-image": "^0.10.2",
