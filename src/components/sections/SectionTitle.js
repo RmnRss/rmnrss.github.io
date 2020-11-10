@@ -8,7 +8,7 @@ const Title = styled.h1`
   line-height: 1.35;
 
   margin: 0;
-  color: ${props => props.theme[props.color]};
+  color: ${(props) => props.theme[props.color]};
 
   @media screen and (max-width: ${breakpoints.md}px) {
     font-size: 3rem;

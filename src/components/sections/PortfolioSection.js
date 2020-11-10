@@ -22,7 +22,7 @@ function PortfolioSection(props) {
     <>
       <h1>Case studies</h1>
       <CardGrid>
-        {props.children.map(child => {
+        {props.children.map((child) => {
           return <CenteredItem key={child.key}>{child}</CenteredItem>;
         })}
       </CardGrid>

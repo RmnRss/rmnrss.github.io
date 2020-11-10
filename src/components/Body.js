@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import GlobalStyle from '../styles/global';
+import PropTypes from "prop-types";
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "../styles/global";
 
 const Body = ({ children, theme }) => {
   return (

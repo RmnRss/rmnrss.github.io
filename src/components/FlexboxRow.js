@@ -1,24 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const FlexBox = styled.div`
   display: flex;
   flex-direction: row;
 
-  justify-content: ${props => props.justifyContent};
-  align-items: ${props => props.alignItems};
+  justify-content: ${(props) => props.justifyContent};
+  align-items: ${(props) => props.alignItems};
 `;
 
-function FlexboxRow(props) {
+function FlexboxRow({
+  className,
+  justifyContent,
+  alignItems,
+  children,
+  ...props
+}) {
   return (
     <FlexBox
-      onClick={props.onClick}
-      className={props.className}
-      justifyContent={props.justifyContent}
-      alignItems={props.alignItems}
+      className={className}
+      justifyContent={justifyContent}
+      alignItems={alignItems}
+      {...props}
     >
-      {props.children}
+      {children}
     </FlexBox>
   );
 }
@@ -28,12 +34,11 @@ FlexboxRow.propTypes = {
   justifyContent: PropTypes.string,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  onClick: PropTypes.func,
 };
 
 FlexboxRow.defaultProps = {
-  alignItems: 'flex-start',
-  justifyContent: 'flex-start',
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
 };
 
 export default FlexboxRow;

@@ -8,8 +8,8 @@ const Container = styled(Card)`
   && {
     padding: 0;
   }
-  color: ${props => props.theme.black};
-  background-color: ${props => props.theme.light};
+  color: ${(props) => props.theme.black};
+  background-color: ${(props) => props.theme.light};
 `;
 
 const TitleContainer = styled.div`
@@ -17,8 +17,8 @@ const TitleContainer = styled.div`
 
   padding: 0.5rem 1rem;
 
-  color: ${props => props.theme.light};
-  background-color: ${props => props.theme.dark};
+  color: ${(props) => props.theme.light};
+  background-color: ${(props) => props.theme.dark};
 `;
 
 const Content = styled(FlexboxRow)`
@@ -31,7 +31,7 @@ const GridItem = styled.div`
   align-items: center;
   margin: 0 1rem;
 
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
 `;
 
 function SkillsCard(props) {
@@ -41,7 +41,7 @@ function SkillsCard(props) {
         <b>{props.title}</b>
       </TitleContainer>
       <Content alignItems={"center"}>
-        {props.children.map(child => (
+        {props.children.map((child) => (
           <GridItem key={child.key}>{child}</GridItem>
         ))}
       </Content>

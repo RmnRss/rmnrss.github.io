@@ -8,7 +8,7 @@ import SocialIcons from "./SocialIcons";
 const FooterContainer = styled.footer`
   position: relative;
   padding: 1rem;
-  background: ${props => props.theme.light};
+  background: ${(props) => props.theme.light};
   border-top: 1px solid #bcbcbc;
 `;
 
@@ -18,12 +18,12 @@ const FooterContent = styled(FlexboxRow)`
 
 const FooterName = styled.p`
   flex-wrap: wrap;
-  color: ${props => props.theme.black};
+  color: ${(props) => props.theme.black};
 `;
 
 const Infos = styled.p`
   font-size: 0.75rem;
-  color: ${props => props.theme.black};
+  color: ${(props) => props.theme.black};
 `;
 
 function Footer({ className }) {
