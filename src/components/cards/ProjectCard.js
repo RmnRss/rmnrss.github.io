@@ -1,104 +1,103 @@
-import BackgroundImage from "gatsby-background-image";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import AnimatedComponentInView from "../AnimatedComponentInView";
-import Button from "../Button";
-import FlexboxColumn from "../FlexboxColumn";
-import Separator from "../Separator";
+import Breakpoints from "../../utils/breakpoints";
+import ExternalLink from "../ExternalLink";
+import FlexboxRow from "../FlexboxRow";
+import Icon from "../Icon";
 import Card from "./Card";
 
-const BgImg = styled(BackgroundImage)`
-  && {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-  }
+const CardTitle = styled.h3`
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 
-  background-position: top;
-  width: 100%;
-  height: 100%;
+  margin: 0.5rem 0;
 
-  transition: all 0.8s ease-out;
+  overflow: hidden;
+
+  font-size: 20px;
+  line-height: 1.5;
+  height: 60px;
+  text-overflow: ellipsis;
+  word-break: break-word;
 `;
 
-const CardContent = styled(FlexboxColumn)`
-  padding: 2rem;
-  height: 100%;
+const Category = styled.div`
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 
-  color: ${props => props.theme.light};
+  color: ${(props) => props.theme.darkLight};
+`;
 
-  transform: translateY(85%);
+const LabelRow = styled(FlexboxRow)`
+  margin-top: auto;
+  color: ${(props) => props.theme.primary};
+`;
 
-  transition: all 0.8s cubic-bezier(0.44, 0.01, 0, 1);
+const CardLabel = styled.label`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+`;
+
+const LaunchIcon = styled(Icon)`
+  margin-left: 0.5rem;
+
+  font-size: 18px;
 `;
 
 const CardContainer = styled(Card)`
-  padding: 0;
-  max-width: 680px;
-  height: 24rem;
+  && {
+    padding: 2rem;
 
-  opacity: 0;
-  transform: translateX(12vh);
-  visibility: hidden;
-  transition: opacity 0.5s ease-out, transform 0.6s ease-out;
+    color: ${(props) => props.theme.black};
+    background-color: ${(props) => props.theme.light};
 
-  &.is-visible {
-    opacity: 1;
-    transform: none;
-    visibility: visible;
+    transition: all 0.2s ease-out;
+
+    &:hover {
+      z-index: 1;
+      color: ${(props) => props.theme.light};
+      background-color: ${(props) => props.theme.primary};
+      transform: scale(1.1);
+    }
+
+    &:hover ${LabelRow} {
+      color: ${(props) => props.theme.light};
+    }
+
+    &:hover ${LaunchIcon} {
+      fill: ${(props) => props.theme.light};
+    }
+
+    @media screen and (max-width: ${Breakpoints.md}px) {
+      &:hover {
+        transform: scale(1);
+      }
+    }
   }
-
-  &:hover ${CardContent} {
-    transform: translateY(0%);
-  }
-
-  &:hover ${BgImg} {
-    filter: brightness(0.2);
-    transform: scale(1.15);
-  }
 `;
 
-const CardButton = styled(Button)`
-  margin-top: auto;
-  width: 100%;
-`;
-
-const CardDescription = styled.p`
-  color: inherit;
-`;
-
-const CardTitle = styled.h4`
-  letter-spacing: 0.025em;
-  color: inherit;
-  margin: 0.5rem 0;
-`;
-
-function ProjectCard(props) {
+function ProjectCard({ link, category, title, ...props }) {
   return (
-    <AnimatedComponentInView>
+    <ExternalLink href={link}>
       <CardContainer {...props}>
-        <BgImg fluid={props.fluid} />
-        <CardContent>
-          <Separator color={props.color} margin={"0 0 1rem 0"} width={"4rem"} />
-          <CardTitle>{props.title}</CardTitle>
-          <CardDescription>{props.description}</CardDescription>
-          <CardButton
-            to={props.link}
-            color={"secondary"}
-            hoverColor={"primary"}
-            label={"Learn More"}
-          />
-        </CardContent>
+        <Category>{category.title}</Category>
+        <CardTitle>{title}</CardTitle>
+
+        <LabelRow alignItems="center">
+          <CardLabel>Learn more</CardLabel>
+          <LaunchIcon name={"launch"} color={"primary"} size={16} />
+        </LabelRow>
       </CardContainer>
-    </AnimatedComponentInView>
+    </ExternalLink>
   );
 }
 
 ProjectCard.propTypes = {
-  color: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  fluid: PropTypes.object.isRequired,
+  category: PropTypes.object.isRequired,
   link: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
