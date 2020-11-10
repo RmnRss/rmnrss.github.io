@@ -7,13 +7,15 @@ import SocialIcons from "./SocialIcons";
 
 const FooterContainer = styled.footer`
   position: relative;
-  padding: 1rem;
+  padding: 1rem 2rem;
   background: ${(props) => props.theme.light};
   border-top: 1px solid #bcbcbc;
 `;
 
 const FooterContent = styled(FlexboxRow)`
   flex-wrap: wrap;
+  width:100%
+  max-width: 1280px;
 `;
 
 const FooterName = styled.p`
@@ -29,7 +31,7 @@ const Infos = styled.p`
 function Footer({ className }) {
   return (
     <FooterContainer className={className}>
-      <FooterContent alignItems={"center"} justifyContent={"space-evenly"}>
+      <FooterContent alignItems={"center"} justifyContent={"space-between"}>
         <FlexboxColumn alignItems={"flex-start"}>
           <FooterName>Romain Rousseau</FooterName>
           <Infos>
