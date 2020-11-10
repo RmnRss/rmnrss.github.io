@@ -7,21 +7,16 @@ const SectionContainer = styled.section`
   position: relative;
   display: flex;
 
-  width: ${props => (props.horizontal ? "100vw" : "100%")};
   height: 100%;
-  min-height: 100vh;
-  padding: 0;
-  background-color: ${props => props.backgroundColor};
+  padding: 4rem 0;
+  background-color: ${(props) => props.theme[props.backgroundColor]};
 `;
 
-function Section(props) {
+function Section({ animatedBackground, backgroundColor, children, ...props }) {
   return (
-    <SectionContainer
-      backgroundColor={props.backgroundColor}
-      horizontal={props.horizontal}
-    >
-      {props.animatedBackground}
-      <ContentLayout>{props.children}</ContentLayout>
+    <SectionContainer {...props} backgroundColor={backgroundColor}>
+      {animatedBackground && animatedBackground}
+      <ContentLayout>{children}</ContentLayout>
     </SectionContainer>
   );
 }
@@ -31,13 +26,11 @@ Section.propTypes = {
   backgroundColor: PropTypes.string,
   /* The background of the section*/
   animatedBackground: PropTypes.node,
-  /* Represents if the section scrolls horizontally or not */
-  horizontal: PropTypes.bool,
 };
 
 Section.defaultProps = {
   backgroundColor: "transparent",
-  horizontal: false,
+  animatedBackground: null,
 };
 
 export default Section;
