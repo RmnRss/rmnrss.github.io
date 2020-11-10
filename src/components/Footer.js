@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
-import FlexboxColumn from './FlexboxColumn';
-import FlexboxRow from './FlexboxRow';
-import SocialIcons from './SocialIcons';
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
+import FlexboxColumn from "./FlexboxColumn";
+import FlexboxRow from "./FlexboxRow";
+import SocialIcons from "./SocialIcons";
 
 const FooterContainer = styled.footer`
   position: relative;
@@ -16,32 +16,34 @@ const FooterContent = styled(FlexboxRow)`
   flex-wrap: wrap;
 `;
 
-const Infos = styled.p`
-  font-size: 0.75rem;
+const FooterName = styled.p`
+  flex-wrap: wrap;
+  color: ${props => props.theme.black};
 `;
 
-function Footer(props) {
+const Infos = styled.p`
+  font-size: 0.75rem;
+  color: ${props => props.theme.black};
+`;
+
+function Footer({ className }) {
   return (
-    <FooterContainer
-      className={props.className}
-      backgroundColor={props.backgroundColor}
-    >
-      <FooterContent alignItems={'center'} justifyContent={'space-evenly'}>
-        <FlexboxColumn alignItems={'flex-start'}>
-          <p>Romain Rousseau</p>
+    <FooterContainer className={className}>
+      <FooterContent alignItems={"center"} justifyContent={"space-evenly"}>
+        <FlexboxColumn alignItems={"flex-start"}>
+          <FooterName>Romain Rousseau</FooterName>
           <Infos>
-            Site hosted on <b>Github</b>
+            Site powered by <b>Github</b>, <b>Gatsby</b> {"&"} <b>Contentful</b>
           </Infos>
         </FlexboxColumn>
 
-        <SocialIcons iconSize={24} color={'#181818'} />
+        <SocialIcons iconSize={24} />
       </FooterContent>
     </FooterContainer>
   );
 }
 
 Footer.propTypes = {
-  backgroundColor: PropTypes.string.isRequired,
   className: PropTypes.string,
 };
 
