@@ -1,4 +1,4 @@
-const MainTheme = {
+const theme = {
   light: "#F6F9FF",
   lightBlue: "#EAF0FF",
 
@@ -21,4 +21,4 @@ const MainTheme = {
   borderRadius: "0",
 };
 
-export default MainTheme;
+export default theme;
