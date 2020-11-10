@@ -1,10 +1,10 @@
-require('dotenv').config({
+require("dotenv").config({
   path: `.env.development`,
 });
 
 module.exports = {
   siteMetadata: {
-    title: `Romain Rousseau`,
+    title: `rmnrss.io`,
     description: `A little bit about me and my work.`,
     author: `Romain Rousseau`,
   },
@@ -33,34 +33,22 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-svgr',
+      resolve: "gatsby-plugin-react-svg",
       options: {
-        prettier: true, // use prettier to format JS code output (default)
-        svgo: true, // use svgo to optimize SVGs (default)
-        svgoConfig: {
-          removeViewBox: false, // remove viewBox when possible (default)
-          cleanupIDs: true, // remove unused IDs and minify remaining IDs (default)
+        rule: {
+          include: /assets/,
         },
       },
     },
     {
-      resolve: 'gatsby-plugin-web-font-loader',
+      resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
           families: [
-            'Poppins:100,200,300,400,500,600,700,800,900',
-            'Inter:400,500,600,700,800,900',
-            'Montserrat:700,900',
-            'sans-serif',
-            'Material Icons',
+            "Poppins:100,200,300,400,500,600,700,800,900",
+            "Inter:400,500,600,700,800,900",
+            "sans-serif",
           ],
-        },
-        custom: {
-          families: [
-            'Font Awesome 5 Icons:400,900',
-            'Font Awesome 5 Brands:400',
-          ],
-          urls: ['//use.fontawesome.com/releases/v5.12.0/css/all.css'],
         },
       },
     },
