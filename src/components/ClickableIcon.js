@@ -1,20 +1,25 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import styled from 'styled-components';
-import Icon from './Icon';
+import PropTypes from "prop-types";
+import React from "react";
+import styled from "styled-components";
+import ExternalLink from "./ExternalLink";
+import Icon from "./Icon";
 
-const Container = styled.a`
-  transition: transform 0.3s ease-out;
+const Container = styled(ExternalLink)`
+  transition: transform 0.2s ease-out;
+  color: ${(props) => props.theme[props.color]};
+
+  line-height: 1;
 
   &:hover {
-    transform: translateY(-10%);
-    color: ${props => props.hoverColor};
+    cursor: pointer;
+    transform: translateY(-8px);
+    color: ${(props) => props.theme[props.hoverColor]};
   }
 `;
 
-function ClickableIcon(props) {
+export default function ClickableIcon({ href, ...props }) {
   return (
-    <Container href={props.href} target="_blank">
+    <Container href={href}>
       <Icon {...props} />
     </Container>
   );
@@ -23,5 +28,3 @@ function ClickableIcon(props) {
 ClickableIcon.propTypes = {
   href: PropTypes.string,
 };
-
-export default ClickableIcon;

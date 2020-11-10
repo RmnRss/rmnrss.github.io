@@ -6,30 +6,38 @@ import ClickableIcon from "./ClickableIcon";
 const Grid = styled.div`
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: center;
+  grid-template-columns: repeat(3, auto);
+
+  justify-items: center;
+  align-items: center;
   text-align: center;
+`;
+
+const Icn = styled(ClickableIcon)`
+  && {
+    margin: 0;
+  }
 `;
 
 const SocialIcons = ({ iconSize, color }) => {
   return (
     <Grid>
-      <ClickableIcon
+      <Icn
         color={color}
         size={iconSize}
-        iconName={"fab fa-github"}
+        name={"skills/github"}
         href={"https://github.com/rmnrss"}
       />
-      <ClickableIcon
+      <Icn
         color={color}
         size={iconSize}
-        iconName={"fab fa-linkedin"}
-        href={"https://www.linkedin.com/in/romain-rousseau-17a23b151/"}
+        name={"socials/linkedin"}
+        href={"https://www.linkedin.com/in/rmnrss/"}
       />
-      <ClickableIcon
+      <Icn
         color={color}
         size={iconSize}
-        iconName={"fas fa-envelope"}
+        name={"socials/email"}
         href={"mailto: romain.rousseau5@gmail.com"}
       />
     </Grid>
@@ -38,6 +46,11 @@ const SocialIcons = ({ iconSize, color }) => {
 
 SocialIcons.propTypes = {
   iconSize: PropTypes.number.isRequired,
+  color: PropTypes.string.isRequired,
+};
+
+SocialIcons.defaultProps = {
+  color: "dark",
 };
 
 export default SocialIcons;
