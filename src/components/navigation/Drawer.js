@@ -95,8 +95,9 @@ export default function Drawer({ open, toggleDrawer, caseStudies }) {
                   <Link
                     to={`/case-studies/${obj.slug}`}
                     onClick={() => toggleDrawer()}
+                    key={obj.id}
                   >
-                    <DrawerItem key={obj.id}>
+                    <DrawerItem>
                       <p>{obj.title}</p>
                     </DrawerItem>
                   </Link>
