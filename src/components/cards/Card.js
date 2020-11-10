@@ -7,22 +7,17 @@ const CardContainer = styled.div`
   width: 100%;
   overflow: hidden;
 
-  background-color: ${props => props.backgroundColor};
+  background-color: ${(props) => props.theme[props.backgroundColor]};
 
-  border-radius: ${props => props.theme.borderRadius};
+  border-radius: ${(props) => props.theme.borderRadius};
 
   padding: 1rem;
-
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 `;
 
-function Card(props) {
+function Card({ backgroundColor, children, ...props }) {
   return (
-    <CardContainer
-      backgroundColor={props.backgroundColor}
-      className={props.className}
-    >
-      {props.children}
+    <CardContainer backgroundColor={backgroundColor} {...props}>
+      {children}
     </CardContainer>
   );
 }
@@ -34,7 +29,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  backgroundColor: "transparent",
+  backgroundColor: "light",
 };
 
 export default Card;

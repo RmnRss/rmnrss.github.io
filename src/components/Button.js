@@ -14,7 +14,7 @@ const ButtonContainer = styled.button`
   border: none;
   border-radius: 4px;
 
-  font-family: ${props => props.theme.fontFamily};
+  font-family: ${(props) => props.theme.fontFamily};
   font-size: 1em;
   font-weight: 700;
 
@@ -26,15 +26,15 @@ const ButtonContainer = styled.button`
 
   overflow: hidden;
 
-  background: ${props =>
+  background: ${(props) =>
     props.disabled ? props.theme.grey : props.theme[props.color]};
-  color: ${props => props.theme.light};
+  color: ${(props) => props.theme.light};
 
   transition: 0.4s ease;
 
   &:after {
     content: "";
-    display: ${props => (props.disabled ? "none" : "block")};
+    display: ${(props) => (props.disabled ? "none" : "block")};
 
     position: absolute;
     z-index: -1;
@@ -44,14 +44,14 @@ const ButtonContainer = styled.button`
     height: 120%;
     width: 0;
 
-    background: ${props => props.theme[props.hoverColor]};
+    background: ${(props) => props.theme[props.hoverColor]};
     transform: skewX(15deg);
     transition: 0.3s ease;
   }
 
   &:hover {
-    background-color: ${props => (props.disabled ? "none" : "transparent")};
-    cursor: ${props => (props.disabled ? "default" : "pointer")};
+    background-color: ${(props) => (props.disabled ? "none" : "transparent")};
+    cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   }
 
   &:hover:after {
@@ -59,15 +59,15 @@ const ButtonContainer = styled.button`
   }
 `;
 
-function PureButton(props) {
+function PureButton({ className, color, hoverColor, label, ...props }) {
   return (
     <ButtonContainer
-      className={props.className}
-      color={props.color}
-      hoverColor={props.hoverColor}
+      className={className}
+      color={color}
+      hoverColor={hoverColor}
       {...props}
     >
-      {props.label}
+      {label}
     </ButtonContainer>
   );
 }

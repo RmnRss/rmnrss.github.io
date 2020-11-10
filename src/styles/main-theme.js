@@ -1,27 +1,24 @@
 const MainTheme = {
+  light: "#F6F9FF",
+  lightBlue: "#EAF0FF",
 
-  primary: '#FEBE81',
-  primaryDark: '#EFA45D',
-  primaryLight: '#FFD875',
+  dark: "#001240",
+  darkBlue: "#3a3a3a",
 
-  secondary: '#22CAAC',
-  secondaryDark: '#001A20',
+  primary: "#0089FF",
 
-  purple: '#5A4A94',
-  purpleDark: '#312952',
-  purpleLight: '#7B6BC6',
+  accentBlue: "#2D9BF3",
+  accentGreen: "#22CAAC",
+  accentPurple: "#B620E0",
+  accentYellow: "#F7B500",
+  allAccents: ["accentBlue", "accentGreen", "accentPurple", "accentYellow"],
 
-  light: '#fafafa',
-  lightDark: '#ececec',
+  black: "#181818",
+  grey: "#ECECEC",
 
-  dark: '#181818',
-  darkLight: '#3a3a3a',
+  fontFamily: "Poppins",
 
-  grey: '#bcbcbc',
-
-  fontFamily: 'Poppins',
-
-  borderRadius: '4px',
+  borderRadius: "0",
 };
 
 export default MainTheme;

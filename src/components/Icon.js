@@ -1,38 +1,57 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const Container = styled.i`
-  color: ${props => props.color};
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  font-weight: 500;
-  font-size: ${props => `${props.size}px`};
-  margin-top: ${props => `${props.margins}px`};
+  color: ${(props) => props.theme[props.color]};
+  fill: ${(props) => props.theme[props.color]};
+
+  svg {
+    width: ${(props) => `${props.size}px`};
+    height: ${(props) => `${props.size}px`};
+  }
 
   transition: color 0.3s ease-out;
 `;
 
-function Icon(props) {
-  const margins = props.size / 2;
-  return (
-    <Container
-      size={props.size}
-      margins={margins}
-      color={props.color}
-      className={props.iconName}
-    />
-  );
-}
+const Icon = ({ size, color, className, name, ...props }) => {
+  let [icon, setIcon] = useState(null);
 
-Icon.propTypes = {
-  color: PropTypes.string,
-  iconName: PropTypes.string.isRequired,
-  size: PropTypes.number,
+  useEffect(() => {
+    async function importIcon() {
+      let Icon = null;
+      try {
+        Icon = (await import(`../assets/icons/${name}.svg`)).default;
+      } catch (err) {
+        console.log(err);
+      }
+      setIcon(<Icon />);
+    }
+
+    importIcon();
+  }, [name]);
+
+  return (
+    <Container size={size} color={color} className={className} {...props}>
+      {icon}
+    </Container>
+  );
 };
 
 Icon.defaultProps = {
-  color: "#000",
-  size: 16,
+  color: "light",
+  name: "placeholder",
+  size: 24,
+};
+
+Icon.propTypes = {
+  color: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  size: PropTypes.number,
 };
 
 export default Icon;

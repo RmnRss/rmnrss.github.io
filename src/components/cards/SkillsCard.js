@@ -1,62 +1,51 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import AnimatedComponentInView from "../AnimatedComponentInView";
+import FlexboxRow from "../FlexboxRow";
 import Card from "./Card";
 
 const Container = styled(Card)`
-  background-color: ${props => props.theme.light};
-
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0%;
-    left: 0%;
-
-    display: block;
-    width: 4px;
-    height: 192px;
-    background-color: ${props => props.theme.purpleDark};
+  && {
+    padding: 0;
   }
-
-  opacity: 0;
-  transform: translateX(12vh);
-  visibility: hidden;
-  transition: opacity 0.5s ease-out, transform 0.6s ease-out;
-
-  &.is-visible {
-    opacity: 1;
-    transform: none;
-    visibility: visible;
-  }
+  color: ${(props) => props.theme.black};
+  background-color: ${(props) => props.theme.light};
 `;
 
-const Grid = styled.div`
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
+const TitleContainer = styled.div`
+  width: 100%;
 
-  text-align: center;
+  padding: 0.5rem 1rem;
+
+  color: ${(props) => props.theme.light};
+  background-color: ${(props) => props.theme.dark};
+`;
+
+const Content = styled(FlexboxRow)`
+  padding: 0.5rem 0;
 `;
 
 const GridItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 1rem;
+
+  color: ${(props) => props.theme.primary};
 `;
 
 function SkillsCard(props) {
   return (
-    <AnimatedComponentInView>
-      <Container>
+    <Container>
+      <TitleContainer>
         <b>{props.title}</b>
-        <Grid>
-          {props.children.map(child => (
-            <GridItem key={child.key}>{child}</GridItem>
-          ))}
-        </Grid>
-      </Container>
-    </AnimatedComponentInView>
+      </TitleContainer>
+      <Content alignItems={"center"}>
+        {props.children.map((child) => (
+          <GridItem key={child.key}>{child}</GridItem>
+        ))}
+      </Content>
+    </Container>
   );
 }
 

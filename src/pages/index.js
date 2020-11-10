@@ -1,82 +1,114 @@
 import { graphql } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import Button from "../components/Button";
+import CaseStudyCard from "../components/cards/CaseStudyCard";
+import HobbyCard from "../components/cards/HobbyCard";
 import ProjectCard from "../components/cards/ProjectCard";
-import VerticalLayout from "../components/layouts/VerticalLayout";
-import AboutMeSection from "../components/sections/AboutMeSection";
+import FlexboxRow from "../components/FlexboxRow";
+import LatestProjectsSection from "../components/LatestProjectsSection";
+import MainLayout from "../components/layouts/MainLayout";
+import MarkdownRenderer from "../components/MarkdownRenderer";
 import HeadSection from "../components/sections/HeadSection";
-import PortfolioSection from "../components/sections/PortfolioSection";
 import Section from "../components/sections/Section";
-import SEO from "../components/seo";
-import SocialIcons from "../components/SocialIcons";
-import SpaceMe from "../components/SpaceMe";
-import theme from "../styles/main-theme";
+import SkillsSection from "../components/sections/SkillsSection";
+import { default as MainTheme, default as theme } from "../styles/main-theme";
+import Breakpoints from "../utils/breakpoints";
+
+const CardGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(${(props) => props.col}, 1fr);
+  grid-gap: 1.5rem;
+
+  margin: 2rem 0;
+
+  @media screen and (max-width: ${Breakpoints.md}px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+`;
 
 const Title = styled.h2`
   text-align: center;
-  color: ${props => props.theme.lightDark};
+  color: ${(props) => props.theme[props.color]};
 `;
 
-const scrollToRef = ref => {
-  window.scrollTo(0, ref.current.offsetTop);
-};
-
 function IndexPage({ data }) {
-  const aboutMeRef = React.useRef();
-
   return (
-    <>
-      <SEO title={`Portfolio`} />
-      <VerticalLayout>
-        <div className={"Welcome"} id="head-section">
-          <HeadSection>
-            <SpaceMe />
+    <MainLayout
+      title=""
+      caseStudies={data.caseStudies.edges}
+      featuredCases={data.caseStudies.edges.slice(0, 2)}
+    >
+      <HeadSection me={data.me} />
 
-            <Title>
-              “ A front-end developer with the <br /> heart of a designer ”
-            </Title>
+      <LatestProjectsSection
+        featuredProjects={data.projects.edges.slice(0, 3)}
+      />
 
-            <Button
-              color={"dark"}
-              hoverColor={"secondary"}
-              label={"Learn More"}
-              onClick={() => scrollToRef(aboutMeRef)}
-            />
+      <Section id={"about-me"} backgroundColor={"lightBlue"}>
+        <Title color={"dark"}>About Me</Title>
 
-            <SocialIcons iconSize={32} color={theme.lightDark} />
-          </HeadSection>
-        </div>
+        <FlexboxRow justifyContent={"center"} alignItems={"center"}>
+          <MarkdownRenderer document={data.me.bio} />
+        </FlexboxRow>
+      </Section>
+      <Section id={"hobbies"} backgroundColor={"light"}>
+        <Title color={"dark"}>Some of my hobbies</Title>
 
-        <div className={"About Me"} id="about-me-section" ref={aboutMeRef}>
-          <AboutMeSection
-            me={data.me}
-            hobbies={data.hobbies.edges}
-            skillsCategory={data.skillsCategory.edges}
-          />
-        </div>
+        <CardGrid col={2}>
+          {data.hobbies.edges.map((obj, index) => {
+            let hobby = obj.node;
+            return (
+              <HobbyCard
+                key={hobby.id}
+                color={MainTheme.allAccents[index]}
+                title={hobby.name}
+                iconLibrary={hobby.iconLibrary}
+                iconName={hobby.iconName}
+                description={hobby.description.description}
+              />
+            );
+          })}
+        </CardGrid>
+      </Section>
 
-        <div className={"Portfolio"} id="portfolio-section">
-          <Section backgroundColor={theme.lightDark}>
-            <PortfolioSection>
-              {data.projects.edges.map(obj => {
-                let project = obj.node;
-                return (
-                  <ProjectCard
-                    key={project.id}
-                    title={project.name}
-                    description={project.description.description}
-                    fluid={project.cover.fluid}
-                    color={project.color}
-                    link={project.url}
-                  />
-                );
-              })}
-            </PortfolioSection>
-          </Section>
-        </div>
-      </VerticalLayout>
-    </>
+      <SkillsSection skillsCategories={data.skillsCategory.edges} />
+
+      <Section id={"case-studies"} backgroundColor={theme.lightDark}>
+        <Title color={"light"}>Case Studies</Title>
+
+        <CardGrid col={3}>
+          {data.caseStudies.edges.map((obj) => {
+            let caseStudy = obj.node;
+            return (
+              <CaseStudyCard
+                key={caseStudy.id}
+                slug={caseStudy.slug}
+                title={caseStudy.title}
+                preview={caseStudy.preview.preview}
+                fluid={caseStudy.cover.fluid}
+                readTime={caseStudy.readTime}
+              />
+            );
+          })}
+        </CardGrid>
+
+        <Title color={"light"}>Other Stuff</Title>
+
+        <CardGrid col={3}>
+          {data.projects.edges.map((edge) => {
+            let project = edge.node;
+            return (
+              <ProjectCard
+                key={project.id}
+                link={project.url}
+                category={project.category}
+                title={project.title}
+              />
+            );
+          })}
+        </CardGrid>
+      </Section>
+    </MainLayout>
   );
 }
 
@@ -89,20 +121,36 @@ export const data = graphql`
         }
       }
     }
+    caseStudies: allContentfulCaseStudy {
+      edges {
+        node {
+          id
+          title
+          slug
+          publicationDate
+          readTime
+          category {
+            title
+          }
+          cover {
+            fluid(maxHeight: 512, resizingBehavior: FILL, toFormat: WEBP) {
+              ...GatsbyContentfulFluid_tracedSVG
+            }
+          }
+          preview {
+            preview
+          }
+        }
+      }
+    }
     projects: allContentfulProject {
       edges {
         node {
           id
-          name
-          color
+          title
           url
-          description {
-            description
-          }
-          cover {
-            fluid {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
+          category {
+            title
           }
         }
       }
@@ -125,11 +173,16 @@ export const data = graphql`
         node {
           id
           name
+          color
           skills {
             id
             name
             url
             iconName
+            skill_category {
+              name
+              color
+            }
           }
         }
       }
@@ -137,7 +190,7 @@ export const data = graphql`
     me: contentfulOwner {
       firstName
       lastName
-      childContentfulOwnerDescriptionRichTextNode {
+      bio {
         json
       }
     }

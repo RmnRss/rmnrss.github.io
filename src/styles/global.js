@@ -8,35 +8,33 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-      scroll-behavior: smooth;
+    scroll-behavior: smooth;
   }
   
   body {
-    font-family: ${props => props.theme.fontFamily};
+    font-family: ${(props) => props.theme.fontFamily};
     
-    color: ${props => (props.light ? props.theme.dark : props.theme.light)};
+    color: ${(props) => props.theme.light};
     letter-spacing: 0.0015em;
     
-    background-color: ${props =>
-      props.light ? props.theme.light : props.theme.dark};
+    background-color: ${(props) => props.theme.dark};
     margin: 0;
   }
   
-  h1, h2 {
-    font-size: clamp(1.5em, 2.5vw, 4em);
-  }
-  
   h1 {
-    font-weight: 800;
+    font-size: 3rem;
+    font-weight: 700;
   }
 
   h2 {
-    font-weight: 700;
     margin: 1rem 0;
+
+    font-size: 2rem;
+    font-weight: 600;
   }
 
   h3 {
-    font-size: clamp(1em, 2vw, 2em);
+    font-size: 1.75rem;
     font-weight: 600;
   }
   
@@ -47,27 +45,29 @@ const GlobalStyle = createGlobalStyle`
   
   p,b {
     font-size: 1em;
-    line-height: 1.5em;
+    line-height: 1.5;
   }
   
   p {
     font-weight: normal;
     text-transform: none;
-    color: ${props => props.theme.dark};
-    max-width: 512px;
+    font-family: "Inter";
+
+    color: ${(props) => props.theme.black};
+    max-width: 640px;
   }
   
   a,
   a:visited {
-    color: ${props => props.theme.secondary};
+    color: inherit;
     font-weight: 700;
     text-decoration: none;
   }
 
   img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 

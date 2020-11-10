@@ -2,29 +2,16 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 import breakpoints from "../../utils/breakpoints";
-import AnimatedComponentInView from "../AnimatedComponentInView";
 
-const TitlePart = styled.h1`
-  font-size: 6.625rem;
+const Title = styled.h1`
+  font-size: 4rem;
   line-height: 1.35;
-  letter-spacing: -0.0415em;
 
   margin: 0;
-  color: ${props => props.color};
-
-  opacity: 0;
-  transform: translateY(5vh);
-  visibility: hidden;
-  transition: opacity 0.5s ease-out, transform 1s ease-out;
-
-  &.is-visible {
-    opacity: 1;
-    transform: none;
-    visibility: visible;
-  }
+  color: ${(props) => props.theme[props.color]};
 
   @media screen and (max-width: ${breakpoints.md}px) {
-    font-size: 5rem;
+    font-size: 3rem;
   }
 
   @media screen and (max-width: ${breakpoints.sm}px) {
@@ -38,13 +25,11 @@ const TitlePart = styled.h1`
   }
 `;
 
-function SectionTitle(props) {
+function SectionTitle({ className, color, children }) {
   return (
-    <AnimatedComponentInView>
-      <TitlePart className={props.className} color={props.color}>
-        {props.children}
-      </TitlePart>
-    </AnimatedComponentInView>
+    <Title className={className} color={color}>
+      {children}
+    </Title>
   );
 }
 
@@ -55,7 +40,7 @@ SectionTitle.propTypes = {
 };
 
 SectionTitle.defaultProps = {
-  color: "#000",
+  color: "light",
 };
 
 export default SectionTitle;
