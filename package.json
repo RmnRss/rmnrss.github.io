@@ -1,20 +1,21 @@
 {
   "name": "rmnrss.io",
   "private": true,
-  "description": "Romain Rousseau Website",
+  "description": "My portfolio website",
   "version": "0.2.0",
   "author": "Romain Rousseau <romain.rousseau5@gmail.com>",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.2",
-    "contentful": "^7.14.8",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
+    "contentful": "^7.14.10",
+    "next": "^10.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-particles-js": "^2.7.1",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.4.0",
+    "babel-plugin-styled-components": "^1.11.1",
     "prettier": "^2.1.2",
     "prop-types": "^15.7.2"
   },

@@ -1,10 +1,9 @@
-import { Link } from "gatsby";
+import Link from "next/link";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Breakpoints from "../../utils/breakpoints";
 import FlexboxColumn from "../FlexboxColumn";
-import FlexboxRow from "../FlexboxRow";
 import Icon from "../Icon";
 
 const Container = styled.div`
@@ -35,7 +34,8 @@ const DrawerLinks = styled(FlexboxColumn)`
   width: 100%;
 `;
 
-const DrawerItem = styled(FlexboxRow)`
+const DrawerItem = styled.a`
+  display: flex;
   align-items: center;
   justify-content: space-between;
 
@@ -70,11 +70,11 @@ export default function Drawer({ open, toggleDrawer, caseStudies }) {
     return (
       <Container>
         <DrawerLinks>
-          <Link to={"/"} onClick={() => toggleDrawer()}>
+          <Link href={"/"} onClick={() => toggleDrawer()}>
             <DrawerItem>Home</DrawerItem>
           </Link>
 
-          <Link to={"/#about-me"} onClick={() => toggleDrawer()}>
+          <Link href={"/#about-me"} onClick={() => toggleDrawer()}>
             <DrawerItem>About Me</DrawerItem>
           </Link>
 
@@ -89,16 +89,16 @@ export default function Drawer({ open, toggleDrawer, caseStudies }) {
           </DrawerItem>
           {showCases && (
             <>
-              {caseStudies.map((el) => {
-                let obj = el.node;
+              {caseStudies.map((caseStudy) => {
                 return (
                   <Link
-                    to={`/case-studies/${obj.slug}`}
+                    href={`/case-studies/[slug]}`}
+                    as={`/case-studies/${caseStudy.fields.slug}`}
                     onClick={() => toggleDrawer()}
-                    key={obj.id}
+                    key={caseStudy.sys.id}
                   >
                     <DrawerItem>
-                      <p>{obj.title}</p>
+                      <p>{caseStudy.fields.title}</p>
                     </DrawerItem>
                   </Link>
                 );

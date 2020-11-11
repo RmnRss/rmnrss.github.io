@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import styled from "styled-components";
 import FlexboxColumn from "./FlexboxColumn";
 
@@ -40,18 +40,33 @@ const Content = styled.div`
 `;
 
 export default function DropdownMenu({ open, children, ...props }) {
-  return (
-    <Holder
-      open={open}
-      justifyContent={"center"}
-      alignItems={"center"}
-      {...props}
-    >
-      <Container>
-        <Content>{children}</Content>
-      </Container>
-    </Holder>
-  );
+  if (open) {
+    return (
+      <Holder
+        open={open}
+        justifyContent={"center"}
+        alignItems={"center"}
+        {...props}
+      >
+        <Container>
+          <Content>{children}</Content>
+        </Container>
+      </Holder>
+    );
+  } else {
+    return (
+      <Holder
+        open={open}
+        justifyContent={"center"}
+        alignItems={"center"}
+        {...props}
+      >
+        <Container>
+          <Content>{children}</Content>
+        </Container>
+      </Holder>
+    );
+  }
 }
 
 DropdownMenu.propTypes = {

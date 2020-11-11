@@ -1,5 +1,5 @@
-import { Link } from "gatsby";
-import Img from "gatsby-image";
+import Image from "next/image";
+import Link from "next/link";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
@@ -7,11 +7,6 @@ import FlexboxColumn from "../FlexboxColumn";
 import FlexboxRow from "../FlexboxRow";
 import Icon from "../Icon";
 import Card from "./Card";
-
-const Cover = styled(Img)`
-  width: 100%;
-  height: 324px;
-`;
 
 const CardContent = styled(FlexboxColumn)`
   padding: 1.5rem;
@@ -68,33 +63,45 @@ const ArrowIcon = styled(Icon)`
   font-size: 20px;
 `;
 
-function CaseStudyCard({ slug, title, readTime, preview, fluid, ...props }) {
+function CaseStudyCard({ caseStudy }) {
+  console.log(caseStudy.cover.fields.file.url);
   return (
-    <Link to={`/case-studies/${slug}`}>
-      <CardContainer {...props}>
-        <Cover fluid={fluid} />
+    <Link
+      passHref
+      href={`/case-studies/[slug]`}
+      as={`/case-studies/${caseStudy.slug}`}
+    >
+      <a target="_self">
+        <CardContainer>
+          <Image
+            src={`https://${caseStudy.cover.fields.file.url}?fm=webp`}
+            width={400}
+            height={324}
+            layout={"responsive"}
+          />
 
-        <CardContent>
-          <ReadTime>{readTime} min read</ReadTime>
-          <CardTitle>{title}</CardTitle>
-          <CardDescription>{preview}</CardDescription>
+          <CardContent>
+            <ReadTime>{caseStudy.readTime} min read</ReadTime>
+            <CardTitle>{caseStudy.title}</CardTitle>
+            <CardDescription>{caseStudy.preview}</CardDescription>
 
-          <LabelRow alignItems="center">
-            <CardLabel>Read more</CardLabel>
-            <ArrowIcon name={"arrow-forward"} size={16} color={"accentGreen"} />
-          </LabelRow>
-        </CardContent>
-      </CardContainer>
+            <LabelRow alignItems="center">
+              <CardLabel>Read more</CardLabel>
+              <ArrowIcon
+                name={"arrow-forward"}
+                size={16}
+                color={"accentGreen"}
+              />
+            </LabelRow>
+          </CardContent>
+        </CardContainer>
+      </a>
     </Link>
   );
 }
 
 CaseStudyCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-  preview: PropTypes.string.isRequired,
-  fluid: PropTypes.object.isRequired,
-  readTime: PropTypes.number.isRequired,
+  caseStudy: PropTypes.object.isRequired,
 };
 
 export default CaseStudyCard;

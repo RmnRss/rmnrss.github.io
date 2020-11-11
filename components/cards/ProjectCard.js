@@ -80,12 +80,14 @@ const CardContainer = styled(Card)`
   }
 `;
 
-function ProjectCard({ link, category, title, ...props }) {
+function ProjectCard({ project }) {
+  const category = project.category.fields;
+
   return (
-    <ExternalLink href={link}>
-      <CardContainer {...props}>
+    <ExternalLink href={project.url}>
+      <CardContainer>
         <Category>{category.title}</Category>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>{project.title}</CardTitle>
 
         <LabelRow alignItems="center">
           <CardLabel>Learn more</CardLabel>
@@ -97,9 +99,7 @@ function ProjectCard({ link, category, title, ...props }) {
 }
 
 ProjectCard.propTypes = {
-  category: PropTypes.object.isRequired,
-  link: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  project: PropTypes.object.isRequired,
 };
 
 export default ProjectCard;

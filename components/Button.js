@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+import { Link } from "next/link";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
@@ -73,11 +73,11 @@ function PureButton({ className, color, hoverColor, label, ...props }) {
 }
 
 function Button(props) {
-  const hasLink = props.to != null;
+  const hasLink = props.href != null;
   let external = false;
 
   if (hasLink) {
-    external = props.to.includes("https");
+    external = props.href.includes("https");
   }
 
   return (
@@ -85,11 +85,11 @@ function Button(props) {
       {hasLink ? (
         <>
           {external ? (
-            <form action={props.to} className={props.className}>
+            <form action={props.href} className={props.className}>
               <PureButton {...props} type={"submit"} />
             </form>
           ) : (
-            <Link to={props.to} className={props.className}>
+            <Link passHref href={props.href} className={props.className}>
               <PureButton {...props} />
             </Link>
           )}
@@ -105,13 +105,13 @@ Button.propTypes = {
   color: PropTypes.string,
   hoverColor: PropTypes.string,
   label: PropTypes.string.isRequired,
-  to: PropTypes.string,
+  href: PropTypes.string,
 };
 
 Button.defaultProps = {
   color: `dark`,
   hoverColor: `secondary`,
-  to: null,
+  href: null,
 };
 
 export default Button;

@@ -88,6 +88,10 @@ const ProjectPreviews = styled.div`
 const Brand = styled(HeaderItem)`
   && {
     color: ${(props) => props.theme.primary};
+
+    &:after {
+      display: none;
+    }
   }
 `;
 
@@ -95,12 +99,12 @@ const CaseStudyLink = styled(HeaderItem)`
   && {
     font-weight: 500;
 
-    &:after {
-      display: none;
-    }
-
     &:hover {
       text-decoration: underline;
+    }
+
+    &:after {
+      display: none;
     }
   }
 `;
@@ -156,27 +160,23 @@ function Header({ caseStudies, featuredCases, className }) {
         <MenuLabel>Case Studies</MenuLabel>
         <FlexboxRow alignItems={"flex-start"} justifyContent={"flex-start"}>
           <CaseStudyList>
-            {caseStudies.map((el) => {
-              let obj = el.node;
+            {caseStudies.map((caseStudy) => {
               return (
                 <CaseStudyLink
-                  key={obj.id}
-                  label={obj.title}
-                  path={`/case-studies/${obj.slug}`}
+                  key={caseStudy.sys.id}
+                  label={caseStudy.fields.title}
+                  path={`/case-studies/${caseStudy.fields.slug}`}
                 />
               );
             })}
           </CaseStudyList>
           <Sep />
           <ProjectPreviews>
-            {featuredCases.map((aCase) => {
-              let obj = aCase.node;
+            {featuredCases.map((caseStudy) => {
               return (
                 <CaseStudyPreview
-                  key={obj.id}
-                  title={obj.title}
-                  fluid={obj.cover.fluid}
-                  slug={obj.slug}
+                  key={caseStudy.sys.id}
+                  caseStudy={caseStudy.fields}
                 />
               );
             })}

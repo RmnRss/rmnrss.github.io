@@ -16,7 +16,7 @@ const theme = {
   black: "#181818",
   grey: "#ECECEC",
 
-  fontFamily: "Poppins",
+  fontFamily: "'Poppins', sans-serif",
 
   borderRadius: "0",
 };

@@ -25,7 +25,9 @@ const Icon = ({ size, color, className, name, ...props }) => {
     async function importIcon() {
       let Icon = null;
       try {
-        Icon = (await import(`../assets/icons/${name}.svg`)).default;
+        Icon = (
+          await import(`!@svgr/webpack?-svgo!../public/icons/${name}.svg`)
+        ).default;
       } catch (err) {
         console.log(err);
       }

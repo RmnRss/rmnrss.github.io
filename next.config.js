@@ -1,4 +1,7 @@
 module.exports = {
+  images: {
+    domains: ["images.ctfassets.net"],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -14,6 +17,7 @@ module.exports = {
         },
       ],
     });
+
     return config;
   },
 };

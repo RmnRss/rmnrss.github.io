@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Breakpoints from "../../utils/breakpoints";
 import Chip from "../Chip";
@@ -51,8 +51,7 @@ const Title = styled.h2`
   color: ${(props) => props.theme.dark};
 `;
 
-export default function SkillsSection({ skillsCategories }) {
-  const [skills, setSkills] = useState([]);
+export default function SkillsSection({ skillCategories }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   function toggleCategory(category) {
@@ -67,55 +66,38 @@ export default function SkillsSection({ skillsCategories }) {
     }
   }
 
-  useEffect(
-    function () {
-      let allSkills = [];
-
-      skillsCategories.map((edge) => {
-        const category = edge.node;
-        allSkills = allSkills.concat(category.skills);
-      });
-
-      setSkills(allSkills);
-
-      return () => setSkills([]);
-    },
-    [skillsCategories]
-  );
-
   return (
     <Section id={"Skills"} backgroundColor={"lightBlue"}>
       <Title>A happy gathering of tools, framework and technology I use</Title>
 
       <TabRow>
-        {skillsCategories.map((edge, index) => {
-          let category = edge.node;
-
+        {skillCategories.map((category) => {
           return (
             <Chip
-              key={category.id}
-              label={category.name}
-              color={category.color}
-              onClick={() => toggleCategory(category.name)}
-              selected={selectedCategories.includes(category.name)}
+              key={category.sys.id}
+              label={category.fields.name}
+              color={category.fields.color}
+              onClick={() => toggleCategory(category.fields.name)}
+              selected={selectedCategories.includes(category.fields.name)}
             />
           );
         })}
       </TabRow>
 
       <IconGrid>
-        {skills.map((skill) => {
-          const category = skill.skill_category[0];
-          return (
-            <SkillIcon
-              key={skill.id}
-              color={category.color}
-              name={skill.name}
-              iconName={skill.iconName}
-              href={skill.url}
-              active={selectedCategories.includes(category.name)}
-            />
-          );
+        {skillCategories.map((category) => {
+          return category.fields.skills.map((skill) => {
+            return (
+              <SkillIcon
+                key={skill.sys.id}
+                color={category.fields.color}
+                name={skill.fields.name}
+                iconName={skill.fields.iconName}
+                href={skill.fields.url}
+                active={selectedCategories.includes(category.fields.name)}
+              />
+            );
+          });
         })}
       </IconGrid>
     </Section>
@@ -123,5 +105,5 @@ export default function SkillsSection({ skillsCategories }) {
 }
 
 SkillsSection.propTypes = {
-  skillsCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  skillCategories: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

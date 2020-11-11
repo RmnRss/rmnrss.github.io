@@ -1,9 +1,9 @@
-import { Link } from "gatsby";
+import Link from "next/link";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-const Label = styled(Link)`
+const Label = styled.a`
   position: relative;
   pointer-events: all;
   margin: 0 1.5rem 0 0;
@@ -37,9 +37,11 @@ const Label = styled(Link)`
 
 export default function HeaderItem({ label, path, ...props }) {
   return (
-    <Label to={path} {...props}>
-      {label}
-    </Label>
+    <Link passHref href={path}>
+      <Label target="_self" {...props}>
+        {label}
+      </Label>
+    </Link>
   );
 }
 

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import Particles from "react-particles-js";
 import styled from "styled-components";
-import particlesConfig from "../../assets/particles";
+import particlesConfig from "../../styles/particles";
 import FlexboxColumn from "../FlexboxColumn";
 import FlexboxRow from "../FlexboxRow";
 import Section from "./Section";

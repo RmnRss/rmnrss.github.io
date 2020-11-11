@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Breakpoints from "../utils/breakpoints";
-import ProjectCard from "./cards/ProjectCard";
+import Breakpoints from "../../utils/breakpoints";
+import ProjectCard from "../cards/ProjectCard";
 
 const NewsSection = styled.section`
   position: relative;
@@ -44,17 +44,8 @@ export default function LatestProjectsSection({ featuredProjects }) {
   return (
     <NewsSection id={"latest-projects"} height={height}>
       <Grid>
-        {featuredProjects.map((edge) => {
-          const project = edge.node;
-
-          return (
-            <ProjectCard
-              key={project.id}
-              title={project.title}
-              link={project.url}
-              category={project.category}
-            />
-          );
+        {featuredProjects.map((project) => {
+          return <ProjectCard key={project.sys.id} project={project.fields} />;
         })}
       </Grid>
     </NewsSection>

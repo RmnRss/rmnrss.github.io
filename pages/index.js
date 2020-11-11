@@ -1,17 +1,16 @@
-import { graphql } from "gatsby";
-import React from "react";
 import styled from "styled-components";
 import CaseStudyCard from "../components/cards/CaseStudyCard";
 import HobbyCard from "../components/cards/HobbyCard";
 import ProjectCard from "../components/cards/ProjectCard";
 import FlexboxRow from "../components/FlexboxRow";
-import LatestProjectsSection from "../components/LatestProjectsSection";
 import MainLayout from "../components/layouts/MainLayout";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 import HeadSection from "../components/sections/HeadSection";
+import LatestProjectsSection from "../components/sections/LatestProjectsSection";
 import Section from "../components/sections/Section";
 import SkillsSection from "../components/sections/SkillsSection";
-import { default as MainTheme, default as theme } from "../styles/main-theme";
+import { getContentTypeEntries, getSingleEntry } from "../services/contentful";
+import theme from "../styles/theme";
 import Breakpoints from "../utils/breakpoints";
 
 const CardGrid = styled.div`
@@ -20,6 +19,10 @@ const CardGrid = styled.div`
   grid-gap: 1.5rem;
 
   margin: 2rem 0;
+
+  @media screen and (max-width: ${Breakpoints.xlg}px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @media screen and (max-width: ${Breakpoints.md}px) {
     grid-template-columns: repeat(1, 1fr);
@@ -31,62 +34,52 @@ const Title = styled.h2`
   color: ${(props) => props.theme[props.color]};
 `;
 
-function IndexPage({ data }) {
+function IndexPage({ caseStudies, hobbies, owner, projects, skillCategories }) {
   return (
     <MainLayout
       title=""
-      caseStudies={data.caseStudies.edges}
-      featuredCases={data.caseStudies.edges.slice(0, 2)}
+      description=""
+      caseStudies={caseStudies}
+      featuredCases={caseStudies.slice(0, 2)}
     >
-      <HeadSection me={data.me} />
+      <HeadSection me={owner} />
 
-      <LatestProjectsSection
-        featuredProjects={data.projects.edges.slice(0, 3)}
-      />
+      <LatestProjectsSection featuredProjects={projects.slice(0, 3)} />
 
       <Section id={"about-me"} backgroundColor={"lightBlue"}>
         <Title color={"dark"}>About Me</Title>
 
         <FlexboxRow justifyContent={"center"} alignItems={"center"}>
-          <MarkdownRenderer document={data.me.bio} />
+          <MarkdownRenderer document={owner.bio.content[0]} />
         </FlexboxRow>
       </Section>
       <Section id={"hobbies"} backgroundColor={"light"}>
         <Title color={"dark"}>Some of my hobbies</Title>
 
         <CardGrid col={2}>
-          {data.hobbies.edges.map((obj, index) => {
-            let hobby = obj.node;
+          {hobbies.map((hobby, index) => {
             return (
               <HobbyCard
-                key={hobby.id}
-                color={MainTheme.allAccents[index]}
-                title={hobby.name}
-                iconLibrary={hobby.iconLibrary}
-                iconName={hobby.iconName}
-                description={hobby.description.description}
+                key={hobby.sys.id}
+                color={theme.allAccents[index]}
+                hobby={hobby.fields}
               />
             );
           })}
         </CardGrid>
       </Section>
 
-      <SkillsSection skillsCategories={data.skillsCategory.edges} />
+      <SkillsSection skillCategories={skillCategories} />
 
       <Section id={"case-studies"} backgroundColor={theme.lightDark}>
         <Title color={"light"}>Case Studies</Title>
 
         <CardGrid col={3}>
-          {data.caseStudies.edges.map((obj) => {
-            let caseStudy = obj.node;
+          {caseStudies.map((caseStudy) => {
             return (
               <CaseStudyCard
-                key={caseStudy.id}
-                slug={caseStudy.slug}
-                title={caseStudy.title}
-                preview={caseStudy.preview.preview}
-                fluid={caseStudy.cover.fluid}
-                readTime={caseStudy.readTime}
+                key={caseStudy.sys.id}
+                caseStudy={caseStudy.fields}
               />
             );
           })}
@@ -95,15 +88,9 @@ function IndexPage({ data }) {
         <Title color={"light"}>Other Stuff</Title>
 
         <CardGrid col={3}>
-          {data.projects.edges.map((edge) => {
-            let project = edge.node;
+          {projects.map((project) => {
             return (
-              <ProjectCard
-                key={project.id}
-                link={project.url}
-                category={project.category}
-                title={project.title}
-              />
+              <ProjectCard key={project.sys.id} project={project.fields} />
             );
           })}
         </CardGrid>
@@ -112,89 +99,17 @@ function IndexPage({ data }) {
   );
 }
 
-export const data = graphql`
-  query {
-    svg: file(relativePath: { eq: "assets/svg/me-space.svg" }) {
-      childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    caseStudies: allContentfulCaseStudy {
-      edges {
-        node {
-          id
-          title
-          slug
-          publicationDate
-          readTime
-          category {
-            title
-          }
-          cover {
-            fluid(maxHeight: 512, resizingBehavior: FILL, toFormat: WEBP) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-          preview {
-            preview
-          }
-        }
-      }
-    }
-    projects: allContentfulProject {
-      edges {
-        node {
-          id
-          title
-          url
-          category {
-            title
-          }
-        }
-      }
-    }
-    hobbies: allContentfulHobby {
-      edges {
-        node {
-          id
-          name
-          iconName
-          iconLibrary
-          description {
-            description
-          }
-        }
-      }
-    }
-    skillsCategory: allContentfulSkillCategory {
-      edges {
-        node {
-          id
-          name
-          color
-          skills {
-            id
-            name
-            url
-            iconName
-            skill_category {
-              name
-              color
-            }
-          }
-        }
-      }
-    }
-    me: contentfulOwner {
-      firstName
-      lastName
-      bio {
-        json
-      }
-    }
-  }
-`;
+export async function getStaticProps() {
+  return {
+    props: {
+      skillCategories: await getContentTypeEntries("skillCategory"),
+      hobbies: await getContentTypeEntries("hobby"),
+      projects: await getContentTypeEntries("project"),
+      caseStudies: await getContentTypeEntries("caseStudy"),
+      owner: await getSingleEntry("3s36kiP3mua8eAXRnWorT6"),
+    },
+    revalidate: 3000,
+  };
+}
 
 export default IndexPage;

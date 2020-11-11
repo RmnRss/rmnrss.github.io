@@ -46,20 +46,20 @@ const Description = styled.p`
   font-size: 14px;
 `;
 
-function HobbyCard(props) {
+function HobbyCard({ color, hobby }) {
   return (
     <Container backgroundColor={"lightBlue"}>
       <CardContent alignItems="flex-start" justifyContent="flex-start">
         <IconContainer
           justifyContent={"center"}
           alignItems={"center"}
-          color={props.color}
+          color={color}
         >
-          <Icon name={`hobbies/${props.iconName}`} size={48} color={"light"} />
+          <Icon name={`hobbies/${hobby.iconName}`} size={48} color={"light"} />
         </IconContainer>
         <FlexboxColumn justifyContent={"flex-start"} alignItems={"flex-start"}>
-          <Title>{props.title}</Title>
-          <Description>{props.description}</Description>
+          <Title>{hobby.name}</Title>
+          <Description>{hobby.description}</Description>
         </FlexboxColumn>
       </CardContent>
     </Container>
@@ -67,10 +67,8 @@ function HobbyCard(props) {
 }
 
 HobbyCard.propTypes = {
-  description: PropTypes.string.isRequired,
-  iconLibrary: PropTypes.string.isRequired,
-  iconName: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  hobby: PropTypes.object.isRequired,
 };
 
 export default HobbyCard;
