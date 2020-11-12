@@ -3,8 +3,11 @@ import React from "react";
 import Particles from "react-particles-js";
 import styled from "styled-components";
 import particlesConfig from "../../styles/particles";
+import Breakpoints from "../../utils/breakpoints";
+import Button from "../Button";
 import FlexboxColumn from "../FlexboxColumn";
 import FlexboxRow from "../FlexboxRow";
+import SocialIcons from "../SocialIcons";
 import Section from "./Section";
 
 const Content = styled(FlexboxColumn)`
@@ -41,12 +44,15 @@ const IntroLine = styled.h2`
   font-weight: 600;
 `;
 
-const CTALink = styled.a`
-  margin: 2rem 0;
-  color: ${(props) => props.theme.light};
+const CTARow = styled.div`
+  display: flex;
+  grid-gap: 1rem;
 
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  margin: 3rem 1rem;
+
+  @media screen and (max-width: ${Breakpoints.sm}px) {
+    flex-direction: column;
+  }
 `;
 
 function HeadSection({ me }) {
@@ -64,9 +70,16 @@ function HeadSection({ me }) {
           </IntroLine>
         </FlexboxRow>
 
-        <CTALink target={"_self"} href={"#about-me"}>
-          Learn More
-        </CTALink>
+        <SocialIcons iconSize={24} color={"light"} />
+
+        <CTARow target={"_self"} href={"#about-me"}>
+          <Button href={"/about-me"} color={"primary"}>
+            About Me
+          </Button>
+          <Button href={"/work"} color={"accentPurple"}>
+            My Work
+          </Button>
+        </CTARow>
       </Content>
     </Section>
   );

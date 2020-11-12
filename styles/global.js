@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import Breakpoints from "../utils/breakpoints";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -39,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   h4 {
-    font-size: clamp(1.25em, 2vw, 1.5em);
+    font-size: 1.25rem;
     font-weight: bold;
   }
   
@@ -103,6 +104,21 @@ const GlobalStyle = createGlobalStyle`
 
     &:hover:after {
       width: 120%;
+    }
+  }
+
+  @media screen and (max-width: ${Breakpoints.md}px){
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    h3,
+    h4 {
+    font-size: 1.25rem;
     }
   }
 
