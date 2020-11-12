@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import Breakpoints from "../utils/breakpoints";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -39,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
   }
   
   h4 {
-    font-size: clamp(1.25em, 2vw, 1.5em);
+    font-size: 1.25rem;
     font-weight: bold;
   }
   
@@ -69,6 +70,59 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     object-fit: cover;
   }
+
+  .swoop-in {
+    position: relative;
+    z-index: 0;
+
+    overflow: hidden;
+
+    transition: 0.4s ease;
+    
+    &:after {
+      content: "";
+      display: block;
+
+      position: absolute;
+      z-index: -1;
+      left: -10%;
+      bottom: 0%;
+
+      height: 120%;
+      width: 0;
+
+      background: ${(props) => props.theme.primary};
+
+      transform: skewX(15deg);
+      transition: 0.3s ease;
+    }
+
+    &:hover {
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    &:hover:after {
+      width: 120%;
+    }
+  }
+
+  @media screen and (max-width: ${Breakpoints.md}px){
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    h3,
+    h4 {
+    font-size: 1.25rem;
+    }
+  }
+
+  
 `;
 
 export default GlobalStyle;
