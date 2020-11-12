@@ -1,18 +1,17 @@
-import { Link } from "next/link";
+import Link from "next/link";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
+import ExternalLink from "./ExternalLink";
 
 const ButtonContainer = styled.button`
-  position: relative;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
   outline: none;
   border: none;
-  border-radius: 4px;
+  border-radius: 0;
 
   font-family: ${(props) => props.theme.fontFamily};
   font-size: 1em;
@@ -22,95 +21,74 @@ const ButtonContainer = styled.button`
   text-align: center;
   letter-spacing: 0.0515em;
 
-  padding: 1rem 2rem;
-
-  overflow: hidden;
+  padding: 0.5rem 1.5rem;
 
   background: ${(props) =>
     props.disabled ? props.theme.grey : props.theme[props.color]};
   color: ${(props) => props.theme.light};
 
-  transition: 0.4s ease;
-
   &:after {
-    content: "";
-    display: ${(props) => (props.disabled ? "none" : "block")};
-
-    position: absolute;
-    z-index: -1;
-    left: -10%;
-    bottom: 0%;
-
-    height: 120%;
-    width: 0;
-
-    background: ${(props) => props.theme[props.hoverColor]};
-    transform: skewX(15deg);
-    transition: 0.3s ease;
+    background: ${(props) => `${props.theme[props.color]}`};
+    filter: hue-rotate(35deg);
   }
 
   &:hover {
     background-color: ${(props) => (props.disabled ? "none" : "transparent")};
     cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   }
-
-  &:hover:after {
-    width: 120%;
-  }
 `;
 
-function PureButton({ className, color, hoverColor, label, ...props }) {
-  return (
+const PureButton = forwardRef(
+  ({ children, className, color, type, ...props }, ref) => (
     <ButtonContainer
-      className={className}
+      ref={ref}
+      className={`${className} swoop-in`}
       color={color}
-      hoverColor={hoverColor}
+      type={type || "button"}
       {...props}
     >
-      {label}
+      {children}
     </ButtonContainer>
-  );
-}
+  )
+);
 
-function Button(props) {
-  const hasLink = props.href != null;
-  let external = false;
-
-  if (hasLink) {
-    external = props.href.includes("https");
+const Button = ({ as, children, className, href, ...props }) => {
+  if (href != null) {
+    const external = href.includes("https");
+    return (
+      <>
+        {external ? (
+          <ExternalLink href={href} className={className}>
+            <PureButton {...props}>{children}</PureButton>
+          </ExternalLink>
+        ) : (
+          <Link passHref href={href} as={as}>
+            <PureButton className={className} {...props}>
+              {children}
+            </PureButton>
+          </Link>
+        )}
+      </>
+    );
+  } else {
+    return (
+      <PureButton className={className} {...props}>
+        {children}
+      </PureButton>
+    );
   }
-
-  return (
-    <>
-      {hasLink ? (
-        <>
-          {external ? (
-            <form action={props.href} className={props.className}>
-              <PureButton {...props} type={"submit"} />
-            </form>
-          ) : (
-            <Link passHref href={props.href} className={props.className}>
-              <PureButton {...props} />
-            </Link>
-          )}
-        </>
-      ) : (
-        <PureButton {...props} />
-      )}
-    </>
-  );
-}
+};
 
 Button.propTypes = {
+  as: PropTypes.string,
+  children: PropTypes.node.isRequired,
   color: PropTypes.string,
-  hoverColor: PropTypes.string,
-  label: PropTypes.string.isRequired,
   href: PropTypes.string,
 };
 
 Button.defaultProps = {
+  as: null,
   color: `dark`,
-  hoverColor: `secondary`,
   href: null,
 };
 

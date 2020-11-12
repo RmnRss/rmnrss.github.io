@@ -69,6 +69,44 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     object-fit: cover;
   }
+
+  .swoop-in {
+    position: relative;
+    z-index: 0;
+
+    overflow: hidden;
+
+    transition: 0.4s ease;
+    
+    &:after {
+      content: "";
+      display: block;
+
+      position: absolute;
+      z-index: -1;
+      left: -10%;
+      bottom: 0%;
+
+      height: 120%;
+      width: 0;
+
+      background: ${(props) => props.theme.primary};
+
+      transform: skewX(15deg);
+      transition: 0.3s ease;
+    }
+
+    &:hover {
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    &:hover:after {
+      width: 120%;
+    }
+  }
+
+  
 `;
 
 export default GlobalStyle;
