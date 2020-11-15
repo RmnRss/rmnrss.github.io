@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import Breakpoints from "../../utils/breakpoints";
 import ExternalLink from "../ExternalLink";
 import FlexboxRow from "../FlexboxRow";
 import Icon from "../Icon";
@@ -55,27 +54,13 @@ const CardContainer = styled(Card)`
     color: ${(props) => props.theme.black};
     background-color: ${(props) => props.theme.light};
 
-    transition: all 0.2s ease-out;
-
-    &:hover {
-      z-index: 1;
-      color: ${(props) => props.theme.light};
-      background-color: ${(props) => props.theme.primary};
-      transform: scale(1.1);
-    }
-
+    &:hover,
     &:hover ${LabelRow} {
       color: ${(props) => props.theme.light};
     }
 
     &:hover ${LaunchIcon} {
       fill: ${(props) => props.theme.light};
-    }
-
-    @media screen and (max-width: ${Breakpoints.md}px) {
-      &:hover {
-        transform: scale(1);
-      }
     }
   }
 `;
@@ -85,7 +70,7 @@ function ProjectCard({ project }) {
 
   return (
     <ExternalLink href={project.url}>
-      <CardContainer>
+      <CardContainer className="swoop-in">
         <Category>{category.title}</Category>
         <CardTitle>{project.title}</CardTitle>
 
