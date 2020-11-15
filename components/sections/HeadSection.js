@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PropTypes from "prop-types";
 import React from "react";
 import Particles from "react-particles-js";
@@ -73,12 +74,13 @@ function HeadSection({ me }) {
         <SocialIcons iconSize={24} color={"light"} />
 
         <CTARow target={"_self"} href={"#about-me"}>
-          <Button href={"/about-me"} color={"primary"}>
-            About Me
-          </Button>
-          <Button href={"/work"} color={"accentPurple"}>
-            My Work
-          </Button>
+          <Link passHref href={"/about-me"}>
+            <Button color={"primary"}>About Me</Button>
+          </Link>
+
+          <Link passHref href={"/work"}>
+            <Button color={"accentPurple"}>My Work</Button>
+          </Link>
         </CTARow>
       </Content>
     </Section>
