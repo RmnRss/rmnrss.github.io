@@ -28,7 +28,7 @@ const ButtonContainer = styled.button`
   color: ${(props) => props.theme.light};
 
   &:after {
-    background: ${(props) => `${props.theme[props.color]}`};
+    background: ${(props) => `${props.theme[props.color]}`} !important;
     filter: hue-rotate(35deg);
   }
 
