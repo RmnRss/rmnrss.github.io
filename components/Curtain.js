@@ -1,6 +1,7 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 import React from "react";
+import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
 const Rect = styled(motion.div)`
@@ -13,17 +14,22 @@ const Rect = styled(motion.div)`
   filter: hue-rotate(35deg);
 `;
 
+const variants = {
+  visible: { y: "100%", transition: { ease: "easeIn", duration: 0.45 } },
+  hidden: { y: 0, transition: { ease: "easeIn", duration: 0.45 } },
+};
+
 export default function Curtain({ color }) {
+  const { ref, inView } = useInView({ threshold: 0 });
+
   return (
-    <AnimatePresence>
-      <Rect
-        initial={{ y: 0 }}
-        animate={{ y: "100%" }}
-        transition={{ ease: "easeIn", duration: 0.45 }}
-        exit={{ y: 0 }}
-        color={color}
-      />
-    </AnimatePresence>
+    <Rect
+      ref={ref}
+      variants={variants}
+      initial={"hidden"}
+      animate={inView ? "visible" : "hidden"}
+      color={color}
+    />
   );
 }
 

@@ -1,7 +1,8 @@
-import { motion, useIsPresent } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import React from "react";
+import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import Breakpoints from "../../utils/breakpoints";
 import Button from "../Button";
@@ -96,13 +97,14 @@ const ReadButton = styled(Button)`
 `;
 
 export default function DetailsCard({ preview, readTime, slug, title }) {
-  const isPresent = useIsPresent();
+  const { ref, inView } = useInView({ threshold: 0.6 });
 
   return (
     <Card
+      ref={ref}
       variants={cardVariants}
       initial="hidden"
-      animate={isPresent ? "visible" : "hidden"}
+      animate={inView ? "visible" : "hidden"}
     >
       <CardTitle variants={itemVariants}>{title}</CardTitle>
       <ReadTime variants={itemVariants}>{readTime} min read</ReadTime>
