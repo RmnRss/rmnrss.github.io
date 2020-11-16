@@ -7,14 +7,23 @@ const SectionContainer = styled.section`
   position: relative;
   display: flex;
 
-  height: 100%;
   padding: 4rem 0;
   background-color: ${(props) => props.theme[props.backgroundColor]};
 `;
 
-function Section({ animatedBackground, backgroundColor, children, ...props }) {
+function Section({
+  animatedBackground,
+  backgroundColor,
+  children,
+  className,
+  ...props
+}) {
   return (
-    <SectionContainer {...props} backgroundColor={backgroundColor}>
+    <SectionContainer
+      {...props}
+      backgroundColor={backgroundColor}
+      className={className}
+    >
       {animatedBackground && animatedBackground}
       <ContentLayout>{children}</ContentLayout>
     </SectionContainer>
