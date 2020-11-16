@@ -6,36 +6,31 @@ import Chip from "../Chip";
 import SkillIcon from "../SkillIcon";
 import Section from "./Section";
 
-const IconGrid = styled.div`
+const Grid = styled.div`
   display: grid;
-
-  grid-template-columns: repeat(8, 1fr);
   grid-gap: 2rem;
 
-  justify-items: stretch;
   align-items: center;
 
   max-width: 1024px;
 
   margin: 2rem auto;
+`;
+
+const IconGrid = styled(Grid)`
+  grid-template-columns: repeat(8, 1fr);
+
+  justify-items: stretch;
 
   @media screen and (max-width: ${Breakpoints.sm}px) {
     grid-template-columns: repeat(4, 1fr);
   }
 `;
 
-const TabRow = styled.div`
-  display: grid;
-
+const TabRow = styled(Grid)`
   grid-template-columns: repeat(4, auto);
-  grid-gap: 2rem;
 
   justify-items: center;
-  align-items: center;
-
-  margin: 2rem auto;
-
-  max-width: 1024px;
 
   @media screen and (max-width: ${Breakpoints.xlg}px) {
     grid-template-columns: repeat(2, 1fr);
@@ -67,7 +62,7 @@ export default function SkillsSection({ skillCategories }) {
   }
 
   return (
-    <Section id={"Skills"} backgroundColor={"lightBlue"}>
+    <Section id={"Skills"} backgroundColor={"light"}>
       <Title>A happy gathering of tools, framework and technology I use</Title>
 
       <TabRow>
