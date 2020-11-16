@@ -46,7 +46,7 @@ const IconHolder = styled.div`
   border-radius: 50%;
 `;
 
-function Header({ caseStudies, className }) {
+function Header({ className }) {
   const [showDrawer, setShowDrawer] = useState(false);
 
   const toggleDrawer = () => {
@@ -78,18 +78,13 @@ function Header({ caseStudies, className }) {
         </Nav>
       </Container>
 
-      <Drawer
-        open={showDrawer}
-        toggleDrawer={closeDrawer}
-        caseStudies={caseStudies}
-      />
+      <Drawer open={showDrawer} toggleDrawer={closeDrawer} />
     </>
   );
 }
 
 Header.propTypes = {
   className: PropTypes.string,
-  caseStudies: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Header;

@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Breakpoints from "../../utils/breakpoints";
 import ExternalLink from "../ExternalLink";
 import FlexboxColumn from "../FlexboxColumn";
-import FlexboxRow from "../FlexboxRow";
 import Icon from "../Icon";
 
 const Container = styled.div`
@@ -129,7 +128,7 @@ export default function Drawer({ open, toggleDrawer }) {
               <PageLink onClick={() => toggleDrawer()}>Home</PageLink>
             </Link>
 
-            <Link href={"/work"}>
+            <Link href={"/#work"}>
               <PageLink>My Work</PageLink>
             </Link>
 
