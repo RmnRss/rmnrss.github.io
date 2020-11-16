@@ -5,17 +5,11 @@ import theme from "../../styles/theme";
 import Footer from "../Footer";
 import Header from "../navigation/Header";
 
-function MainLayout({
-  caseStudies,
-  children,
-  description,
-  featuredCases,
-  title,
-}) {
+function MainLayout({ children, description, title }) {
   return (
     <>
       <SEO title={title} description={description} />
-      <Header caseStudies={caseStudies} featuredCases={featuredCases} />
+      <Header />
       {children}
       <Footer backgroundColor={theme.light} />
     </>
@@ -23,10 +17,8 @@ function MainLayout({
 }
 
 MainLayout.propTypes = {
-  caseStudies: PropTypes.arrayOf(PropTypes.object).isRequired,
   children: PropTypes.node.isRequired,
   description: PropTypes.string.isRequired,
-  featuredCases: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string.isRequired,
 };
 
