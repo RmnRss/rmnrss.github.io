@@ -11,6 +11,14 @@ import FlexboxRow from "../FlexboxRow";
 import SocialIcons from "../SocialIcons";
 import Section from "./Section";
 
+const FullScreenSection = styled(Section)`
+  width: 100vw;
+  max-width: 100%;
+
+  height: 100vh;
+  max-height: 100%;
+`;
+
 const Content = styled(FlexboxColumn)`
   z-index: 0;
   padding: 6rem 0;
@@ -58,7 +66,7 @@ const CTARow = styled.div`
 
 function HeadSection({ me }) {
   return (
-    <Section
+    <FullScreenSection
       id={"welcome"}
       animatedBackground={<BackgroundParticles params={particlesConfig} />}
     >
@@ -78,12 +86,12 @@ function HeadSection({ me }) {
             <Button color={"primary"}>About Me</Button>
           </Link>
 
-          <Link passHref href={"/work"}>
+          <Link passHref href={"/#work"}>
             <Button color={"accentPurple"}>My Work</Button>
           </Link>
         </CTARow>
       </Content>
-    </Section>
+    </FullScreenSection>
   );
 }
 
