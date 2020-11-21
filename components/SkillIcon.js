@@ -99,7 +99,7 @@ export default function SkillIcon({ active, color, href, iconName, name }) {
         name={`skills/${iconName}`}
         href={href}
         size={32}
-        color={"dark"}
+        color={"light"}
       />
       <TooltipHolder active={active} color={color} tabIndex="-1">
         <Tooltip

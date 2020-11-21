@@ -17,6 +17,9 @@ const Holder = styled.div`
   align-items: center;
   justify-content: center;
 
+  background-color: ${(props) =>
+    props.index % 2 === 0 && props.theme.darkLight};
+
   @media screen and (max-width: ${Breakpoints.md}px) {
     margin: 4.5rem 0 0 0;
 
@@ -51,9 +54,9 @@ const ImageHolder = styled.div`
   overflow: hidden;
 `;
 
-function CaseStudy({ caseStudy }) {
+function CaseStudy({ caseStudy, index }) {
   return (
-    <Holder>
+    <Holder index={index}>
       <Container>
         <ImageHolder>
           <Curtain />
@@ -79,6 +82,7 @@ function CaseStudy({ caseStudy }) {
 
 CaseStudy.propTypes = {
   caseStudy: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default CaseStudy;

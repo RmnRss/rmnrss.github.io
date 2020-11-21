@@ -43,7 +43,7 @@ const TabRow = styled(Grid)`
 
 const Title = styled.h2`
   text-align: center;
-  color: ${(props) => props.theme.dark};
+  color: ${(props) => props.theme.lightBlue};
 `;
 
 export default function SkillsSection({ skillCategories }) {
@@ -62,7 +62,7 @@ export default function SkillsSection({ skillCategories }) {
   }
 
   return (
-    <Section id={"Skills"} backgroundColor={"light"}>
+    <Section id={"Skills"} backgroundColor={"darkLight"}>
       <Title>A happy gathering of tools, framework and technology I use</Title>
 
       <TabRow>

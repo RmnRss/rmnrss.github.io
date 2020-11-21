@@ -38,5 +38,5 @@ Curtain.propTypes = {
 };
 
 Curtain.defaultProps = {
-  color: "black",
+  color: "light",
 };

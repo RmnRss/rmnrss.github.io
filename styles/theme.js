@@ -1,9 +1,9 @@
 const theme = {
-  light: "#F6F9FF",
+  light: "#FAFAFA",
   lightBlue: "#EAF0FF",
 
-  dark: "#001240",
-  darkBlue: "#3a3a3a",
+  dark: "#181818",
+  darkLight: "#232323",
 
   primary: "#0089FF",
 
@@ -13,10 +13,7 @@ const theme = {
   accentYellow: "#F7B500",
   allAccents: ["accentBlue", "accentGreen", "accentPurple", "accentYellow"],
 
-  black: "#181818",
-  grey: "#ECECEC",
-
-  fontFamily: "'Poppins', sans-serif",
+  fontFamily: "'Encode Sans', sans-serif",
 
   borderRadius: "0",
 };

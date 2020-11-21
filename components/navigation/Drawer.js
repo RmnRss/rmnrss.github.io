@@ -24,7 +24,7 @@ const Container = styled.div`
 
   padding: 4rem 0;
 
-  background-color: ${(props) => props.theme.light};
+  background-color: ${(props) => props.theme.dark};
   color: ${(props) => props.theme.dark};
 
   @media screen and (max-width: ${Breakpoints.md}px) {
@@ -44,7 +44,7 @@ const DrawerContent = styled.div`
 
   padding: 2rem;
 
-  color: ${(props) => props.theme.dark};
+  color: ${(props) => props.theme.light};
 
   @media screen and (max-width: ${Breakpoints.md}px) {
     grid-template-columns: 1fr;
@@ -104,11 +104,10 @@ const ContactRow = styled(ExternalLink)`
   width: 100%;
 
   transition: all 0.2s ease;
+  cursor: pointer;
 
   &:hover {
     color: ${(props) => props.theme.accentGreen};
-    fill: ${(props) => props.theme.accentGreen} !important;
-    cursor: pointer;
   }
 `;
 
@@ -141,17 +140,17 @@ export default function Drawer({ open, toggleDrawer }) {
             <ColumnTitle>Contact</ColumnTitle>
 
             <ContactRow href={"https://www.linkedin.com/in/rmnrss/"}>
-              <Icon name={"socials/linkedin"} size={24} color={"dark"} />
+              <Icon name={"socials/linkedin"} size={24} color={"light"} />
               <ContactLabel>linkedin</ContactLabel>
             </ContactRow>
 
             <ContactRow href={"mailto: romain.rousseau5@gmail.com"}>
-              <Icon name={"socials/email"} size={24} color={"dark"} />
+              <Icon name={"socials/email"} size={24} color={"light"} />
               <ContactLabel>romain.rousseau5@gmail.com</ContactLabel>
             </ContactRow>
 
             <ContactRow href={"https://github.com/rmnrss"}>
-              <Icon name={"skills/github"} size={24} color={"dark"} />
+              <Icon name={"skills/github"} size={24} color={"light"} />
               <ContactLabel>github</ContactLabel>
             </ContactRow>
           </FlexboxColumn>
