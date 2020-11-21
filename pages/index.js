@@ -30,9 +30,13 @@ function IndexPage({ caseStudies, owner, projects, skillCategories }) {
       <HeadSection me={owner} />
 
       <section id={"work"}>
-        {caseStudies.map((caseStudy) => {
+        {caseStudies.map((caseStudy, i) => {
           return (
-            <CaseStudy key={caseStudy.sys.id} caseStudy={caseStudy.fields} />
+            <CaseStudy
+              caseStudy={caseStudy.fields}
+              key={caseStudy.sys.id}
+              index={i}
+            />
           );
         })}
       </section>

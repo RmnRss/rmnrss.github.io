@@ -10,7 +10,7 @@ import Card from "./Card";
 const Container = styled(Card)`
   padding: 1.5rem;
 
-  color: ${(props) => props.theme.black};
+  color: ${(props) => props.theme.dark};
 
   @media screen and (max-width: ${breakpoints.sm}px) {
     padding: 1rem;
@@ -48,7 +48,7 @@ const Description = styled.p`
 
 function HobbyCard({ color, hobby }) {
   return (
-    <Container backgroundColor={"lightBlue"}>
+    <Container backgroundColor={"light"}>
       <CardContent alignItems="flex-start" justifyContent="flex-start">
         <IconContainer
           justifyContent={"center"}

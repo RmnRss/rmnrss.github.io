@@ -15,7 +15,7 @@ const ButtonContainer = styled.button`
   font-size: 1em;
   font-weight: 700;
 
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-align: center;
   letter-spacing: 0.0515em;
 

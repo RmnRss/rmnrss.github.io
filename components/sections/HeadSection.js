@@ -1,14 +1,11 @@
 import Link from "next/link";
 import PropTypes from "prop-types";
 import React from "react";
-import Particles from "react-particles-js";
 import styled from "styled-components";
-import particlesConfig from "../../styles/particles";
 import Breakpoints from "../../utils/breakpoints";
 import Button from "../Button";
 import FlexboxColumn from "../FlexboxColumn";
 import FlexboxRow from "../FlexboxRow";
-import SocialIcons from "../SocialIcons";
 import Section from "./Section";
 
 const FullScreenSection = styled(Section)`
@@ -26,38 +23,23 @@ const Content = styled(FlexboxColumn)`
   height: 100%;
 `;
 
-const BackgroundParticles = styled(Particles)`
-  position: absolute;
-  z-index: -1;
-
-  top: 0%;
-  left: 0%;
-
-  width: 100vw;
-  height: 100%;
-
-  background: ${(props) => props.theme.dark};
-`;
-
 const Headline = styled.h1`
-  text-align: center;
   color: ${(props) => props.theme.primary};
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const IntroLine = styled.h2`
   max-width: 512px;
 
-  text-align: center;
   color: ${(props) => props.theme.lightDark};
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 const CTARow = styled.div`
   display: flex;
-  grid-gap: 1rem;
+  grid-gap: 1.5rem;
 
-  margin: 3rem 1rem;
+  margin: 2.5rem 0;
 
   @media screen and (max-width: ${Breakpoints.sm}px) {
     flex-direction: column;
@@ -66,20 +48,15 @@ const CTARow = styled.div`
 
 function HeadSection({ me }) {
   return (
-    <FullScreenSection
-      id={"welcome"}
-      animatedBackground={<BackgroundParticles params={particlesConfig} />}
-    >
-      <Content justifyContent="center" alignItems="center">
+    <FullScreenSection id={"welcome"} backgroundColor={"dark"}>
+      <Content justifyContent={"center"}>
         <Headline>Greetings good people!</Headline>
 
-        <FlexboxRow alignItems={"center"}>
+        <FlexboxRow>
           <IntroLine>
             I'm {me.firstName} {me.lastName} a beginner front-end engineer.
           </IntroLine>
         </FlexboxRow>
-
-        <SocialIcons iconSize={24} color={"light"} />
 
         <CTARow target={"_self"} href={"#about-me"}>
           <Link passHref href={"/about-me"}>

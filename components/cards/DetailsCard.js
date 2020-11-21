@@ -54,7 +54,7 @@ const Card = styled(motion.div)`
   padding: 2rem;
 
   color: ${(props) => props.theme.black};
-  background-color: ${(props) => props.theme.lightBlue};
+  background-color: ${(props) => props.theme.lightBlue} !important;
 
   @media screen and (max-width: ${Breakpoints.md}px) {
     position: relative;

@@ -34,16 +34,16 @@ export default function AboutMePage({ me, hobbies }) {
   console.log(me.bio);
   return (
     <MainLayout title="" description="">
-      <Section id={"about-me"} backgroundColor={"lightBlue"}>
-        <Title color={"dark"}>About Me</Title>
+      <Section id={"about-me"} backgroundColor={"dark"}>
+        <Title color={"lightBlue"}>About Me</Title>
 
         <FlexboxRow justifyContent={"center"} alignItems={"center"}>
           <MarkdownRenderer document={me.bio} />
         </FlexboxRow>
       </Section>
 
-      <Section id={"hobbies"} backgroundColor={"light"}>
-        <Title color={"dark"}>Some of my hobbies</Title>
+      <Section id={"hobbies"} backgroundColor={"darkLight"}>
+        <Title color={"lightBlue"}>Some of my hobbies</Title>
 
         <CardGrid col={2}>
           {hobbies.map((hobby, index) => {

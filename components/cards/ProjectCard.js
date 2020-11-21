@@ -51,15 +51,12 @@ const CardContainer = styled(Card)`
   && {
     padding: 2rem;
 
-    color: ${(props) => props.theme.black};
+    color: ${(props) => props.theme.dark};
     background-color: ${(props) => props.theme.light};
 
     &:hover,
-    &:hover ${LabelRow} {
+    &:hover ${LabelRow}, &:hover ${Category}, &:hover ${LaunchIcon} {
       color: ${(props) => props.theme.light};
-    }
-
-    &:hover ${LaunchIcon} {
       fill: ${(props) => props.theme.light};
     }
   }
