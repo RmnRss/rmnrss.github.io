@@ -4,32 +4,57 @@ import React from "react";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 
-const Rect = styled(motion.div)`
+const Grid = styled(motion.div)`
   position: absolute;
   z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+
   width: 100%;
   height: 100%;
 
-  background: ${(props) => `${props.theme[props.color]}`} !important;
-  filter: hue-rotate(35deg);
+  overflow: hidden;
 `;
 
-const variants = {
+const Rect = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background: ${(props) => `${props.theme[props.color]}`} !important;
+`;
+
+const cardVariants = {
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+  hidden: {
+    transition: { staggerChildren: 0.05, staggerDirection: -1 },
+  },
+};
+
+const variantsDown = {
   visible: { y: "100%", transition: { ease: "easeIn", duration: 0.45 } },
   hidden: { y: 0, transition: { ease: "easeIn", duration: 0.45 } },
 };
 
 export default function Curtain({ color }) {
-  const { ref, inView } = useInView({ threshold: 0 });
+  const { ref, inView } = useInView({ threshold: 0.3 });
 
   return (
-    <Rect
+    <Grid
       ref={ref}
-      variants={variants}
-      initial={"hidden"}
       animate={inView ? "visible" : "hidden"}
-      color={color}
-    />
+      initial={"hidden"}
+      variants={cardVariants}
+    >
+      <Rect variants={variantsDown} initial={"hidden"} color={color} />
+      <Rect variants={variantsDown} initial={"hidden"} color={color} />
+      <Rect variants={variantsDown} initial={"hidden"} color={color} />
+      <Rect variants={variantsDown} initial={"hidden"} color={color} />
+    </Grid>
   );
 }
 
@@ -38,5 +63,5 @@ Curtain.propTypes = {
 };
 
 Curtain.defaultProps = {
-  color: "light",
+  color: "darkLight",
 };
