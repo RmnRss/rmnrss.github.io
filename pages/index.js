@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import ProjectCard from "../components/cards/ProjectCard";
 import CaseStudy from "../components/CaseStudy";
+import FlexboxRow from "../components/FlexboxRow";
 import MainLayout from "../components/layouts/MainLayout";
 import HeadSection from "../components/sections/HeadSection";
 import Section from "../components/sections/Section";
 import SkillsSection from "../components/sections/SkillsSection";
+import SquaresTitle from "../components/SquaresTitle";
 import { getContentTypeEntries, getSingleEntry } from "../services/contentful";
 import Breakpoints from "../utils/breakpoints";
 
@@ -42,7 +44,11 @@ function IndexPage({ caseStudies, owner, projects, skillCategories }) {
       </section>
 
       <Section id={"other-projects"}>
-        <h2 className={"centered-text"}>More of my work</h2>
+        <FlexboxRow alignItems={"center"}>
+          <SquaresTitle />
+          <h2 className={"centered-text"}>More of my work</h2>
+        </FlexboxRow>
+
         <CardGrid col={3}>
           {projects.map((project) => {
             return (
