@@ -1,5 +1,9 @@
 function IndexPage() {
-  return <body></body>;
+  return (
+    <body>
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    </body>
+  );
 }
 
 export async function getStaticProps() {
