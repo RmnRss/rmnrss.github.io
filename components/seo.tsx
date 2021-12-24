@@ -1,10 +1,15 @@
 import Head from "next/head";
-import PropTypes from "prop-types";
+import { FC } from "react";
 
-export default function SEO({ description, title }) {
-  const siteTitle = "rmnrss.io";
-  const twitter = "rmnrss";
+interface SEOProps {
+  description: string;
+  title: string;
+}
 
+const siteTitle = "rmnrss.io";
+const twitter = "rmnrss";
+
+const SEO: FC<SEOProps> = ({ description, title }) => {
   return (
     <Head>
       <title>{`${title} | ${siteTitle}`}</title>
@@ -19,14 +24,6 @@ export default function SEO({ description, title }) {
       <meta property="twitter:description" content={description} />
     </Head>
   );
-}
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  title: PropTypes.string,
 };
 
-SEO.defaultProps = {
-  description: "",
-  title: "",
-};
+export default SEO;
