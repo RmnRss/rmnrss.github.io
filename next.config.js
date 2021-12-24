@@ -2,20 +2,24 @@ module.exports = {
   images: {
     domains: ["images.ctfassets.net"],
   },
-  webpack(config) {
+  webpack(config, options) {
+    const fileLoaderRule = config.module.rules.find(
+      (rule) => rule.test && rule.test.test(".svg")
+    );
+    fileLoaderRule.exclude = /\.svg$/;
+
     config.module.rules.push({
-      test: /\.svg$/,
-      issuer: {
-        test: /\.(js|ts)x?$/,
-      },
-      use: [
-        {
-          loader: "@svgr/webpack",
-          options: {
-            icon: true,
-          },
+      loader: "@svgr/webpack",
+      options: {
+        ...options,
+        prettier: false,
+        svgo: true,
+        svgoConfig: {
+          plugins: [{ removeViewBox: false }],
         },
-      ],
+        titleProp: true,
+      },
+      test: /\.svg$/,
     });
 
     return config;
