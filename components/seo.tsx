@@ -1,13 +1,13 @@
-import Head from "next/head";
-import { FC } from "react";
+import Head from "next/head"
+import { FC } from "react"
 
 interface SEOProps {
-  description: string;
-  title: string;
+  description?: string
+  title: string
 }
 
-const siteTitle = "rmnrss.io";
-const twitter = "rmnrss";
+const siteTitle = "rmnrss.io"
+const twitter = "rmnrss"
 
 const SEO: FC<SEOProps> = ({ description, title }) => {
   return (
@@ -23,7 +23,7 @@ const SEO: FC<SEOProps> = ({ description, title }) => {
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
     </Head>
-  );
-};
+  )
+}
 
-export default SEO;
+export default SEO

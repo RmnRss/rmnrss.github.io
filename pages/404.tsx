@@ -1,5 +1,5 @@
-import React from "react";
-import SEO from "../components/seo";
+import React from "react"
+import SEO from "../components/seo"
 
 const NotFoundPage = () => {
   return (
@@ -9,7 +9,7 @@ const NotFoundPage = () => {
         <h1>Woopsies</h1>
       </body>
     </>
-  );
-};
+  )
+}
 
-export default NotFoundPage;
+export default NotFoundPage
