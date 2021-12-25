@@ -13,9 +13,9 @@ const theme = {
   accentYellow: "#F7B500",
   allAccents: ["accentBlue", "accentGreen", "accentPurple", "accentYellow"],
 
-  fontFamily: "'Encode Sans', sans-serif",
+  fontFamily: "'Heebo', sans-serif",
 
   borderRadius: "0",
-};
+}
 
-export default theme;
+export default theme
