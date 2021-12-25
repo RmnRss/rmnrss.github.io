@@ -108,6 +108,24 @@ img {
   width: 120%;
 }
 
+.fullscreen {
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100%;
+}
+
+.pos-rel {
+  position: relative;
+}
+
+.pos-abs {
+  position: absolute;
+}
+
+.pos-fix {
+  position: fixed;
+}
+
 @media screen and (max-width: 768px) {
   h1 {
     font-size: 2rem;
