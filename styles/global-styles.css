@@ -53,10 +53,9 @@ b {
 p {
   font-weight: normal;
   text-transform: none;
-  font-family: "Inter";
+  font-family: "Heebo", sans-serif;
 
   color: #181818;
-  max-width: 640px;
 }
 
 a,
