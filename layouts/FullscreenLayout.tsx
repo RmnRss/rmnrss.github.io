@@ -15,8 +15,10 @@ const FullscreenLayout: FC<FullPageLayoutProps> = ({
   return (
     <>
       <SEO title={title} description={description} />
-      <Header />
-      <div className="fullscreen">{children}</div>
+      <div className="fullscreen">
+        <Header />
+        <div style={{ height: "calc(100vh - 56px)" }}>{children}</div>
+      </div>
     </>
   )
 }
