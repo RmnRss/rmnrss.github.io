@@ -11,7 +11,7 @@ interface IconProps
 const Icon: FC<IconProps> = ({ size, color, className, name, ...props }) => {
   return (
     <span
-      className={`material-icons-round w-${size} h-${size} fill-${color} ${className}`}
+      className={`material-icons-round w-${size} h-${size} text-${color} fill-${color} ${className}`}
       {...props}
     >
       {name}
